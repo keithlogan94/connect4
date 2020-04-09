@@ -10,7 +10,7 @@ use Exception;
 class Board
 {
 
-    private $boardPositions = [];
+    private array $boardPositions = [];
 
     const POSITION_INCREASE_BY = 10;
 
@@ -44,10 +44,11 @@ class Board
 
 
 
-    private function addBoardPosition(BoardPosition $boardPosition)
+    private function addBoardPosition(BoardPosition $boardPosition) : void
     {
         if (!$boardPosition->canPlace()) throw new Exception('User should be able to place');
         $this->boardPositions[] = $boardPosition;
+        return;
     }
 
 

@@ -7,13 +7,12 @@ namespace Connect4\BoardPosition;
 use Connect4\GamePiece;
 use Exception;
 
-class BoardPosition implements Positionable
+class BoardPosition
 {
 
     protected int $xPosition;
     protected int $yPosition;
     private string $positionCode;
-    private Positionable $positionable;
     private $filledGamePiece = null;
 
     public function __construct(int $xPosition, int $yPosition, string $positionCode)
@@ -21,14 +20,11 @@ class BoardPosition implements Positionable
         $this->positionCode = $positionCode;
         $this->xPosition = $xPosition;
         $this->yPosition = $yPosition;
-        $this->positionable = new IsPositionable();
     }
 
     public function canPlace(): bool
     {
-        //if this game position is empty and the user can't place for some reason then throw an exception
-        if ($this->isEmpty() && !$this->canPlace()) throw new Exception('This error should not occur, but just testing');
-        return $this->positionable->canPlace();
+        return $this->isEmpty();
     }
 
     public function isEmpty(): bool
@@ -41,9 +37,9 @@ class BoardPosition implements Positionable
         //check if this position is not empty
         if (!$this->isEmpty()) throw new Exception('Board position is already filled');
         $this->setFilledGamePiece($gamePiece);
-        $this->setPositionable(new NotPositionable());
         return;
     }
+
 
 
     /*
@@ -81,22 +77,6 @@ class BoardPosition implements Positionable
     private function setYPosition(int $yPosition): void
     {
         $this->yPosition = $yPosition;
-    }
-
-    /**
-     * @return IsPositionable|Positionable
-     */
-    private function getPositionable()
-    {
-        return $this->positionable;
-    }
-
-    /**
-     * @param IsPositionable|Positionable $positionable
-     */
-    private function setPositionable($positionable): void
-    {
-        $this->positionable = $positionable;
     }
 
     /**
