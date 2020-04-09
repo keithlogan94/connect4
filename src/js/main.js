@@ -8,7 +8,7 @@ function runOnLoad (func) {
 runOnLoad(function () {
 
 
-    const gl = webgl.prepareWebGlContext(document.getElementById('canvas'));
+    const gl = prepareWebGlContext(document.getElementById('canvas'));
 
     const positionBuffer = gl.createBuffer();
 
@@ -120,7 +120,7 @@ runOnLoad(function () {
     let then = 0;
 
 
-    const shaderProgram = webgl.initializeShaderProgram(gl, webgl.shaders.colors.vertexSource, webgl.shaders.colors.fragmentSource);
+    const shaderProgram = initializeShaderProgram(gl, webgl.shaders.colors.vertexSource, webgl.shaders.colors.fragmentSource);
 
     const programInfo = {
         program: shaderProgram,
@@ -142,7 +142,7 @@ runOnLoad(function () {
         then = now;
 
         // noinspection JSUnresolvedVariable
-        webgl.drawScene(gl, programInfo, buffers, mat4, deltaTime);
+        drawScene(gl, programInfo, buffers, mat4, deltaTime);
 
         requestAnimationFrame(render);
     }
@@ -150,7 +150,7 @@ runOnLoad(function () {
 
 
 
-    // webgl.drawScene(gl, programInfo, buffers, mat4);
+    // drawScene(gl, programInfo, buffers, mat4);
 
 
 });
