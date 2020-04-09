@@ -26,11 +26,14 @@ class Board
         $columns = 6;
         $rows = 7;
 
+        $columnCodes = [1,2,3,4,5,6];
+        $rowCodes = ['A','B','C','D','E','F','G'];
+
         for ($c = 0; $c < $columns; $c++)
         {
             for ($r = 0; $r < $rows; $r++) {
                 //Place this position on the board at a specific (X, Y) coordinate which will be used for calculations (Graphing calculations)
-                $this->addBoardPosition(new BoardPosition(self::POSITION_INCREASE_BY * $c, self::POSITION_INCREASE_BY * $r));
+                $this->addBoardPosition(new BoardPosition(self::POSITION_INCREASE_BY * $c, self::POSITION_INCREASE_BY * $r, $rowCodes[$r] . $columnCodes[$c] ));
             }
         }
 
@@ -46,6 +49,7 @@ class Board
         if (!$boardPosition->canPlace()) throw new Exception('User should be able to place');
         $this->boardPositions[] = $boardPosition;
     }
+
 
 
 

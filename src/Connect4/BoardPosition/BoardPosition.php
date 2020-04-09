@@ -12,11 +12,13 @@ class BoardPosition implements Positionable
 
     protected int $xPosition;
     protected int $yPosition;
+    private string $positionCode;
     private Positionable $positionable;
     private $filledGamePiece = null;
 
-    public function __construct(int $xPosition, int $yPosition)
+    public function __construct(int $xPosition, int $yPosition, string $positionCode)
     {
+        $this->positionCode = $positionCode;
         $this->xPosition = $xPosition;
         $this->yPosition = $yPosition;
         $this->positionable = new IsPositionable();
@@ -34,12 +36,13 @@ class BoardPosition implements Positionable
         return is_null($this->filledGamePiece);
     }
 
-    public function place(GamePiece $gamePiece)
+    public function place(GamePiece $gamePiece) : void
     {
         //check if this position is not empty
         if (!$this->isEmpty()) throw new Exception('Board position is already filled');
         $this->setFilledGamePiece($gamePiece);
         $this->setPositionable(new NotPositionable());
+        return;
     }
 
 
