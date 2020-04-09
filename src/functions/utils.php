@@ -6,7 +6,7 @@ namespace utils;
 
 use Exception;
 
-function array_wrap_each(array $strItems, $before = '', $after = '') {
+function array_wrap_each(array $strItems, string $before = '', string $after = '') : array {
     $newItems = [];
 
     foreach ($strItems as $item)//prefer not to use braces for one line foreach statements
@@ -16,7 +16,7 @@ function array_wrap_each(array $strItems, $before = '', $after = '') {
 }
 
 
-function echo_error_page(Exception $e)
+function echo_error_page(Exception $e) : void
 {
     //let the browser know of the error
     http_response_code(500);
@@ -41,6 +41,8 @@ function echo_error_page(Exception $e)
 
 
     include dirname(__FILE__) . '/../html/error-message.php';
+
+    return;
 
 }
 
