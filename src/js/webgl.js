@@ -56,25 +56,6 @@ webgl.initializeShaderProgram = function (gl, vertexShaderSource, fragmentShader
 
 };
 
-
-webgl.initializeProgramInfo = function (gl, vertexShaderSource, fragmentShaderSource) {
-
-    const shaderProgram = webgl.initializeShaderProgram(gl, vertexShaderSource, fragmentShaderSource);
-
-    return {
-        program: shaderProgram,
-        attribLocations: {
-            vertexPosition: gl.getAttribLocation(shaderProgram, 'aVertexPosition'),
-            vertexColor: gl.getAttribLocation(shaderProgram, 'aVertexColor'),
-        },
-        uniformLocations: {
-            projectionMatrix: gl.getUniformLocation(shaderProgram, 'uProjectionMatrix'),
-            modelViewMatrix: gl.getUniformLocation(shaderProgram, 'uModelViewMatrix')
-        }
-    };
-
-};
-
 webgl.initBuffers = function (gl) {
 
     const positionBuffer = gl.createBuffer();
