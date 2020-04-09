@@ -2,6 +2,7 @@
 
 
 const webgl = {};
+webgl.squareRotation = 0.0;
 
 
 
@@ -114,7 +115,7 @@ webgl.initBuffers = function (gl) {
 };
 
 
-webgl.drawScene = function (gl, programInfo, buffers, mat4) {
+webgl.drawScene = function (gl, programInfo, buffers, mat4, deltaTime) {
 
     gl.clearColor(0.0, 0.0, 0.0, 1.0);  // Clear to black, fully opaque
     gl.clearDepth(1.0);                 // Clear everything
@@ -161,7 +162,7 @@ webgl.drawScene = function (gl, programInfo, buffers, mat4) {
 
     mat4.rotate(modelViewMatrix,  // destination matrix
         modelViewMatrix,  // matrix to rotate
-        squareRotation,   // amount to rotate in radians
+        webgl.squareRotation,   // amount to rotate in radians
         [.5, .5, 1]);
 
 
@@ -230,7 +231,7 @@ webgl.drawScene = function (gl, programInfo, buffers, mat4) {
         gl.drawArrays(gl.TRIANGLE_STRIP, offset, vertexCount);
     }
 
-
+    webgl.squareRotation += deltaTime;
 };
 
 
