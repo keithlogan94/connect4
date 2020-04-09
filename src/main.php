@@ -10,8 +10,6 @@ use function utils\echo_error_page;
 //c++ style main function where the code begins
 function main() {
 
-    throw new Exception('test');
-
     $request = Request::getInstance();
     if (!$request->isRequestGet()) throw new Exception('Only GET requests are supported for accessing main.php');
 
