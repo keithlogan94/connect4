@@ -1,5 +1,7 @@
 
 
+@import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@300;700&display=swap');
+
 
 * {
     padding: 0;
@@ -14,6 +16,39 @@ body {
     width: 100vw;
     height: 100vh;
 }
+
+
+.error {
+    background: pink;
+    margin: 5%;
+    padding: 5em;
+    border: thick solid #fd8c7f;
+}
+
+.error-message {
+    font-family: 'Comic Neue', serif;
+    font-weight: 300;
+    font-size: 2em;
+}
+
+.error-header {
+    font-family: 'Comic Neue', serif;
+    font-weight: 700;
+    margin-bottom: 1em;
+}
+
+.mt-4 {
+    margin-top: 1em;
+}
+
+.mb-4 {
+    margin-bottom: 1em;
+}
+
+
+
+
+
 
 
 

@@ -2,6 +2,7 @@
 
 
 //Load our code!
+require_once dirname(__FILE__) . '/functions/utils.php';
 
 spl_autoload_register(function ($class) {
 
