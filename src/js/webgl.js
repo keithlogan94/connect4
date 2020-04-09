@@ -137,6 +137,7 @@ webgl.drawScene = function (gl, programInfo, buffers, mat4) {
     const zNear = 0.1;
     const zFar = 100.0;
     const projectionMatrix = mat4.create();
+    const squareRotation = 10.0;
 
     // note: glmatrix.js always has the first argument
     // as the destination to receive the result.
@@ -145,6 +146,7 @@ webgl.drawScene = function (gl, programInfo, buffers, mat4) {
         aspect,
         zNear,
         zFar);
+
 
     // Set the drawing position to the "identity" point, which is
     // the center of the scene.
@@ -156,6 +158,12 @@ webgl.drawScene = function (gl, programInfo, buffers, mat4) {
     mat4.translate(modelViewMatrix,     // destination matrix
         modelViewMatrix,     // matrix to translate
         [-0.0, 0.0, -6.0]);  // amount to translate
+
+    mat4.rotate(modelViewMatrix,  // destination matrix
+        modelViewMatrix,  // matrix to rotate
+        squareRotation,   // amount to rotate in radians
+        [.5, .5, 1]);
+
 
     // Tell WebGL how to pull out the positions from the position
     // buffer into the vertexPosition attribute.
@@ -177,6 +185,29 @@ webgl.drawScene = function (gl, programInfo, buffers, mat4) {
         gl.enableVertexAttribArray(
             programInfo.attribLocations.vertexPosition);
     }
+
+
+
+    // Tell WebGL how to pull out the colors from the color buffer
+    // into the vertexColor attribute.
+    {
+        const numComponents = 4;
+        const type = gl.FLOAT;
+        const normalize = false;
+        const stride = 0;
+        const offset = 0;
+        gl.bindBuffer(gl.ARRAY_BUFFER, buffers.colors);
+        gl.vertexAttribPointer(
+            programInfo.attribLocations.vertexColor,
+            numComponents,
+            type,
+            normalize,
+            stride,
+            offset);
+        gl.enableVertexAttribArray(
+            programInfo.attribLocations.vertexColor);
+    }
+
 
     // Tell WebGL to use our program when drawing
 
