@@ -14,3 +14,10 @@ services:
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: 83Qn9]=32r.]X<Gt
+    volumes:
+      - ./src/sql/initsql:/docker-entrypoint-initdb.d
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8081:8080
