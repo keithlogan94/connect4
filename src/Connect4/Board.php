@@ -189,18 +189,25 @@ class Board
         {
             $boardPositionToCheck = $this->getBoardPositionAt($checkCoord['X'], $checkCoord['Y']);
 
+            if (is_bool($boardPositionToCheck)) continue;
+            if ($boardPosition->isEmpty()) continue;
+            if ($boardPositionToCheck->isEmpty()) continue;
+
             if ($boardPosition->doesBoardPositionGamePieceMatchBoardPositionGamePiece($boardPositionToCheck))
             {
                 if ($inARow === 3) return true;
                 $isWin = $this->checkForWinOneDirection($boardPositionToCheck, $inARow + 1, $boardPosition->getXPosition() - $checkCoord['X'], $boardPosition->getXPosition() - $checkCoord['Y'] );
                 if ($isWin) return true;
-                else return false;
+                else continue;
             } else {
-                return false;
+                continue;
             }
 
 
         }
+
+
+        return false;
 
 
 
@@ -211,6 +218,10 @@ class Board
         $checkCoords = $boardPosition->getXYCoordsToCheck();
 
         $boardPositionToCheck = $this->getBoardPositionAt($boardPosition->getXPosition() + $directionX, $boardPosition->getYPosition() + $directionY);
+
+        if (is_bool($boardPositionToCheck)) return false;
+        if ($boardPosition->isEmpty()) return false;
+        if ($boardPositionToCheck->isEmpty()) return false;
 
         if ($boardPosition->doesBoardPositionGamePieceMatchBoardPositionGamePiece($boardPositionToCheck))
         {

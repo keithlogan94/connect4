@@ -69,6 +69,7 @@ class BoardPosition
 
     public function doesBoardPositionGamePieceMatchBoardPositionGamePiece(BoardPosition $boardPosition): bool
     {
+        if ($this->isEmpty()) return false;
         if ($boardPosition->getGamePiece()->getColorEnumeration() ===
             $boardPosition->getGamePiece()->getColorEnumeration())
             return true;
