@@ -41,7 +41,7 @@ class Board
 
     }
 
-    public function getGamePieceAt(int $X, int $Y)
+    public function getBoardPositionAt(int $X, int $Y)
     {
 
         foreach ($this->boardPositions as $boardPosition)
@@ -56,8 +56,48 @@ class Board
 
     }
 
-    public function checkForWin(BoardPosition $boardPosition)
+    public function checkForWin(BoardPosition $boardPosition, int $inARow)
     {
+
+        $checkCoords = $boardPosition->getXYCoordsToCheck();
+
+        foreach ($checkCoords as $checkCoord)
+        {
+            $boardPositionToCheck = $this->getBoardPositionAt($checkCoord['X'], $checkCoord['Y']);
+
+            if ($boardPosition->doesBoardPositionGamePieceMatchBoardPositionGamePiece($boardPositionToCheck))
+            {
+                if ($inARow === 3) return true;
+                $isWin = $this->checkForWinOneDirection($boardPositionToCheck, $inARow + 1, $boardPosition->getXPosition() - $checkCoord['X'], $boardPosition->getXPosition() - $checkCoord['Y'] );
+                if ($isWin) return true;
+                else return false;
+            } else {
+                return false;
+            }
+
+
+        }
+
+
+
+    }
+
+    public function checkForWinOneDirection(BoardPosition $boardPosition, int $inARow, int $directionX, int $directionY)
+    {
+        $checkCoords = $boardPosition->getXYCoordsToCheck();
+
+        $boardPositionToCheck = $this->getBoardPositionAt($boardPosition->getXPosition() + $directionX, $boardPosition->getYPosition() + $directionY);
+
+        if ($boardPosition->doesBoardPositionGamePieceMatchBoardPositionGamePiece($boardPositionToCheck))
+        {
+            if ($inARow === 3) return true;
+            $isWin = $this->checkForWinOneDirection($boardPositionToCheck, $inARow + 1, $directionX, $directionY);
+            if ($isWin) return true;
+            else return false;
+        } else {
+            return false;
+        }
+
 
     }
 

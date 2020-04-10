@@ -4,6 +4,7 @@
 namespace Connect4\BoardPosition;
 
 
+use Connect4\Game;
 use Connect4\GamePiece;
 use Exception;
 use Connect4\Board;
@@ -54,9 +55,24 @@ class BoardPosition
     public function checkForWin()
     {
 
-        $this->board->checkForWin($this);
+        $this->board->checkForWin($this, 1);
 
 
+    }
+
+    public function getGamePiece() : GamePiece
+    {
+        if ($this->isEmpty()) throw new Exception('Game Position is empty');
+        return $this->getFilledGamePiece();
+    }
+
+    public function doesBoardPositionGamePieceMatchBoardPositionGamePiece(BoardPosition $boardPosition): bool
+    {
+        if ($boardPosition->getGamePiece()->getColorEnumeration() ===
+            $boardPosition->getGamePiece()->getColorEnumeration())
+            return true;
+
+        return false;
     }
 
     public function getXYCoordsToCheck()

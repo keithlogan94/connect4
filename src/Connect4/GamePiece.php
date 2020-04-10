@@ -22,6 +22,12 @@ class GamePiece
         $this->colorEnumeration = $colorEnumeration;
     }
 
+
+    public function getColorEnumeration() : int
+    {
+        return $this->colorEnumeration;
+    }
+
     private function isValidColor(int $colorEnumeration) : bool
     {
         switch ($colorEnumeration)
