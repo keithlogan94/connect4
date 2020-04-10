@@ -16,6 +16,7 @@ class BoardPosition
     protected int $yPosition;
     private string $positionCode;
     private $filledGamePiece = null;
+    /* @var Board */
     private Board $board;
 
     public function __construct(int $xPosition, int $yPosition, string $positionCode, &$board)
@@ -54,7 +55,7 @@ class BoardPosition
 
     public function checkForWin()
     {
-
+        /* @var Board */
         $this->board->checkForWin($this, 1);
 
 
