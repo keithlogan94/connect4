@@ -173,7 +173,7 @@ class BoardPosition
     /**
      * @param int $xPosition
      */
-    private function setXPosition(int $xPosition): void
+    public function setXPosition(int $xPosition): void
     {
         $this->xPosition = $xPosition;
     }
@@ -189,7 +189,7 @@ class BoardPosition
     /**
      * @param int $yPosition
      */
-    private function setYPosition(int $yPosition): void
+    public function setYPosition(int $yPosition): void
     {
         $this->yPosition = $yPosition;
     }
@@ -197,7 +197,7 @@ class BoardPosition
     /**
      * @return null
      */
-    private function getFilledGamePiece()
+    public function getFilledGamePiece()
     {
         return $this->filledGamePiece;
     }
@@ -205,7 +205,7 @@ class BoardPosition
     /**
      * @param null $filledGamePiece
      */
-    private function setFilledGamePiece($filledGamePiece): void
+    public function setFilledGamePiece($filledGamePiece): void
     {
         $this->filledGamePiece = $filledGamePiece;
     }

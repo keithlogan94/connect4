@@ -8,6 +8,24 @@ use Connect4\Database\Database;
 class Game
 {
 
+    public function getGamePositions(int $gameId)
+    {
+
+        $database = new Database();
+        $result = $database->queryPrepared('CALL get_game_board_positions(?)', 'i', $gameId);
+
+
+        $rows = [];
+
+        while ($row = mysqli_fetch_assoc($result))
+            $rows[] = $row;
+
+
+        return $rows;
+
+
+    }
+
 
 
     public function createNewGame()
