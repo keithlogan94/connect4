@@ -33,6 +33,49 @@ class Board
 
     }
 
+    public function getPositionCodeOfClosestToBottomOpenBoardPosition(int $column)
+    {
+        $pos = ['A','B','C','D','E','F','G'];
+
+        $closestPositionCode = false;
+        $closestNumber = -1;
+
+        foreach ($this->boardPositions as $boardPosition)
+        {
+            /* @var BoardPosition $boardPosition */
+            if (strpos($boardPosition->getPositionCode(), strval($column)) !== FALSE) {
+                if ($boardPosition->isEmpty() && array_search($boardPosition->getPositionCode()[0], $pos) > $closestNumber)
+                {
+                    $closestNumber = array_search($boardPosition->getPositionCode()[0], $pos);
+                    $closestPositionCode = $boardPosition->getPositionCode();
+                }
+
+            }
+        }
+
+        return $closestPositionCode;
+
+    }
+
+    public function placeGamePieceInColumn(GamePiece $gamePiece, int $column) : void
+    {
+
+        $placeInPositionCode = $this->getPositionCodeOfClosestToBottomOpenBoardPosition($column);
+
+        foreach ($this->boardPositions as $boardPosition) {
+            /* @var BoardPosition $boardPosition */
+            if ($boardPosition->getPositionCode() === $placeInPositionCode)
+            {
+                $boardPosition->place($gamePiece);
+                break;
+            }
+
+        }
+
+        return;
+
+    }
+
     public function getGameData(string $key)
     {
 
