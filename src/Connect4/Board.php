@@ -246,7 +246,6 @@ class Board
 
     private function addBoardPosition(BoardPosition $boardPosition) : void
     {
-        if (!$boardPosition->canPlace()) throw new Exception('User should be able to place');
         $this->boardPositions[] = $boardPosition;
         return;
     }

@@ -8,6 +8,7 @@ use Connect4\Requests\Api\Endpoints\CreateGameEndpoint;
 use Connect4\Requests\Api\Endpoints\Endpoint;
 use Connect4\Requests\Api\Endpoints\GetGamePositionsEndPoint;
 use Connect4\Requests\Api\Endpoints\GetGameScreenEndpoint;
+use Connect4\Requests\Api\Endpoints\GetNearestToBottomPositionCode;
 use Connect4\Requests\Api\Endpoints\PlaceGamePieceEndpoint;
 use Connect4\Requests\Request;
 use Exception;
@@ -57,6 +58,7 @@ class Api
             GetGameScreenEndpoint::class,
             GetGamePositionsEndPoint::class,
             PlaceGamePieceEndpoint::class,
+            GetNearestToBottomPositionCode::class,
         ];
     }
 
