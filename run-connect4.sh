@@ -1,16 +1,17 @@
 #!/bin/bash
 
-#Run Connect4 in Docker container
 clear
 echo "stopping last container"
 docker stop connect4-server
 echo "removing last container"
 docker rm connect4-server
 echo "starting connect4-server"
+docker-compose down -v
+docker-compose up
 # running server on port 8377 to avoid conflict with any server running on common ports
-docker run --name connect4-server -d -p 8377:80 -it connect4
+#docker run --name connect4-server -d -p 8377:80 -it connect4
 echo "started server"
-echo "Access the server at http://localhost:8377"
+echo "Access the server at http://localhost:8378"
 
 
 

@@ -4,6 +4,7 @@
 namespace Connect4\Requests\Api\Endpoints;
 
 
+use Connect4\Database\Database;
 use Connect4\Requests\Request;
 
 class CreateGameEndpoint extends Endpoint
@@ -12,7 +13,9 @@ class CreateGameEndpoint extends Endpoint
     public function handleRequest(Request $request)
     {
 
-        echo "test";
+
+        $database = new Database();
+        $database->queryPrepared("CALL create_game()");
 
 
     }
