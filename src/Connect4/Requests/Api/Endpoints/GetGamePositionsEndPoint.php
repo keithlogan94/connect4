@@ -4,6 +4,7 @@
 namespace Connect4\Requests\Api\Endpoints;
 
 
+use Connect4\Database\Database;
 use Connect4\Requests\Request;
 use Exception;
 
@@ -18,7 +19,17 @@ class GetGamePositionsEndPoint extends Endpoint
 
         $gameId = $_GET['game_id'];
 
-        echo "getting game positions for " . $gameId;
+        $database = new Database();
+        $result = $database->queryPrepared('CALL get_game_board_positions(?)', 'i', $gameId);
+
+
+        $rows = [];
+
+        while ($row = mysqli_fetch_assoc($result))
+            $rows[] = $row;
+
+
+        echo json_encode($rows);
 
 
 

@@ -204,6 +204,58 @@ DELIMITER ;
 
 
 
+DROP PROCEDURE IF EXISTS get_game_board_positions;
+
+DELIMITER $$
+
+
+CREATE PROCEDURE get_game_board_positions(p_game_id INT)
+BEGIN
+
+
+
+    DECLARE turnNumber INT DEFAULT 0;
+
+
+    SELECT `value` INTO turnNumber FROM game_data WHERE game_id = p_game_id AND `key` = 'turn_number';
+
+
+
+    SELECT * FROM board_positions WHERE game_id = p_game_id AND turn_number = turnNumber;
+
+
+
+END
+
+
+
+$$
+
+
+DELIMITER ;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
