@@ -13,10 +13,10 @@ class CreateGameEndpoint extends Endpoint
     public function handleRequest(Request $request)
     {
 
-        echo "running stored procedure";
-
         $database = new Database();
-        var_dump($database->query("CALL create_game()"));
+        $result = $database->query("CALL create_game()");
+        $row = mysqli_fetch_assoc($result);
+        echo json_encode($row);
 
 
     }
