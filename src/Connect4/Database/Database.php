@@ -28,6 +28,18 @@ class Database
     }
 
 
+    public function query($sql)
+    {
+        $connection = $this->connection;
+
+        $result = mysqli_query($connection, $sql);
+
+
+        if (mysqli_error($connection)) throw new Exception(mysqli_error($connection));
+
+        return $result;
+    }
+
 
     public function queryPrepared($sql, $paramTypes, ...$params)
     {

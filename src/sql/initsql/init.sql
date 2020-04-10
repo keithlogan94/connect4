@@ -1,7 +1,7 @@
 
 
 
-CREATE DATABASE connect4;
+CREATE DATABASE IF NOT EXISTS connect4;
 
 
 USE connect4;
@@ -15,9 +15,9 @@ CREATE TABLE games
 );
 
 
+DROP PROCEDURE IF EXISTS create_game;
 
-
-
+DELIMITER $$
 
 
 CREATE PROCEDURE create_game()
@@ -29,7 +29,13 @@ BEGIN
     SELECT LAST_INSERT_ID() AS 'game_id';
 
 
-END;
+END
+
+
+$$
+
+
+DELIMITER ;
 
 
 

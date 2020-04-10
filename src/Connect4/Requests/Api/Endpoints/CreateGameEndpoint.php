@@ -16,7 +16,7 @@ class CreateGameEndpoint extends Endpoint
         echo "running stored procedure";
 
         $database = new Database();
-        var_dump($database->queryPrepared("CALL create_game()"));
+        var_dump($database->query("CALL create_game()"));
 
 
     }
