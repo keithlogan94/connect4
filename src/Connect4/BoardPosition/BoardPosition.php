@@ -142,6 +142,8 @@ class BoardPosition
         if (!$this->isEmpty()) throw new Exception('Board position is already filled');
         $this->setFilledGamePiece($gamePiece);
 
+        $this->board->saveGamePositionsToDatabase();
+
 
         $this->checkForWin();
 
