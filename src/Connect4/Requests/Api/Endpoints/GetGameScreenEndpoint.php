@@ -14,7 +14,7 @@ class GetGameScreenEndpoint extends Endpoint
     {
 
         $game = new Game();
-        $game->start();
+        $game->echoGameScreen();
 
 
     }

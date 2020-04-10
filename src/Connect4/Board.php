@@ -5,20 +5,44 @@ namespace Connect4;
 
 
 use Connect4\BoardPosition\BoardPosition;
+use Connect4\Database\Database;
 use Exception;
 
 class Board
 {
 
     private array $boardPositions = [];
+    private int $gameId;
+
+    private $turnNumber = 0;
 
     const POSITION_INCREASE_BY = 10;
 
 
-    public function __construct()
+    public function __construct(int $gameId)
     {
+        $this->gameId = $gameId;
         $this->generateGamePositions();
     }
+
+    public function setGameData(string $key, string $value)
+    {
+
+        $database = new Database();
+        $database->queryPrepared('CALL set_game_data(?, ?, ?)', 'iss', $this->gameId, $key, $value);
+
+    }
+
+    public function getGameData(string $key)
+    {
+
+        $database = new Database();
+        $result = $database->queryPrepared('CALL get_game_data(?, ?)', 'is', $this->gameId, $key);
+
+        return mysqli_fetch_assoc($result)['value'];
+
+    }
+
 
     private function generateGamePositions()
     {
@@ -33,13 +57,38 @@ class Board
         {
             for ($r = 0; $r < $rows; $r++) {
                 //Place this position on the board at a specific (X, Y) coordinate which will be used for calculations (Graphing calculations)
-                $this->addBoardPosition(new BoardPosition(self::POSITION_INCREASE_BY * $c, self::POSITION_INCREASE_BY * $r, $rowCodes[$r] . $columnCodes[$c] ));
+                $this->addBoardPosition(new BoardPosition(self::POSITION_INCREASE_BY * $c, self::POSITION_INCREASE_BY * $r, $rowCodes[$r] . $columnCodes[$c] , $this));
             }
         }
 
 
 
     }
+
+    public function saveGamePositionsToDatabase()
+    {
+        $database = new Database();
+
+        $this->setGameData('turn_number', $this->turnNumber + 1);
+
+
+        foreach ($this->boardPositions as $boardPosition)
+        {
+
+            $turnNumber = intval($this->getGameData('turn_number'));
+
+            /* @var BoardPosition $boardPosition */
+            $database->queryPrepared('CALL add_board_position(?, ?, ?, ?, ?, ?, ?)', 'isiiisi',
+                $this->gameId, $boardPosition->getPositionCode(), $boardPosition->getXPosition(), $boardPosition->getYPosition(),
+                !$boardPosition->isEmpty() ? 1 : 0, ($boardPosition->isEmpty() ? 0 :  ($boardPosition->getGamePiece()->getColorEnumeration() === GamePiece::RED_COLOR ? 'red' : 'yellow'))
+                , $turnNumber
+            );
+
+
+        }
+
+    }
+
 
     public function getBoardPositionAt(int $X, int $Y)
     {
