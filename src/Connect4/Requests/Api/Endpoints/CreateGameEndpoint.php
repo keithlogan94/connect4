@@ -12,19 +12,19 @@ class CreateGameEndpoint extends Endpoint
     public function handleRequest(Request $request)
     {
 
-
+        echo "test";
 
 
     }
 
-    public function shouldEndpointHandleRequest(Request $request): bool
+    public function getRequestCode(): string
     {
-
-        if ($request->getUrlParts()->getUriParts()[0] === 'create-game' && $request->isRequestPost())
-            return true;
-
-        return false;
+        return "create_game";
     }
 
+    public function getRequestMethod(): string
+    {
+        return "POST";
+    }
 
 }

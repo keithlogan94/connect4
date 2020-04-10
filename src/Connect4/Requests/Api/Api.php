@@ -25,17 +25,22 @@ class Api
         foreach ($endpoints as $endpoint) {
 
             /* @var Endpoint $endpoint */
-            if ($endpoint->shouldEndpointHandleRequest($request))
+
+            if ($request->isRequestOfType($endpoint->getRequestMethod()) &&
+                $endpoint->getRequestCode() === $request->getRequestCode())
             {
-                $endpoint->handleRequest($request);
                 $requestHandled = true;
+                $endpoint->handleRequest($request);
                 break;
             }
 
         }
 
         if (!$requestHandled)
-            throw new Exception('Failed to find handler for request');
+            throw new Exception('Failed to find handler for request: ' .
+                print_r($_SERVER) .
+                print_r(print_r($request->getUrlParts()->getUriParts(), true) .
+                    ' REQUEST TYPE: ' . $_SERVER['REQUEST_METHOD'], true));
 
 
         return;

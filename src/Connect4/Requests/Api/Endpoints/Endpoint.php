@@ -10,9 +10,11 @@ abstract class Endpoint
 {
 
 
-    abstract public function shouldEndpointHandleRequest(Request $request) : bool;
-
     abstract public function handleRequest(Request $request);
+
+    abstract public function getRequestCode() : string;
+
+    abstract  public function getRequestMethod() : string;
 
 
 

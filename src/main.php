@@ -11,7 +11,12 @@ use function utils\echo_error_page;
 //c++ style main function where the code begins
 function main() {
 
-    $request = new Request();
+    $requestCode = false;
+
+    if (isset($_GET['request_code'])) $requestCode = $_GET['request_code'];
+    else $requestCode = 'init_screen';
+
+    $request = new Request($requestCode);
     $api = new Api();
     $api->handleRequest($request);
 

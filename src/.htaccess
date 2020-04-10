@@ -1,0 +1,15 @@
+Options +Indexes
+
+RewriteEngine On
+
+
+#RewriteCond %{REQUEST_URI} /$
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-l
+
+
+RewriteRule ^create-game/?$ /index.php?request_code=create_game [QSA,L]
+
+
+ErrorDocument 404 /index.php

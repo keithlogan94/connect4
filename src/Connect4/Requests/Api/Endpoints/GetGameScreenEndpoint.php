@@ -10,14 +10,6 @@ use Connect4\Requests\Request;
 class GetGameScreenEndpoint extends Endpoint
 {
 
-    public function shouldEndpointHandleRequest(Request $request): bool
-    {
-        if ($request->getUrlParts()->getUriParts() === false && $request->isRequestGet())
-            return true;
-
-        return false;
-    }
-
     public function handleRequest(Request $request)
     {
 
@@ -26,4 +18,15 @@ class GetGameScreenEndpoint extends Endpoint
 
 
     }
+
+    public function getRequestCode(): string
+    {
+        return 'init_screen';
+    }
+
+    public function getRequestMethod(): string
+    {
+        return 'GET';
+    }
+
 }

@@ -8,6 +8,13 @@ use Exception;
 class Request
 {
 
+    private $requestCode;
+
+    public function __construct($requestCode)
+    {
+        $this->requestCode = $requestCode;
+    }
+
     public function isRequestPost() : bool
     {
         return $this->isRequestOfType("POST");
@@ -33,14 +40,19 @@ class Request
         return $this->isRequestOfType("PATCH");
     }
 
-    private function isRequestOfType(string $request)
+    public function isRequestOfType(string $requestMethod)
     {
-        return strtolower($_SERVER['REQUEST_METHOD']) === strtolower($request);
+        return strtolower($_SERVER['REQUEST_METHOD']) === strtolower($requestMethod);
     }
 
     public function getUrlParts() : UrlParts
     {
         return new UrlParts($_SERVER['REQUEST_URI']);
+    }
+
+    public function getRequestCode()
+    {
+        return $this->requestCode;
     }
 
 
