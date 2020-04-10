@@ -1,13 +1,13 @@
 #!/bin/bash
 
-clear
+#clear
 echo "stopping last container"
 docker stop connect4-server
 echo "removing last container"
 docker rm connect4-server
 echo "starting connect4-server"
 docker-compose down -v
-docker-compose up
+docker-compose up -d
 # running server on port 8377 to avoid conflict with any server running on common ports
 #docker run --name connect4-server -d -p 8377:80 -it connect4
 echo "started server"
