@@ -6,6 +6,7 @@ namespace Connect4\BoardPosition;
 
 use Connect4\GamePiece;
 use Exception;
+use Connect4\Board;
 
 class BoardPosition
 {
@@ -14,17 +15,103 @@ class BoardPosition
     protected int $yPosition;
     private string $positionCode;
     private $filledGamePiece = null;
+    private Board $board;
 
-    public function __construct(int $xPosition, int $yPosition, string $positionCode)
+    public function __construct(int $xPosition, int $yPosition, string $positionCode, &$board)
     {
         $this->positionCode = $positionCode;
         $this->xPosition = $xPosition;
         $this->yPosition = $yPosition;
+        $this->board = $board;
     }
 
     public function canPlace(): bool
     {
         return $this->isEmpty();
+    }
+
+    public function isPositionCodeEqualTo(string $positionCode)
+    {
+        return $this->getPositionCode() === $positionCode;
+    }
+
+    public function getPositionsAwayFromBoardPosition(BoardPosition $boardPosition)
+    {
+        if ($this->getPositionCode() === $boardPosition->getPositionCode())
+            return [
+                'X' => 0,
+                'Y' => 0,
+            ];
+
+        return [
+          'X' => (  ($boardPosition->getXPosition() - $this->getXPosition()) / Board::POSITION_INCREASE_BY ),
+          'Y' => (  ($boardPosition->getYPosition() - $this->getYPosition()) / Board::POSITION_INCREASE_BY ),
+        ];
+
+
+    }
+
+    public function checkForWin()
+    {
+
+        $this->board->checkForWin($this);
+
+
+    }
+
+    public function getXYCoordsToCheck()
+    {
+        return [
+
+            //top right
+            [
+                'X' => $this->getXPosition() + (Board::POSITION_INCREASE_BY * 1),
+                'Y' => $this->getXPosition() + (Board::POSITION_INCREASE_BY * 1),
+            ],
+
+            //top
+            [
+                'X' => $this->getXPosition() + (Board::POSITION_INCREASE_BY * 0),
+                'Y' => $this->getXPosition() + (Board::POSITION_INCREASE_BY * 1),
+            ],
+
+            //right
+            [
+                'X' => $this->getXPosition() + (Board::POSITION_INCREASE_BY * 1),
+                'Y' => $this->getXPosition() + (Board::POSITION_INCREASE_BY * 0),
+            ],
+
+            //bottom right
+            [
+                'X' => $this->getXPosition() + (Board::POSITION_INCREASE_BY * 1),
+                'Y' => $this->getXPosition() + (Board::POSITION_INCREASE_BY * -1),
+            ],
+
+            //bottom
+            [
+                'X' => $this->getXPosition() + (Board::POSITION_INCREASE_BY * 0),
+                'Y' => $this->getXPosition() + (Board::POSITION_INCREASE_BY * -1),
+            ],
+
+            //bottom left
+            [
+                'X' => $this->getXPosition() + (Board::POSITION_INCREASE_BY * -1),
+                'Y' => $this->getXPosition() + (Board::POSITION_INCREASE_BY * -1),
+            ],
+
+            //left
+            [
+                'X' => $this->getXPosition() + (Board::POSITION_INCREASE_BY * -1),
+                'Y' => $this->getXPosition() + (Board::POSITION_INCREASE_BY * 0),
+            ],
+
+            //top left
+            [
+                'X' => $this->getXPosition() + (Board::POSITION_INCREASE_BY * -1),
+                'Y' => $this->getXPosition() + (Board::POSITION_INCREASE_BY * 1),
+            ],
+
+        ];
     }
 
     public function isEmpty(): bool
@@ -37,6 +124,11 @@ class BoardPosition
         //check if this position is not empty
         if (!$this->isEmpty()) throw new Exception('Board position is already filled');
         $this->setFilledGamePiece($gamePiece);
+
+
+        $this->checkForWin();
+
+
         return;
     }
 
@@ -46,11 +138,15 @@ class BoardPosition
      * GETTERS AND SETTERS
      * */
 
+    public function getPositionCode(): string
+    {
+        return $this->positionCode;
+    }
 
     /**
      * @return int
      */
-    private function getXPosition(): int
+    public function getXPosition(): int
     {
         return $this->xPosition;
     }
@@ -66,7 +162,7 @@ class BoardPosition
     /**
      * @return int
      */
-    private function getYPosition(): int
+    public function getYPosition(): int
     {
         return $this->yPosition;
     }

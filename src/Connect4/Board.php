@@ -41,6 +41,31 @@ class Board
 
     }
 
+    public function getGamePieceAt(int $X, int $Y)
+    {
+
+        foreach ($this->boardPositions as $boardPosition)
+        {
+            /* @var $boardPosition BoardPosition */
+            if ($boardPosition->getXPosition() === $X && $boardPosition->getYPosition() === $Y) {
+                return $boardPosition;
+            }
+        }
+
+        return false;
+
+    }
+
+    public function checkForWin(BoardPosition $boardPosition)
+    {
+
+    }
+
+    public function getBoardPositions()
+    {
+        return $this->boardPositions;
+    }
+
 
 
 
