@@ -15,7 +15,7 @@ class Database
     public function __construct()
     {
 
-        $connection = mysqli_connect('db','root','83Qn9]=32r.]X<Gt');
+        $connection = mysqli_connect('db','root','83Qn9]=32r.]X<Gt', 'connect4');
 
         if (!$connection) throw new Exception('Failed to connect to database: ' .
             mysqli_connect_error());
