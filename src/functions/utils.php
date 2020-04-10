@@ -6,7 +6,7 @@ namespace utils;
 
 use Exception;
 
-function array_wrap_each(array $strItems, string $before = '', string $after = '') : array {
+function array_wrap_each(array $strItems, $before = '', $after = '') : array {
     $newItems = [];
 
     foreach ($strItems as $item)//prefer not to use braces for one line foreach statements

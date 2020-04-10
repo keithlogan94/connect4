@@ -6,20 +6,24 @@ namespace Connect4\Requests\Api\Endpoints;
 
 use Connect4\Requests\Request;
 
-class CreateGameEndpoint extends Endpoints
+class CreateGameEndpoint extends Endpoint
 {
 
-    protected function handleRequest(Request $request)
+    public function handleRequest(Request $request)
     {
-        // TODO: Implement handleRequest() method.
+
+
+
+
     }
 
-    protected function shouldEndpointHandleRequest(Request $request): bool
+    public function shouldEndpointHandleRequest(Request $request): bool
     {
 
-        if ($request->getUrlParts()[0] === 'create-game')
+        if ($request->getUrlParts()->getUriParts()[0] === 'create-game' && $request->isRequestPost())
+            return true;
 
-
+        return false;
     }
 
 

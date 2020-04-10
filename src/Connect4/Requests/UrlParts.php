@@ -14,14 +14,18 @@ class UrlParts
         $this->url = $url;
     }
 
-    private function getUriParts()
+    public function getUriParts()
     {
         $url = $this->url;
+        if ($url[0] === '/') $url = substr($url, 1);
         if (strpos($url, '?') !== FALSE) {
             $removeStr = substr($url, strpos($url, '?'));
             $url = str_replace($removeStr, '', $url);
         }
-        return explode('/', $url);
+
+        if (empty($url)) return false;
+
+        return explode('/', trim($url));
     }
 
 
