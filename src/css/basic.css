@@ -11,6 +11,7 @@ div#board {
     flex-flow: wrap;
     /* padding: 0px 40px; */
     text-align: center;
+    max-width: 600px;
 }
 
 .board-position {
