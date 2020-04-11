@@ -161,7 +161,7 @@ CREATE TABLE board_positions
 );
 
 
-CREATE UNIQUE INDEX board_positions_key_index ON board_positions (`game_id`, `position_code`, `turn_number`, `add_time`);
+CREATE UNIQUE INDEX board_positions_key_index ON board_positions (`game_id`, `position_code`, `filled_color`);
 
 
 
@@ -180,7 +180,17 @@ BEGIN
        (
            p_game_id, p_position_code, p_x_position, p_y_position,
            p_is_filled, p_filled_color, p_turn_number
-       );
+       )
+       ON DUPLICATE KEY UPDATE
+        game_id = VALUES(game_id),
+        position_code = VALUES(position_code),
+        x_position = VALUES(x_position),
+        y_position = VALUES(y_position),
+        is_filled = VALUES(is_filled),
+        filled_color = VALUES(filled_color)
+#,
+#         p_turn_number = VALUES(p_turn_number)
+       ;
 
     SELECT LAST_INSERT_ID() AS 'game_id';
 

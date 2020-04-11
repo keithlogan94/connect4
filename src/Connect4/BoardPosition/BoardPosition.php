@@ -56,7 +56,7 @@ class BoardPosition
     public function checkForWin()
     {
         /* @var Board */
-        $this->board->checkForWin($this, 1);
+        return $this->board->checkForWin($this, 1);
 
 
     }
@@ -137,7 +137,7 @@ class BoardPosition
         return is_null($this->filledGamePiece);
     }
 
-    public function place(GamePiece $gamePiece) : void
+    public function place(GamePiece $gamePiece) : array
     {
         //check if this position is not empty
         if (!$this->isEmpty()) throw new Exception('Board position is already filled');
@@ -146,10 +146,13 @@ class BoardPosition
         $this->board->saveGamePositionsToDatabase();
 
 
-        $this->checkForWin();
+        $isWin = $this->checkForWin();
 
 
-        return;
+
+        return [
+            'win' => $isWin
+        ];
     }
 
 

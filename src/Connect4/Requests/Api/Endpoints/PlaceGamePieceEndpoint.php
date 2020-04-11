@@ -32,7 +32,10 @@ class PlaceGamePieceEndpoint extends Endpoint
         $gamePiece = new GamePiece($color === 'yellow' ? GamePiece::YELLOW_COLOR : GamePiece::RED_COLOR);
 
         $board = new Board($gameId);
-        $board->placeGamePieceInColumn($gamePiece, $column);
+        $returnArray = $board->placeGamePieceInColumn($gamePiece, $column);
+
+
+        echo json_encode($returnArray);
 
 
 

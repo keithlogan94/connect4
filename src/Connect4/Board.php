@@ -57,22 +57,25 @@ class Board
 
     }
 
-    public function placeGamePieceInColumn(GamePiece $gamePiece, int $column) : void
+    public function placeGamePieceInColumn(GamePiece $gamePiece, int $column) : array
     {
 
         $placeInPositionCode = $this->getPositionCodeOfClosestToBottomOpenBoardPosition($column);
+
+
+        $returnArray = [];
 
         foreach ($this->boardPositions as $boardPosition) {
             /* @var BoardPosition $boardPosition */
             if ($boardPosition->getPositionCode() === $placeInPositionCode && $boardPosition->isEmpty())
             {
-                $boardPosition->place($gamePiece);
+                $returnArray = $boardPosition->place($gamePiece);
                 break;
             }
 
         }
 
-        return;
+        return $returnArray;
 
     }
 
@@ -143,9 +146,9 @@ class Board
     public function saveGamePositionsToDatabase()
     {
         $database = new Database();
-
-        $this->setGameData('turn_number', $this->turnNumber + 1);
-
+        $savedTurnNumber = $this->getGameData('turn_number');
+        if (is_numeric($savedTurnNumber)) $this->turnNumber = intval($savedTurnNumber);
+        $this->setGameData('turn_number', $this->turnNumber + 0);
 
         foreach ($this->boardPositions as $boardPosition)
         {
