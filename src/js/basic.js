@@ -1,16 +1,16 @@
 
-function runOnLoad (func) {
-    window.onload = func;
-}
 
 
 
-function generateBoardFromBoardPositions(boardPositions) {
+$(function () {
+
+    $(document).on('click', '.place-checker', function () {
+        alert('placing checker');
+    });
 
 
+});
 
-
-}
 
 
 async function loadGame(gameId, containerElem) {
