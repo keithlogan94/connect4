@@ -11,8 +11,12 @@ use function connect4_translate_position\column_after;
 use function connect4_translate_position\column_before;
 use function connect4_translate_position\get_columns;
 use function connect4_translate_position\get_rows;
+use function connect4_translate_position\move_up;
 use function connect4_translate_position\row_after;
 use function connect4_translate_position\row_before;
+use function connect4_translate_position\move_left;
+use function connect4_translate_position\move_right;
+use function connect4_translate_position\move_down;
 
 use Exception;
 
@@ -46,7 +50,7 @@ function test_valid_get_columns()
 
 }
 
-function test_valid_column_after(int $column)
+function test_valid_column_after()
 {
     echo "running Unit Test";
     echo "testing " . __METHOD__ . PHP_EOL;
@@ -61,7 +65,7 @@ function test_valid_column_after(int $column)
 
 }
 
-function test_valid_column_before(int $column)
+function test_valid_column_before()
 {
     echo "running Unit Test";
     echo "testing " . __METHOD__ . PHP_EOL;
@@ -76,7 +80,7 @@ function test_valid_column_before(int $column)
 
 }
 
-function test_valid_row_after(string $row)
+function test_valid_row_after()
 {
     echo "running Unit Test";
     echo "testing " . __METHOD__ . PHP_EOL;
@@ -90,7 +94,7 @@ function test_valid_row_after(string $row)
     if (row_after('G') !== false) throw new Exception('row after before failed to return right column');
 }
 
-function test_valid_row_before(string $row)
+function test_valid_row_before()
 {
     echo "running Unit Test";
     echo "testing " . __METHOD__ . PHP_EOL;
@@ -105,43 +109,88 @@ function test_valid_row_before(string $row)
     if (row_before('H') !== false) throw new Exception('row before before failed to return right column');
 }
 
-function test_valid_move_up(string $positionCode)
+function test_valid_move_up()
 {
-    if (strlen($positionCode) !== 2) throw new Exception('$positionCode character count is not equal to 2');
-    if (array_search($positionCode[0], get_rows()) === false) throw new Exception('undefined row');
-    if (array_search(intval($positionCode[1]), get_columns()) === false) throw new Exception('undefined column');
-    return \connect4_translate_position\row_before($positionCode[0]) . $positionCode[1];
+    echo "running Unit Test";
+    echo "testing " . __METHOD__ . PHP_EOL;
+
+    if (move_up('A1') !== false) throw new Exception('move up failed to return right column');
+    if (move_up('B1') !== 'A1') throw new Exception('move up failed to return right column');
+    if (move_up('C1') !== 'B1') throw new Exception('move up failed to return right column');
+    if (move_up('D1') !== 'C1') throw new Exception('move up failed to return right column');
+    if (move_up('E1') !== 'D1') throw new Exception('move up failed to return right column');
+    if (move_up('F1') !== 'E1') throw new Exception('move up failed to return right column');
+    if (move_up('G1') !== 'F1') throw new Exception('move up before failed to return right column');
+    if (move_up('H1') !== false) throw new Exception('move up before failed to return right column');
 }
 
-function move_down(string $positionCode)
+function test_valid_move_down()
 {
-    if (strlen($positionCode) !== 2) throw new Exception('$positionCode character count is not equal to 2');
-    if (array_search($positionCode[0], get_rows()) === false) throw new Exception('undefined row');
-    if (array_search(intval($positionCode[1]), get_columns()) === false) throw new Exception('undefined column');
-    return \connect4_translate_position\row_after($positionCode[0]) . $positionCode[1];
+
+    echo "running Unit Test";
+    echo "testing " . __METHOD__ . PHP_EOL;
+
+    if (move_down('A1') !== 'B1') throw new Exception('move down failed to return right column');
+    if (move_down('B1') !== 'C1') throw new Exception('move down failed to return right column');
+    if (move_down('C1') !== 'D1') throw new Exception('move down failed to return right column');
+    if (move_down('D1') !== 'E1') throw new Exception('move down failed to return right column');
+    if (move_down('E1') !== 'F1') throw new Exception('move down failed to return right column');
+    if (move_down('F1') !== 'G1') throw new Exception('move down failed to return right column');
+    if (move_down('G1') !== false) throw new Exception('move down before failed to return right column');
+    if (move_down('H1') !== false) throw new Exception('move down before failed to return right column');
+
+
+
 }
 
-function move_right(string $positionCode)
+function test_valid_move_right()
 {
-    if (strlen($positionCode) !== 2) throw new Exception('$positionCode character count is not equal to 2');
-    if (array_search($positionCode[0], get_rows()) === false) throw new Exception('undefined row');
-    if (array_search(intval($positionCode[1]), get_columns()) === false) throw new Exception('undefined column');
-    return  $positionCode[0] . row_after(intval($positionCode[1]));
+    echo "running Unit Test";
+    echo "testing " . __METHOD__ . PHP_EOL;
+
+    if (move_right('A1') !== 'A2') throw new Exception('move right failed to return right column');
+    if (move_right('B1') !== 'B2') throw new Exception('move right failed to return right column');
+    if (move_right('C1') !== 'C2') throw new Exception('move right failed to return right column');
+    if (move_right('D1') !== 'D2') throw new Exception('move right failed to return right column');
+    if (move_right('E1') !== 'E2') throw new Exception('move right failed to return right column');
+    if (move_right('F1') !== 'F2') throw new Exception('move right failed to return right column');
+    if (move_right('G1') !== 'G2') throw new Exception('move right before failed to return right column');
+    if (move_right('G0') !== false) throw new Exception('move right before failed to return right column');
+    if (move_right('G6') !== false) throw new Exception('move right before failed to return right column');
+    if (move_right('H1') !== false) throw new Exception('move right before failed to return right column');
+
 }
 
-function move_left(string $positionCode)
+function test_valid_move_left()
 {
-    if (strlen($positionCode) !== 2) throw new Exception('$positionCode character count is not equal to 2');
-    if (array_search($positionCode[0], get_rows()) === false) throw new Exception('undefined row');
-    if (array_search(intval($positionCode[1]), get_columns()) === false) throw new Exception('undefined column');
-    return  $positionCode[0] . row_before(intval($positionCode[1]));
+    echo "running Unit Test";
+    echo "testing " . __METHOD__ . PHP_EOL;
+
+    if (move_left('A2') !== 'A1') throw new Exception('move left failed to return right column');
+    if (move_left('B2') !== 'B1') throw new Exception('move left failed to return right column');
+    if (move_left('C2') !== 'C1') throw new Exception('move left failed to return right column');
+    if (move_left('D2') !== 'D1') throw new Exception('move left failed to return right column');
+    if (move_left('E2') !== 'E1') throw new Exception('move left failed to return right column');
+    if (move_left('F2') !== 'F1') throw new Exception('move left failed to return right column');
+    if (move_left('G2') !== 'G1') throw new Exception('move left before failed to return right column');
+    if (move_left('G1') !== false) throw new Exception('move left before failed to return right column');
+    if (move_left('H1') !== false) throw new Exception('move left before failed to return right column');
 }
 
 function move_up_right(string $positionCode)
 {
-    $positionCode = \connect4_translate_position\move_up($positionCode);
-    $positionCode = \connect4_translate_position\move_right($positionCode);
-    return $positionCode;
+    echo "running Unit Test";
+    echo "testing " . __METHOD__ . PHP_EOL;
+
+    if (move_left('A2') !== 'A1') throw new Exception('move left failed to return right column');
+    if (move_left('B2') !== 'B1') throw new Exception('move left failed to return right column');
+    if (move_left('C2') !== 'C1') throw new Exception('move left failed to return right column');
+    if (move_left('D2') !== 'D1') throw new Exception('move left failed to return right column');
+    if (move_left('E2') !== 'E1') throw new Exception('move left failed to return right column');
+    if (move_left('F2') !== 'F1') throw new Exception('move left failed to return right column');
+    if (move_left('G2') !== 'G1') throw new Exception('move left before failed to return right column');
+    if (move_left('G1') !== false) throw new Exception('move left before failed to return right column');
+    if (move_left('H1') !== false) throw new Exception('move left before failed to return right column');
 }
 
 function move_down_right(string $positionCode)
