@@ -48,7 +48,7 @@ class Game
     public function echoGameScreen()
     {
         header("Content-Type: text/html");
-        echo file_get_contents(dirname(__FILE__) . '/../html/game-screen.html');
+        echo file_get_contents(dirname(__FILE__) . '/../html/basic-game-screen.html');
     }
 
 
