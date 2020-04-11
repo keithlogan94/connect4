@@ -6,7 +6,11 @@ namespace Connect4;
 
 use Connect4\BoardPosition\BoardPosition;
 use Connect4\Database\Database;
-use function connect4_translate_position\get_board_position_by_position_code;
+use Connect4\Exceptions\BoardPositionEmptyException;
+use function Connect4\functions\logic\board_position_code;
+use function Connect4\functions\logic\do_game_pieces_match_color;
+use function Connect4\functions\logic\get_board_position_by_position_code;
+use function Connect4\functions\logic\is_empty;
 use Exception;
 
 class Board
@@ -194,26 +198,23 @@ class Board
         foreach ($translatedPositionsToCheck as $translatedPosition)
         {
 
-            $boardPositionToCheck =
-                get_board_position_by_position_code(
-                    $this,
-                    /* run function in connect4_translate_position */
-                    $translatedPosition($boardPosition->getPositionCode())
-                );
+            //run function in connect4_translate_position
+            $translatedPositionCode = $translatedPosition(board_position_code($boardPosition));
 
-            $boardPositionToCheck = $this->getBoardPositionAt($checkCoord['X'], $checkCoord['Y']);
+            $boardPositionToCheck = get_board_position_by_position_code($this, $translatedPositionCode);
 
-            if (is_bool($boardPositionToCheck)) continue;
-            if ($boardPosition->isEmpty()) continue;
-            if ($boardPositionToCheck->isEmpty()) continue;
-
-            if ($boardPosition->doesBoardPositionGamePieceMatchBoardPositionGamePiece($boardPositionToCheck))
+            try {
+                if (do_game_pieces_match_color($boardPosition, $boardPositionToCheck))
+                {
+                    if ($inARow === 3) return true;
+                    $isWin = $this->checkForWinOneDirection($boardPositionToCheck, $inARow + 1, $translatedPosition);
+                    if ($isWin) return true;
+                    else continue;
+                } else {
+                    continue;
+                }
+            } catch (BoardPositionEmptyException $e)
             {
-                if ($inARow === 3) return true;
-                $isWin = $this->checkForWinOneDirection($boardPositionToCheck, $inARow + 1, $boardPosition->getXPosition() - $checkCoord['X'], $boardPosition->getXPosition() - $checkCoord['Y'] );
-                if ($isWin) return true;
-                else continue;
-            } else {
                 continue;
             }
 
@@ -227,26 +228,30 @@ class Board
 
     }
 
-    public function checkForWinOneDirection(BoardPosition $boardPosition, int $inARow, int $directionX, int $directionY)
+    public function checkForWinOneDirection(BoardPosition $boardPosition, int $inARow, string $direction)
     {
-        $checkCoords = $boardPosition->getXYCoordsToCheck();
+        if (is_empty($boardPosition)) return false;
+        //run function in connect4_translate_position
+        $translatedPositionCode = $direction(board_position_code($boardPosition));
 
-        $boardPositionToCheck = $this->getBoardPositionAt($boardPosition->getXPosition() + $directionX, $boardPosition->getYPosition() + $directionY);
+        $boardPositionToCheck = get_board_position_by_position_code($this, $translatedPositionCode);
 
-        if (is_bool($boardPositionToCheck)) return false;
-        if ($boardPosition->isEmpty()) return false;
-        if ($boardPositionToCheck->isEmpty()) return false;
+        if (is_empty($boardPositionToCheck)) return false;
 
-        if ($boardPosition->doesBoardPositionGamePieceMatchBoardPositionGamePiece($boardPositionToCheck))
+        try {
+            if (do_game_pieces_match_color($boardPosition, $boardPositionToCheck))
+            {
+                if ($inARow === 3) return true;
+                $isWin = $this->checkForWinOneDirection($boardPositionToCheck, $inARow + 1, $direction);
+                if ($isWin) return true;
+                else return false;
+            } else {
+                return false;
+            }
+        } catch (BoardPositionEmptyException $e)
         {
-            if ($inARow === 3) return true;
-            $isWin = $this->checkForWinOneDirection($boardPositionToCheck, $inARow + 1, $directionX, $directionY);
-            if ($isWin) return true;
-            else return false;
-        } else {
             return false;
         }
-
 
     }
 
