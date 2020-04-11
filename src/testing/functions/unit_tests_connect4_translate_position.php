@@ -105,7 +105,7 @@ function test_valid_row_before(string $row)
     if (row_before('H') !== false) throw new Exception('row before before failed to return right column');
 }
 
-function move_up(string $positionCode)
+function test_valid_move_up(string $positionCode)
 {
     if (strlen($positionCode) !== 2) throw new Exception('$positionCode character count is not equal to 2');
     if (array_search($positionCode[0], get_rows()) === false) throw new Exception('undefined row');
