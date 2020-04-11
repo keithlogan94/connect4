@@ -8,7 +8,9 @@ use Connect4\BoardPosition\BoardPosition;
 use Connect4\Database\Database;
 use Connect4\Exceptions\BoardPositionEmptyException;
 use function Connect4\functions\logic\board_position_code;
+use function Connect4\functions\logic\board_position_color;
 use function Connect4\functions\logic\do_game_pieces_match_color;
+use function Connect4\functions\logic\get_beginning_position_code_of_direction;
 use function Connect4\functions\logic\get_board_position_by_position_code;
 use function Connect4\functions\logic\is_empty;
 use Exception;
@@ -201,15 +203,34 @@ class Board
             try {
                 //run function in connect4_translate_position
                 $translatedPositionCode = $translatedPosition(board_position_code($boardPosition));
+                echo "translated position code is " . $translatedPositionCode . "\r\n";
                 if ($translatedPositionCode === false) continue;
 
                 $boardPositionToCheck = get_board_position_by_position_code($this, $translatedPositionCode);
+                echo "board position to check is of type " . gettype($boardPositionToCheck) . "\r\n";
                 if ($boardPositionToCheck === false) continue;
+                else echo "board position to check is not false\r\n";
+                if (is_empty($boardPositionToCheck)) continue;
+                else echo "board position to check is not empty\r\n";
 
+                echo "game piece position 1 color is " . board_position_color($boardPosition) .
+                    " and game piece position 2 color is " . board_position_color($boardPositionToCheck) . " \r\n <BR> ";
                 if (do_game_pieces_match_color($boardPosition, $boardPositionToCheck))
                 {
+                    echo "game pieces match color\r\n";
                     if ($inARow === 3) return true;
-                    $isWin = $this->checkForWinOneDirection($boardPositionToCheck, $inARow + 1, $translatedPosition);
+                    $beggingOfDirectionPosition
+                        =
+                        get_board_position_by_position_code(
+                            $this,
+                            get_beginning_position_code_of_direction(
+                                $this,
+                                board_position_code($boardPositionToCheck),
+                                $translatedPosition
+                            )
+                        );
+
+                    $isWin = $this->checkForWinOneDirection($beggingOfDirectionPosition, $inARow + 1, $translatedPosition);
                     if ($isWin) return true;
                     else continue;
                 } else {

@@ -58,6 +58,74 @@ function do_game_pieces_match_color(BoardPosition $position1, BoardPosition $pos
 
 }
 
+function get_beginning_position_code_of_direction(Board &$board, string $positionCode, string $direction)
+{
+
+    if (is_empty(get_board_position_by_position_code($board, $positionCode)))
+        throw new BoardPositionEmptyException('board position should not be empty');
+
+    $begginingPositionCode = $positionCode;
+
+    echo "this function is trying to get the begginning of the direction\r\n";
+    echo "the beggining position code is starting at " . $begginingPositionCode . "\r\n";
+    echo "the direction is " . $direction . "\r\n";
+
+    $translate = get_opposite_of_direction($direction);
+    echo "the opposite direction retrieved is " . $translate . "\r\n";
+
+    while (true) {
+        $newPositionCode = $translate($begginingPositionCode);
+        echo "the new position code traveling in the opposite direction is " . $newPositionCode . "\r\n";
+        if ($newPositionCode === false) break;
+        $newBoardPosition = get_board_position_by_position_code($board, $newPositionCode);
+        if (is_empty($newBoardPosition)) break;
+        $begginingPosition = get_board_position_by_position_code($board, $begginingPositionCode);
+        if (!do_game_pieces_match_color($begginingPosition, $newBoardPosition)) break;
+        $begginingPositionCode = $newPositionCode;
+        echo "the new beggining position code is being set to " . $begginingPositionCode . "\r\n";
+    }
+
+    return $begginingPositionCode;
+
+}
+
+function get_opposite_of_direction(string $direction)
+{
+
+    $keys = [
+        'Connect4\functions\translate_position\move_up' => 'Connect4\functions\translate_position\move_down',
+        'Connect4\functions\translate_position\move_up_right' => 'Connect4\functions\translate_position\move_down_left',
+        'Connect4\functions\translate_position\move_up_left' => 'Connect4\functions\translate_position\move_down_right',
+        'Connect4\functions\translate_position\move_down' => 'Connect4\functions\translate_position\move_up',
+        'Connect4\functions\translate_position\move_down_right' => 'Connect4\functions\translate_position\move_up_left',
+        'Connect4\functions\translate_position\move_down_left' => 'Connect4\functions\translate_position\move_up_right',
+        'Connect4\functions\translate_position\move_right' => 'Connect4\functions\translate_position\move_left',
+        'Connect4\functions\translate_position\move_left' => 'Connect4\functions\translate_position\move_right',
+    ];
+
+    foreach ($keys as $key => $oppositeDirection)
+        if ($key === $direction) return $oppositeDirection;
+
+    return false;
+
+
+}
+
+function get_translated_positions_to_check()
+{
+    return [
+        'Connect4\functions\translate_position\move_up',
+        'Connect4\functions\translate_position\move_up_right',
+        'Connect4\functions\translate_position\move_up_left',
+        'Connect4\functions\translate_position\move_down',
+        'Connect4\functions\translate_position\move_down_right',
+        'Connect4\functions\translate_position\move_down_left',
+        'Connect4\functions\translate_position\move_down_left',
+        'Connect4\functions\translate_position\move_right',
+        'Connect4\functions\translate_position\move_left',
+    ];
+}
+
 
 
 
