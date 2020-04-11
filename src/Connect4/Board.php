@@ -13,6 +13,7 @@ use function Connect4\functions\logic\do_game_pieces_match_color;
 use function Connect4\functions\logic\get_beginning_position_code_of_direction;
 use function Connect4\functions\logic\get_board_position_by_position_code;
 use function Connect4\functions\logic\is_empty;
+use function Connect4\functions\logic\print_not_empty_positions;
 use Exception;
 
 class Board
@@ -190,8 +191,9 @@ class Board
 
     }
 
-    public function checkForWin(BoardPosition $boardPosition, int $inARow)
+    public function checkForWin(Board &$board, BoardPosition $boardPosition, int $inARow)
     {
+        echo "checking for win at board position ".$boardPosition->getPositionCode()."\r\n";
 
 //        $checkCoords = $boardPosition->getXYCoordsToCheck();
 
@@ -201,12 +203,16 @@ class Board
         {
 
             try {
+
+                print_not_empty_positions($board);
+
                 //run function in connect4_translate_position
                 $translatedPositionCode = $translatedPosition(board_position_code($boardPosition));
                 echo "translated position code is " . $translatedPositionCode . "\r\n";
                 if ($translatedPositionCode === false) continue;
 
-                $boardPositionToCheck = get_board_position_by_position_code($this, $translatedPositionCode);
+                $boardPositionToCheck = get_board_position_by_position_code($board, $translatedPositionCode, true);
+
                 echo "board position to check is of type " . gettype($boardPositionToCheck) . "\r\n";
                 if ($boardPositionToCheck === false) continue;
                 else echo "board position to check is not false\r\n";
@@ -222,9 +228,9 @@ class Board
                     $beggingOfDirectionPosition
                         =
                         get_board_position_by_position_code(
-                            $this,
+                            $board,
                             get_beginning_position_code_of_direction(
-                                $this,
+                                $board,
                                 board_position_code($boardPositionToCheck),
                                 $translatedPosition
                             )
@@ -238,6 +244,8 @@ class Board
                 }
             } catch (BoardPositionEmptyException $e)
             {
+                echo $e->getMessage() . " " . $e->getFile() . " " . $e->getLine() . $e->getTraceAsString() . "\r\n";
+                echo "board position is empty continueing\r\n";
                 continue;
             }
 

@@ -4,6 +4,8 @@
 namespace Connect4\BoardPosition;
 
 
+use function Connect4\functions\logic\board_position_code;
+use function Connect4\functions\logic\board_position_color;
 use Connect4\Game;
 use Connect4\GamePiece;
 use Exception;
@@ -53,10 +55,10 @@ class BoardPosition
 
     }
 
-    public function checkForWin()
+    public function checkForWin(Board &$board)
     {
         /* @var Board */
-        return $this->board->checkForWin($this, 1);
+        return $this->board->checkForWin($board, $this, 1);
 
 
     }
@@ -159,9 +161,9 @@ class BoardPosition
         $this->setFilledGamePiece($gamePiece);
 
         $this->board->saveGamePositionsToDatabase();
+        echo "placing game piece color " . board_position_color($this) . " in position " . board_position_code($this). "\r\n";
 
-
-        $isWin = $this->checkForWin();
+        $isWin = $this->checkForWin($this->board);
 
 
 
