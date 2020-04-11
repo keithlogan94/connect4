@@ -2,7 +2,7 @@
 
 
 
-async function createGame() {
+function createGame() {
     return new Promise(function (resolve, reject) {
 
         $.ajax({
@@ -17,7 +17,7 @@ async function createGame() {
 }
 
 
-async function placeGamePiece(gameId, color, column) {
+function placeGamePiece(gameId, color, column) {
 
     return new Promise(function (resolve, reject) {
 
@@ -36,7 +36,7 @@ async function placeGamePiece(gameId, color, column) {
 
 
 
-async function getNearestPositionToBottom(gameId, column) {
+function getNearestPositionToBottom(gameId, column) {
 
     return new Promise(function (resolve, reject) {
 
@@ -53,7 +53,7 @@ async function getNearestPositionToBottom(gameId, column) {
 }
 
 
-async function getGamePositions(gameId) {
+function getGamePositions(gameId) {
     //http://localhost:8378/1/game_positions
 
 
