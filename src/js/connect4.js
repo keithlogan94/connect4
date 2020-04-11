@@ -42,7 +42,26 @@ async function getNearestPositionToBottom(gameId, column) {
 
         $.ajax({
             url: 'http://localhost:8378/'+gameId+'/nearest_to_bottom_game_position/'+ column,
-            type: 'POST',
+            type: 'GET',
+            success: function (response) {
+                resolve(JSON.parse(response));
+            }
+        });
+
+    });
+
+}
+
+
+async function getGamePositions(gameId) {
+    //http://localhost:8378/1/game_positions
+
+
+    return new Promise(function (resolve, reject) {
+
+        $.ajax({
+            url: 'http://localhost:8378/'+gameId+'/game_positions',
+            type: 'GET',
             success: function (response) {
                 resolve(JSON.parse(response));
             }
@@ -51,9 +70,7 @@ async function getNearestPositionToBottom(gameId, column) {
     });
 
 
-
 }
-
 
 
 
