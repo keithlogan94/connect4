@@ -59,8 +59,6 @@ class BoardPosition
     {
         /* @var Board */
         return $this->board->checkForWin($board, $this, 0);
-
-
     }
 
     public function getGamePiece() : GamePiece
