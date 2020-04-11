@@ -2,10 +2,9 @@
 
 require_once dirname(__FILE__) . '/autoload.php';
 
-use Connect4\Game;
+use function Connect4\functions\utils\echo_error_page;
 use Connect4\Requests\Api\Api;
 use Connect4\Requests\Request;
-use function utils\echo_error_page;
 
 
 //c++ style main function where the code begins
