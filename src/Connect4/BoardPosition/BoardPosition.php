@@ -159,7 +159,6 @@ class BoardPosition
         $this->setFilledGamePiece($gamePiece);
 
         $this->board->saveGamePositionsToDatabase();
-        echo "placing game piece color " . board_position_color($this) . " in position " . board_position_code($this). "\r\n";
 
         $isWin = $this->checkForWin($this->board);
 
