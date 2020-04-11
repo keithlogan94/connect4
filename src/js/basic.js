@@ -59,9 +59,25 @@ async function loadGame(gameId, containerElem) {
 
         const boardPositions = await getGamePositions(gameId);
 
-        var html = '<div id="board">';
+
+        var positionsObj = {};
 
         $.each(boardPositions, function (index, elem) {
+            positionsObj[elem.position_code] = elem;
+        });
+
+        var boardPositionKeys = Object.keys(positionsObj);
+
+
+        var html = '<div id="board">';
+
+
+
+
+
+        for (var i = 0; i < boardPositionKeys.length; i++)
+        {
+            const elem = positionsObj[boardPositionKeys[i]];
 
             var token = ``;
             if (elem.is_filled)
@@ -70,9 +86,19 @@ async function loadGame(gameId, containerElem) {
             html += `<div class="board-position" id="${elem.position_code}">
                     ${token}
                 </div>`;
-        });
+
+        }
 
         html += '</div>';
+
+
+
+
+        // $.each(boardPositions, function (index, elem) {
+        //
+        //
+        // });
+
 
         $(containerElem).html(html);
 
