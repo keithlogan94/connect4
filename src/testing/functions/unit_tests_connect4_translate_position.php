@@ -182,7 +182,7 @@ function test_valid_move_left()
     if (move_left('H1') !== false) throw new Exception('move left before failed to return right column');
 }
 
-function test_valid_move_up_right(string $positionCode)
+function test_valid_move_up_right()
 {
     echo "running Unit Test";
     echo "testing " . __METHOD__ . PHP_EOL;
@@ -219,32 +219,54 @@ function test_valid_move_down_left()
     echo "running Unit Test";
     echo "testing " . __METHOD__ . PHP_EOL;
 
-    if (move_down_left('A2') !== 'B3') throw new Exception('move_down_left right failed to return right column');
-    if (move_down_left('B2') !== 'C3') throw new Exception('move_down_left right failed to return right column');
-    if (move_down_left('C2') !== 'D3') throw new Exception('move_down_left right failed to return right column');
-    if (move_down_left('D2') !== 'E3') throw new Exception('move_down_left right failed to return right column');
-    if (move_down_left('E2') !== 'F3') throw new Exception('move_down_left right failed to return right column');
-    if (move_down_left('F2') !== 'G3') throw new Exception('move_down_left right failed to return right column');
+    if (move_down_left('A2') !== 'B1') throw new Exception('move_down_left right failed to return right column');
+    if (move_down_left('B2') !== 'C1') throw new Exception('move_down_left right failed to return right column');
+    if (move_down_left('C2') !== 'D1') throw new Exception('move_down_left right failed to return right column');
+    if (move_down_left('D2') !== 'E1') throw new Exception('move_down_left right failed to return right column');
+    if (move_down_left('E2') !== 'F1') throw new Exception('move_down_left right failed to return right column');
+    if (move_down_left('F2') !== 'G1') throw new Exception('move_down_left right failed to return right column');
     if (move_down_left('G2') !== false) throw new Exception('move_down_left right before failed to return right column');
     if (move_down_left('G1') !== false) throw new Exception('move_down_left right before failed to return right column');
     if (move_down_left('H1') !== false) throw new Exception('move_down_right right before failed to return right column');
 }
 
 
-function test_valid_move_up_left(string $positionCode)
+function test_valid_move_up_left()
 {
     echo "running Unit Test";
     echo "testing " . __METHOD__ . PHP_EOL;
 
-    if (move_up_left('A2') !== 'B3') throw new Exception('move_up_left right failed to return right column');
-    if (move_up_left('B2') !== 'C3') throw new Exception('move_up_left right failed to return right column');
-    if (move_up_left('C2') !== 'D3') throw new Exception('move_up_left right failed to return right column');
-    if (move_up_left('D2') !== 'E3') throw new Exception('move_up_left right failed to return right column');
-    if (move_up_left('E2') !== 'F3') throw new Exception('move_up_left right failed to return right column');
-    if (move_up_left('F2') !== 'G3') throw new Exception('move_up_left right failed to return right column');
-    if (move_up_left('G2') !== false) throw new Exception('move_up_left right before failed to return right column');
-    if (move_up_left('G1') !== false) throw new Exception('move_up_left right before failed to return right column');
-    if (move_up_left('H1') !== false) throw new Exception('move_down_right right before failed to return right column');
+    if (move_up_left('A2') !== false) throw new Exception('move_up_left failed to return right column');
+    if (move_up_left('B2') !== 'A1') throw new Exception('move_up_left failed to return right column');
+    if (move_up_left('C2') !== 'B1') throw new Exception('move_up_left failed to return right column');
+    if (move_up_left('D2') !== 'C1') throw new Exception('move_up_left failed to return right column');
+    if (move_up_left('E2') !== 'D1') throw new Exception('move_up_left failed to return right column');
+    if (move_up_left('F2') !== 'E1') throw new Exception('move_up_left failed to return right column');
+    if (move_up_left('G2') !== 'F1') throw new Exception('move_up_left before failed to return right column');
+    if (move_up_left('G1') !== 'F1') throw new Exception('move_up_left before failed to return right column');
+    if (move_up_left('H1') !== false) throw new Exception('move_up_left before failed to return right column');
+}
+
+
+
+function run_section_unit_tests()
+{
+
+    test_valid_get_rows();
+    test_valid_get_columns();
+    test_valid_column_after();
+    test_valid_column_before();
+    test_valid_row_after();
+    test_valid_row_before();
+    test_valid_move_up();
+    test_valid_move_down();
+    test_valid_move_right();
+    test_valid_move_left();
+    test_valid_move_up_right();
+    test_valid_move_down_right();
+    test_valid_move_down_left();
+    test_valid_move_up_left();
+
 }
 
 
