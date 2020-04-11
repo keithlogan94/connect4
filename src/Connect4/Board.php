@@ -198,14 +198,14 @@ class Board
         foreach ($translatedPositionsToCheck as $translatedPosition)
         {
 
-            //run function in connect4_translate_position
-            $translatedPositionCode = $translatedPosition(board_position_code($boardPosition));
-            if ($translatedPositionCode === false) continue;
-
-            $boardPositionToCheck = get_board_position_by_position_code($this, $translatedPositionCode);
-            if ($boardPositionToCheck === false) continue;
-
             try {
+                //run function in connect4_translate_position
+                $translatedPositionCode = $translatedPosition(board_position_code($boardPosition));
+                if ($translatedPositionCode === false) continue;
+
+                $boardPositionToCheck = get_board_position_by_position_code($this, $translatedPositionCode);
+                if ($boardPositionToCheck === false) continue;
+
                 if (do_game_pieces_match_color($boardPosition, $boardPositionToCheck))
                 {
                     if ($inARow === 3) return true;
@@ -233,14 +233,15 @@ class Board
     public function checkForWinOneDirection(BoardPosition $boardPosition, int $inARow, string $direction)
     {
         if (is_empty($boardPosition)) return false;
-        //run function in connect4_translate_position
-        $translatedPositionCode = $direction(board_position_code($boardPosition));
-
-        $boardPositionToCheck = get_board_position_by_position_code($this, $translatedPositionCode);
-        if ($boardPositionToCheck === false) return false;
-        if (is_empty($boardPositionToCheck)) return false;
-
         try {
+
+            //run function in connect4_translate_position
+            $translatedPositionCode = $direction(board_position_code($boardPosition));
+
+            $boardPositionToCheck = get_board_position_by_position_code($this, $translatedPositionCode);
+            if ($boardPositionToCheck === false) return false;
+            if (is_empty($boardPositionToCheck)) return false;
+
             if (do_game_pieces_match_color($boardPosition, $boardPositionToCheck))
             {
                 if ($inARow === 3) return true;
