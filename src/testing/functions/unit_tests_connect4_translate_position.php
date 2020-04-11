@@ -177,7 +177,7 @@ function test_valid_move_left()
     if (move_left('H1') !== false) throw new Exception('move left before failed to return right column');
 }
 
-function move_up_right(string $positionCode)
+function test_valid_move_up_right(string $positionCode)
 {
     echo "running Unit Test";
     echo "testing " . __METHOD__ . PHP_EOL;
