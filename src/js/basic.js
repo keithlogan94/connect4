@@ -1,34 +1,52 @@
 
-$(document).on('click', '.place-checker', function () {
+$(document).on('click', 'button.place-checker', async function () {
     $column = $("#column");
-    placeGamePiece(1, window.turn, $column.val());
+    await placeGamePiece(1, getCookie('turn_color'), $column.val());
     $column.val("");
-    $(".popup").hide();
+    // $(".popup").hide();
     changeTurn();
-    loadGame(1, document.getElementById('game-container'));
+
+    await loadGame(1, document.getElementById('game-container'));
 });
 
 
-$(function () {
+$(async function () {
 
-    $(".popup").hide();
-    startGame();
-    window.turn = "yellow";
+
+    const currentGameId = getCookie('current_game_id');
+
+    if (currentGameId == null) {
+        let newGameId = await createGame();
+        newGameId = Number.parseInt(newGameId.game_id);
+        if (isNaN(Number.parseInt(newGameId))) throw "newGameId is not a number";
+        setCookie('current_game_id', newGameId, '1');
+        loadGame(newGameId, document.getElementById('game-container'));
+    } else {
+        if (isNaN(Number.parseInt(currentGameId))) throw "currentGameId is not a number";
+        loadGame(currentGameId, document.getElementById('game-container'));
+    }
+
+    const playerTurn = getCookie('turn_color');
+
+    if (playerTurn == null) {
+        setCookie('turn_color', 'yellow', '1');
+    }
 
     $("#color-player").text(getColorForTurn());
-
 
 
 });
 
 function changeTurn()
 {
-    if (window.turn === 'yellow')
+    if (getCookie('turn_color') === 'yellow')
     {
-        window.turn = 'red';
+        setCookie('turn_color', 'red', '1');
     } else {
-        window.turn = 'yellow';
+        setCookie('turn_color', 'yellow', '1');
     }
+
+    $("#color-player").text(getColorForTurn());
 }
 
 function capitalizeFirstLetter(string) {
@@ -37,7 +55,7 @@ function capitalizeFirstLetter(string) {
 
 function getColorForTurn()
 {
-    return capitalizeFirstLetter(window.turn);
+    return capitalizeFirstLetter(getCookie('turn_color'));
 }
 
 
@@ -53,6 +71,8 @@ async function startGame()
 
 
 async function loadGame(gameId, containerElem) {
+
+    if (isNaN(Number.parseInt(gameId))) throw "gameId is not an int";
 
     return new Promise(async function (resolve, reject) {
 

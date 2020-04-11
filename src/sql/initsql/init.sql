@@ -161,7 +161,7 @@ CREATE TABLE board_positions
 );
 
 
-CREATE UNIQUE INDEX board_positions_key_index ON board_positions (`game_id`, `position_code`, `filled_color`);
+CREATE UNIQUE INDEX board_positions_key_index ON board_positions (`game_id`, `position_code`);
 
 
 
