@@ -193,10 +193,6 @@ class Board
 
     public function checkForWin(Board &$board, BoardPosition $boardPosition, int $inARow)
     {
-        echo "checking for win at board position ".$boardPosition->getPositionCode()."\r\n";
-
-//        $checkCoords = $boardPosition->getXYCoordsToCheck();
-
         $translatedPositionsToCheck = $boardPosition->getTranslatedPositionsToCheck();
 
         foreach ($translatedPositionsToCheck as $translatedPosition)
@@ -204,26 +200,17 @@ class Board
 
             try {
 
-                print_not_empty_positions($board);
-
                 //run function in connect4_translate_position
                 $translatedPositionCode = $translatedPosition(board_position_code($boardPosition));
-                echo "translated position code is " . $translatedPositionCode . "\r\n";
                 if ($translatedPositionCode === false) continue;
 
-                $boardPositionToCheck = get_board_position_by_position_code($board, $translatedPositionCode, true);
+                $boardPositionToCheck = get_board_position_by_position_code($board, $translatedPositionCode);
 
-                echo "board position to check is of type " . gettype($boardPositionToCheck) . "\r\n";
                 if ($boardPositionToCheck === false) continue;
-                else echo "board position to check is not false\r\n";
                 if (is_empty($boardPositionToCheck)) continue;
-                else echo "board position to check is not empty\r\n";
 
-                echo "game piece position 1 color is " . board_position_color($boardPosition) .
-                    " and game piece position 2 color is " . board_position_color($boardPositionToCheck) . " \r\n <BR> ";
                 if (do_game_pieces_match_color($boardPosition, $boardPositionToCheck))
                 {
-                    echo "game pieces match color\r\n";
                     if ($inARow === 4) return true;
                     $beggingOfDirectionPosition
                         =
