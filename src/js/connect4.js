@@ -73,6 +73,22 @@ function getGamePositions(gameId) {
 }
 
 
+function getGameInfo(gameId, gameInfo) {
+
+    return new Promise(function (resolve, reject) {
+
+        $.ajax({
+            url: 'http://localhost:8378/'+gameId+'/game_info/' + gameInfo,
+            type: 'GET',
+            success: function (response) {
+                resolve(JSON.parse(response)[gameInfo]);
+            }
+        });
+
+    });
+
+}
+
 
 
 

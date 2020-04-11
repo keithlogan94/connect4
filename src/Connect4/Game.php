@@ -40,6 +40,9 @@ class Game
         $board = new Board($gameId);
         $board->saveGamePositionsToDatabase();
 
+        //yellow starts the game
+        $board->setGameData('turn_color', 'yellow');
+
 
         return $row;
     }

@@ -154,6 +154,13 @@ class BoardPosition
 
     public function place(GamePiece $gamePiece) : array
     {
+        $colorTurn = $this->board->getGameData('turn_color');
+
+        if ($colorTurn != $gamePiece->getColorString())
+            throw new Exception('It\'s ' . $colorTurn . '\'s turn');
+
+
+
         //check if this position is not empty
         if (!$this->isEmpty()) throw new Exception('Board position is already filled');
         $this->setFilledGamePiece($gamePiece);
@@ -169,6 +176,19 @@ class BoardPosition
 
         if ($isWin) {
             $returnArray['winning_color'] = $gamePiece->getColorString();
+            $this->board->setGameData('winning_color', $gamePiece->getColorString());
+        }
+
+        switch ($gamePiece->getColorString())
+        {
+            case "yellow":
+                $this->board->setGameData('turn_color', 'red');
+                break;
+            case "red":
+                $this->board->setGameData('turn_color', 'yellow');
+                break;
+            default:
+                throw new Exception('unhandled color');
         }
 
         return $returnArray;

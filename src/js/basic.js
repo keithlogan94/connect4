@@ -3,8 +3,11 @@ $(document).on('click', 'button.place-checker', async function () {
     $column = $("#column");
     await placeGamePiece(1, getCookie('turn_color'), $column.val());
     $column.val("");
-    // $(".popup").hide();
-    changeTurn();
+
+    const playerTurn = await getGameInfo(1,'turn_color');
+    console.log(playerTurn);
+
+    $("#color-player").text(capitalizeFirstLetter(playerTurn));
 
     await loadGame(1, document.getElementById('game-container'));
 });
@@ -13,31 +16,36 @@ $(document).on('click', 'button.place-checker', async function () {
 $(async function () {
 
 
-    const currentGameId = getCookie('current_game_id');
+
+
+    // const currentGameId = getCookie('current_game_id');
 
     if (currentGameId == null) {
         let newGameId = await createGame();
         newGameId = Number.parseInt(newGameId.game_id);
         if (isNaN(Number.parseInt(newGameId))) throw "newGameId is not a number";
-        setCookie('current_game_id', newGameId, '1');
+        // setCookie('current_game_id', newGameId, '1');
         loadGame(newGameId, document.getElementById('game-container'));
     } else {
         if (isNaN(Number.parseInt(currentGameId))) throw "currentGameId is not a number";
         loadGame(currentGameId, document.getElementById('game-container'));
+
     }
 
-    const playerTurn = getCookie('turn_color');
+    // const playerTurn = getCookie('turn_color');
+    const playerTurn = await getGameInfo(1,'turn_color');
+    console.log(playerTurn);
 
-    if (playerTurn == null) {
-        setCookie('turn_color', 'yellow', '1');
-    }
+    // if (playerTurn == null) {
+    //     setCookie('turn_color', 'yellow', '1');
+    // }
 
-    $("#color-player").text(getColorForTurn());
+    $("#color-player").text(capitalizeFirstLetter(playerTurn));
 
 
 });
 
-function changeTurn()
+/*function changeTurn()
 {
     if (getCookie('turn_color') === 'yellow')
     {
@@ -47,7 +55,7 @@ function changeTurn()
     }
 
     $("#color-player").text(getColorForTurn());
-}
+}*/
 
 function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
@@ -55,6 +63,8 @@ function capitalizeFirstLetter(string) {
 
 function getColorForTurn()
 {
+
+
     return capitalizeFirstLetter(getCookie('turn_color'));
 }
 
