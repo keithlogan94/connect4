@@ -57,7 +57,9 @@ function move_up(string $positionCode)
     if (strlen($positionCode) !== 2) throw new Exception('$positionCode character count is not equal to 2');
     if (array_search($positionCode[0], get_rows()) === false) throw new Exception('undefined row');
     if (array_search(intval($positionCode[1]), get_columns()) === false) throw new Exception('undefined column');
-    return row_before($positionCode[0]) . $positionCode[1];
+    $rowBefore = row_before($positionCode[0]);
+    if ($rowBefore === false) return false;
+    return $rowBefore . $positionCode[1];
 }
 
 function move_down(string $positionCode)
@@ -65,7 +67,9 @@ function move_down(string $positionCode)
     if (strlen($positionCode) !== 2) throw new Exception('$positionCode character count is not equal to 2');
     if (array_search($positionCode[0], get_rows()) === false) throw new Exception('undefined row');
     if (array_search(intval($positionCode[1]), get_columns()) === false) throw new Exception('undefined column');
-    return row_after($positionCode[0]) . $positionCode[1];
+    $rowAfter = row_after($positionCode[0]);
+    if ($rowAfter === false) return false;
+    return $rowAfter . $positionCode[1];
 }
 
 function move_right(string $positionCode)
@@ -73,7 +77,9 @@ function move_right(string $positionCode)
     if (strlen($positionCode) !== 2) throw new Exception('$positionCode character count is not equal to 2');
     if (array_search($positionCode[0], get_rows()) === false) throw new Exception('undefined row');
     if (array_search(intval($positionCode[1]), get_columns()) === false) throw new Exception('undefined column');
-    return  $positionCode[0] . row_after(intval($positionCode[1]));
+    $columnAfter = column_after(intval($positionCode[1]));
+    if ($columnAfter === false) return false;
+    return  $positionCode[0] . $columnAfter;
 }
 
 function move_left(string $positionCode)
@@ -81,12 +87,15 @@ function move_left(string $positionCode)
     if (strlen($positionCode) !== 2) throw new Exception('$positionCode character count is not equal to 2');
     if (array_search($positionCode[0], get_rows()) === false) throw new Exception('undefined row');
     if (array_search(intval($positionCode[1]), get_columns()) === false) throw new Exception('undefined column');
-    return  $positionCode[0] . row_before(intval($positionCode[1]));
+    $columnBefore = column_before(intval($positionCode[1]));
+    if ($columnBefore === false) return false;
+    return  $positionCode[0] . $columnBefore;
 }
 
 function move_up_right(string $positionCode)
 {
     $positionCode = move_up($positionCode);
+    if ($positionCode === false) return $positionCode;
     $positionCode = move_right($positionCode);
     return $positionCode;
 }
@@ -94,6 +103,7 @@ function move_up_right(string $positionCode)
 function move_down_right(string $positionCode)
 {
     $positionCode = move_right($positionCode);
+    if ($positionCode === false) return $positionCode;
     $positionCode = move_down($positionCode);
     return $positionCode;
 }
@@ -101,6 +111,7 @@ function move_down_right(string $positionCode)
 function move_down_left(string $positionCode)
 {
     $positionCode = move_down($positionCode);
+    if ($positionCode === false) return $positionCode;
     $positionCode = move_left($positionCode);
     return $positionCode;
 }
@@ -109,6 +120,7 @@ function move_down_left(string $positionCode)
 function move_up_left(string $positionCode)
 {
     $positionCode = move_up($positionCode);
+    if ($positionCode === false) return $positionCode;
     $positionCode = move_left($positionCode);
     return $positionCode;
 }

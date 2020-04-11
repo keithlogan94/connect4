@@ -61,7 +61,7 @@ function test_valid_column_after()
     echo "testing " . __METHOD__ . PHP_EOL;
 
     if (column_after(-1) !== false) throw new Exception('column after failed to return right column');
-    if (column_after(0) !== 1) throw new Exception('column after failed to return right column');
+    if (column_after(0) !== false) throw new Exception('column after failed to return right column');
     if (column_after(1) !== 2) throw new Exception('column after failed to return right column');
     if (column_after(3) !== 4) throw new Exception('column after failed to return right column');
     if (column_after(4) !== 5) throw new Exception('column after failed to return right column');
@@ -76,7 +76,7 @@ function test_valid_column_before()
     echo "testing " . __METHOD__ . PHP_EOL;
 
     if (column_before(0) !== false) throw new Exception('column before failed to return right column');
-    if (column_before(1) !== 0) throw new Exception('column before failed to return right column');
+    if (column_before(1) !== false) throw new Exception('column before failed to return right column');
     if (column_before(3) !== 2) throw new Exception('column before failed to return right column');
     if (column_before(4) !== 3) throw new Exception('column before failed to return right column');
     if (column_before(5) !== 4) throw new Exception('column before failed to return right column');
