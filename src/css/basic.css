@@ -17,6 +17,7 @@ div#board {
 .board-position {
     width: 16%;
     border: thin solid lightgray;
+    position: relative;
 }
 
 .popup {
@@ -52,6 +53,24 @@ button {
 h1 {
     font-size: 1.5em;
 }
+
+.yellow {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background: yellow;
+    position: absolute;
+    position: absolute;
+    left: 0;
+    right: 0;
+    width: 60%;
+    height: 80%;
+    border-radius: 95px;
+    text-align: center;
+    margin: 0 auto;
+    border: thick solid #551;
+}
+
 
 
 

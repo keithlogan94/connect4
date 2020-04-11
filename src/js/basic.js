@@ -1,6 +1,11 @@
 
 $(document).on('click', '.place-checker', function () {
-    alert('placing checker');
+    $column = $("#column");
+    placeGamePiece(1, window.turn, $column.val());
+    $column.val("");
+    $(".popup").hide();
+    changeTurn();
+    loadGame(1, document.getElementById('game-container'));
 });
 
 
@@ -8,10 +13,32 @@ $(function () {
 
     $(".popup").hide();
     startGame();
+    window.turn = "yellow";
+
+    $("#color-player").text(getColorForTurn());
 
 
 
 });
+
+function changeTurn()
+{
+    if (window.turn === 'yellow')
+    {
+        window.turn = 'red';
+    } else {
+        window.turn = 'yellow';
+    }
+}
+
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+function getColorForTurn()
+{
+    return capitalizeFirstLetter(window.turn);
+}
 
 
 async function startGame()
