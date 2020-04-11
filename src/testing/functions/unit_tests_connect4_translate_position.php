@@ -2,25 +2,25 @@
 
 
 
-namespace testing\functions\unit_tests\connect4_translate_position;
+namespace Connect4\functions\translate_position\unit_tests;
 
 
 
 
-use function connect4_translate_position\column_after;
-use function connect4_translate_position\column_before;
-use function connect4_translate_position\get_columns;
-use function connect4_translate_position\get_rows;
-use function connect4_translate_position\move_up;
-use function connect4_translate_position\row_after;
-use function connect4_translate_position\row_before;
-use function connect4_translate_position\move_left;
-use function connect4_translate_position\move_right;
-use function connect4_translate_position\move_down;
-use function connect4_translate_position\move_up_right;
-use function connect4_translate_position\move_up_left;
-use function connect4_translate_position\move_down_left;
-use function connect4_translate_position\move_down_right;
+use function Connect4\functions\translate_position\column_after;
+use function Connect4\functions\translate_position\column_before;
+use function Connect4\functions\translate_position\get_columns;
+use function Connect4\functions\translate_position\get_rows;
+use function Connect4\functions\translate_position\move_up;
+use function Connect4\functions\translate_position\row_after;
+use function Connect4\functions\translate_position\row_before;
+use function Connect4\functions\translate_position\move_left;
+use function Connect4\functions\translate_position\move_right;
+use function Connect4\functions\translate_position\move_down;
+use function Connect4\functions\translate_position\move_up_right;
+use function Connect4\functions\translate_position\move_up_left;
+use function Connect4\functions\translate_position\move_down_left;
+use function Connect4\functions\translate_position\move_down_right;
 
 
 use Exception;

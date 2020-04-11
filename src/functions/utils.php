@@ -1,7 +1,7 @@
 <?php
 
 
-namespace utils;
+namespace Connect4\functions\utils;
 
 
 use Exception;

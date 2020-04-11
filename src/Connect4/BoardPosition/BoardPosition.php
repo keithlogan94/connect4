@@ -77,6 +77,21 @@ class BoardPosition
         return false;
     }
 
+    public function getTranslatedPositionsToCheck()
+    {
+        return [
+            'move_up',
+            'move_up_right',
+            'move_up_left',
+            'move_down',
+            'move_down_right',
+            'move_down_left',
+            'move_down_left',
+            'move_right',
+            'move_left',
+        ];
+    }
+
     public function getXYCoordsToCheck()
     {
         return [

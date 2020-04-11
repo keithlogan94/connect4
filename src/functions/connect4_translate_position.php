@@ -2,7 +2,7 @@
 
 
 
-namespace connect4_translate_position;
+namespace Connect4\functions\translate_position;
 
 use Exception;
 
@@ -124,7 +124,5 @@ function move_up_left(string $positionCode)
     $positionCode = move_left($positionCode);
     return $positionCode;
 }
-
-
 
 

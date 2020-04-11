@@ -6,6 +6,7 @@ namespace Connect4;
 
 use Connect4\BoardPosition\BoardPosition;
 use Connect4\Database\Database;
+use function connect4_translate_position\get_board_position_by_position_code;
 use Exception;
 
 class Board
@@ -186,10 +187,20 @@ class Board
     public function checkForWin(BoardPosition $boardPosition, int $inARow)
     {
 
-        $checkCoords = $boardPosition->getXYCoordsToCheck();
+//        $checkCoords = $boardPosition->getXYCoordsToCheck();
 
-        foreach ($checkCoords as $checkCoord)
+        $translatedPositionsToCheck = $boardPosition->getTranslatedPositionsToCheck();
+
+        foreach ($translatedPositionsToCheck as $translatedPosition)
         {
+
+            $boardPositionToCheck =
+                get_board_position_by_position_code(
+                    $this,
+                    /* run function in connect4_translate_position */
+                    $translatedPosition($boardPosition->getPositionCode())
+                );
+
             $boardPositionToCheck = $this->getBoardPositionAt($checkCoord['X'], $checkCoord['Y']);
 
             if (is_bool($boardPositionToCheck)) continue;
