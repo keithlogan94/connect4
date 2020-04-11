@@ -163,10 +163,15 @@ class BoardPosition
         $isWin = $this->checkForWin($this->board);
 
 
-
-        return [
-            'win' => $isWin
+        $returnArray = [
+            'win' => $isWin,
         ];
+
+        if ($isWin) {
+            $returnArray['winning_color'] = $gamePiece->getColorString();
+        }
+
+        return $returnArray;
     }
 
 

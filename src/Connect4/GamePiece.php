@@ -28,6 +28,11 @@ class GamePiece
         return $this->colorEnumeration;
     }
 
+    public function getColorString() : string
+    {
+        return $this->getColorEnumeration() === self::YELLOW_COLOR ? 'yellow' : 'red';
+    }
+
     private function isValidColor(int $colorEnumeration) : bool
     {
         switch ($colorEnumeration)
