@@ -19,6 +19,8 @@ use function connect4_translate_position\move_right;
 use function connect4_translate_position\move_down;
 use function connect4_translate_position\move_up_right;
 use function connect4_translate_position\move_up_left;
+use function connect4_translate_position\move_down_left;
+use function connect4_translate_position\move_down_right;
 
 
 use Exception;
@@ -196,7 +198,7 @@ function test_valid_move_up_right(string $positionCode)
     if (move_up_right('H1') !== false) throw new Exception('move up right before failed to return right column');
 }
 
-function move_down_right()
+function test_valid_move_down_right()
 {
     echo "running Unit Test";
     echo "testing " . __METHOD__ . PHP_EOL;
@@ -212,7 +214,7 @@ function move_down_right()
     if (move_down_right('H1') !== false) throw new Exception('move_down_right right before failed to return right column');
 }
 
-function move_down_left()
+function test_valid_move_down_left()
 {
     echo "running Unit Test";
     echo "testing " . __METHOD__ . PHP_EOL;
@@ -229,11 +231,20 @@ function move_down_left()
 }
 
 
-function move_up_left(string $positionCode)
+function test_valid_move_up_left(string $positionCode)
 {
-    $positionCode = move_up($positionCode);
-    $positionCode = move_left($positionCode);
-    return $positionCode;
+    echo "running Unit Test";
+    echo "testing " . __METHOD__ . PHP_EOL;
+
+    if (move_up_left('A2') !== 'B3') throw new Exception('move_up_left right failed to return right column');
+    if (move_up_left('B2') !== 'C3') throw new Exception('move_up_left right failed to return right column');
+    if (move_up_left('C2') !== 'D3') throw new Exception('move_up_left right failed to return right column');
+    if (move_up_left('D2') !== 'E3') throw new Exception('move_up_left right failed to return right column');
+    if (move_up_left('E2') !== 'F3') throw new Exception('move_up_left right failed to return right column');
+    if (move_up_left('F2') !== 'G3') throw new Exception('move_up_left right failed to return right column');
+    if (move_up_left('G2') !== false) throw new Exception('move_up_left right before failed to return right column');
+    if (move_up_left('G1') !== false) throw new Exception('move_up_left right before failed to return right column');
+    if (move_up_left('H1') !== false) throw new Exception('move_down_right right before failed to return right column');
 }
 
 
