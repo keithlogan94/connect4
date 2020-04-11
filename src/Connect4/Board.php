@@ -200,8 +200,10 @@ class Board
 
             //run function in connect4_translate_position
             $translatedPositionCode = $translatedPosition(board_position_code($boardPosition));
+            if ($translatedPositionCode === false) continue;
 
             $boardPositionToCheck = get_board_position_by_position_code($this, $translatedPositionCode);
+            if ($boardPositionToCheck === false) continue;
 
             try {
                 if (do_game_pieces_match_color($boardPosition, $boardPositionToCheck))
@@ -235,7 +237,7 @@ class Board
         $translatedPositionCode = $direction(board_position_code($boardPosition));
 
         $boardPositionToCheck = get_board_position_by_position_code($this, $translatedPositionCode);
-
+        if ($boardPositionToCheck === false) return false;
         if (is_empty($boardPositionToCheck)) return false;
 
         try {
