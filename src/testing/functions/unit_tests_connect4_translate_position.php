@@ -17,6 +17,9 @@ use function connect4_translate_position\row_before;
 use function connect4_translate_position\move_left;
 use function connect4_translate_position\move_right;
 use function connect4_translate_position\move_down;
+use function connect4_translate_position\move_up_right;
+use function connect4_translate_position\move_up_left;
+
 
 use Exception;
 
@@ -182,29 +185,47 @@ function test_valid_move_up_right(string $positionCode)
     echo "running Unit Test";
     echo "testing " . __METHOD__ . PHP_EOL;
 
-    if (move_left('A2') !== 'A1') throw new Exception('move left failed to return right column');
-    if (move_left('B2') !== 'B1') throw new Exception('move left failed to return right column');
-    if (move_left('C2') !== 'C1') throw new Exception('move left failed to return right column');
-    if (move_left('D2') !== 'D1') throw new Exception('move left failed to return right column');
-    if (move_left('E2') !== 'E1') throw new Exception('move left failed to return right column');
-    if (move_left('F2') !== 'F1') throw new Exception('move left failed to return right column');
-    if (move_left('G2') !== 'G1') throw new Exception('move left before failed to return right column');
-    if (move_left('G1') !== false) throw new Exception('move left before failed to return right column');
-    if (move_left('H1') !== false) throw new Exception('move left before failed to return right column');
+    if (move_up_right('A2') !== false) throw new Exception('move up right failed to return right column');
+    if (move_up_right('B2') !== 'A3') throw new Exception('move up right failed to return right column');
+    if (move_up_right('C2') !== 'B3') throw new Exception('move up right failed to return right column');
+    if (move_up_right('D2') !== 'C3') throw new Exception('move up right failed to return right column');
+    if (move_up_right('E2') !== 'D3') throw new Exception('move up right failed to return right column');
+    if (move_up_right('F2') !== 'E3') throw new Exception('move up right failed to return right column');
+    if (move_up_right('G2') !== 'F3') throw new Exception('move up right before failed to return right column');
+    if (move_up_right('G1') !== 'F2') throw new Exception('move up right before failed to return right column');
+    if (move_up_right('H1') !== false) throw new Exception('move up right before failed to return right column');
 }
 
-function move_down_right(string $positionCode)
+function move_down_right()
 {
-    $positionCode = move_right($positionCode);
-    $positionCode = \connect4_translate_position\move_down($positionCode);
-    return $positionCode;
+    echo "running Unit Test";
+    echo "testing " . __METHOD__ . PHP_EOL;
+
+    if (move_down_right('A2') !== 'B3') throw new Exception('move_down_right right failed to return right column');
+    if (move_down_right('B2') !== 'C3') throw new Exception('move_down_right right failed to return right column');
+    if (move_down_right('C2') !== 'D3') throw new Exception('move_down_right right failed to return right column');
+    if (move_down_right('D2') !== 'E3') throw new Exception('move_down_right right failed to return right column');
+    if (move_down_right('E2') !== 'F3') throw new Exception('move_down_right right failed to return right column');
+    if (move_down_right('F2') !== 'G3') throw new Exception('move_down_right right failed to return right column');
+    if (move_down_right('G2') !== false) throw new Exception('move_down_right right before failed to return right column');
+    if (move_down_right('G1') !== false) throw new Exception('move_down_right right before failed to return right column');
+    if (move_down_right('H1') !== false) throw new Exception('move_down_right right before failed to return right column');
 }
 
-function move_down_left(string $positionCode)
+function move_down_left()
 {
-    $positionCode = move_down($positionCode);
-    $positionCode = \connect4_translate_position\move_left($positionCode);
-    return $positionCode;
+    echo "running Unit Test";
+    echo "testing " . __METHOD__ . PHP_EOL;
+
+    if (move_down_left('A2') !== 'B3') throw new Exception('move_down_left right failed to return right column');
+    if (move_down_left('B2') !== 'C3') throw new Exception('move_down_left right failed to return right column');
+    if (move_down_left('C2') !== 'D3') throw new Exception('move_down_left right failed to return right column');
+    if (move_down_left('D2') !== 'E3') throw new Exception('move_down_left right failed to return right column');
+    if (move_down_left('E2') !== 'F3') throw new Exception('move_down_left right failed to return right column');
+    if (move_down_left('F2') !== 'G3') throw new Exception('move_down_left right failed to return right column');
+    if (move_down_left('G2') !== false) throw new Exception('move_down_left right before failed to return right column');
+    if (move_down_left('G1') !== false) throw new Exception('move_down_left right before failed to return right column');
+    if (move_down_left('H1') !== false) throw new Exception('move_down_right right before failed to return right column');
 }
 
 
