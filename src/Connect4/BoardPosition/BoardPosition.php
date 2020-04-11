@@ -80,15 +80,15 @@ class BoardPosition
     public function getTranslatedPositionsToCheck()
     {
         return [
-            'move_up',
-            'move_up_right',
-            'move_up_left',
-            'move_down',
-            'move_down_right',
-            'move_down_left',
-            'move_down_left',
-            'move_right',
-            'move_left',
+            'Connect4\functions\translate_position\move_up',
+            'Connect4\functions\translate_position\move_up_right',
+            'Connect4\functions\translate_position\move_up_left',
+            'Connect4\functions\translate_position\move_down',
+            'Connect4\functions\translate_position\move_down_right',
+            'Connect4\functions\translate_position\move_down_left',
+            'Connect4\functions\translate_position\move_down_left',
+            'Connect4\functions\translate_position\move_right',
+            'Connect4\functions\translate_position\move_left',
         ];
     }
 
