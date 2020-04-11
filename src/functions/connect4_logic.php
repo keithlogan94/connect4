@@ -11,16 +11,13 @@ use Connect4\GamePiece;
 use Exception;
 
 
-function board_position_code(BoardPosition &$boardPosition, $noException = false)
+function board_position_code(BoardPosition &$boardPosition)
 {
-    if (is_empty($boardPosition))
-        if (!$noException)  throw new BoardPositionEmptyException($boardPosition->getPositionCode() . ' board position empty');
     return $boardPosition->getPositionCode();
 }
 
 function board_position_color(BoardPosition &$boardPosition)
 {
-    if (is_empty($boardPosition)) throw new BoardPositionEmptyException($boardPosition->getPositionCode() . ' board position empty');
     return $boardPosition->getGamePiece()->getColorEnumeration() === GamePiece::YELLOW_COLOR ? 'yellow' : 'red';
 }
 
@@ -29,14 +26,14 @@ function is_empty(BoardPosition &$boardPosition)
     return $boardPosition->isEmpty();
 }
 
-function get_board_position_by_position_code(Board &$board, string $positionCode, $noException = false)
+function get_board_position_by_position_code(Board &$board, string $positionCode)
 {
     $boardPositions = $board->getBoardPositions();
     for ($i = 0; $i < count($boardPositions); $i++)
     {
         /* @var $bPosition BoardPosition */
         $bPosition = $boardPositions[$i];
-        if (board_position_code($bPosition, $noException) === $positionCode) return $bPosition;
+        if (board_position_code($bPosition) === $positionCode) return $bPosition;
     }
 
     return false;
@@ -62,7 +59,7 @@ function do_game_pieces_match_color(BoardPosition $position1, BoardPosition $pos
 function get_beginning_position_code_of_direction(Board &$board, string $positionCode, string $direction)
 {
 
-    if (is_empty(get_board_position_by_position_code($board, $positionCode, true)))
+    if (is_empty(get_board_position_by_position_code($board, $positionCode)))
         throw new BoardPositionEmptyException('board position should not be empty');
 
     $begginingPositionCode = $positionCode;
@@ -78,9 +75,9 @@ function get_beginning_position_code_of_direction(Board &$board, string $positio
         $newPositionCode = $translate($begginingPositionCode);
         echo "the new position code traveling in the opposite direction is " . $newPositionCode . "\r\n";
         if ($newPositionCode === false) break;
-        $newBoardPosition = get_board_position_by_position_code($board, $newPositionCode, true);
+        $newBoardPosition = get_board_position_by_position_code($board, $newPositionCode);
         if (is_empty($newBoardPosition)) break;
-        $begginingPosition = get_board_position_by_position_code($board, $begginingPositionCode, true);
+        $begginingPosition = get_board_position_by_position_code($board, $begginingPositionCode);
         if (!do_game_pieces_match_color($begginingPosition, $newBoardPosition)) break;
         $begginingPositionCode = $newPositionCode;
         echo "the new beggining position code is being set to " . $begginingPositionCode . "\r\n";

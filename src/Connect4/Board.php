@@ -224,7 +224,7 @@ class Board
                 if (do_game_pieces_match_color($boardPosition, $boardPositionToCheck))
                 {
                     echo "game pieces match color\r\n";
-                    if ($inARow === 3) return true;
+                    if ($inARow === 4) return true;
                     $beggingOfDirectionPosition
                         =
                         get_board_position_by_position_code(
