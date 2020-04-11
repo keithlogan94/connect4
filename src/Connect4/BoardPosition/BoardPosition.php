@@ -58,7 +58,7 @@ class BoardPosition
     public function checkForWin(Board &$board)
     {
         /* @var Board */
-        return $this->board->checkForWin($board, $this, 1);
+        return $this->board->checkForWin($board, $this, 0);
 
 
     }
