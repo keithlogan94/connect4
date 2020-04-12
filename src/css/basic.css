@@ -10,6 +10,12 @@ div#board {
     margin: 0 auto;
     /* grid-template-columns: auto auto auto auto auto auto auto; */
     transform: rotate(90deg) rotateX(180deg);
+    background-image: url(https://i.stack.imgur.com/vNpylm.png);
+    background-repeat: no-repeat;
+    background-size: 655px 655px;
+    overflow: hidden;
+    width: 574px;
+    height: 490px;
 }
 
 .board-position {
@@ -39,6 +45,7 @@ div#board {
     max-width: 600px;
     height: 12vh;
     padding-bottom: 0;
+    margin-bottom: 85px;
     /* grid-template-columns: 100%; */
 }
 
@@ -77,6 +84,8 @@ h1 {
     text-align: center;
     margin: 0 auto;
     border: thick solid #551;
+    height: 64px;
+    width: 64px;
 }
 
 
@@ -95,6 +104,8 @@ h1 {
     text-align: center;
     margin: 0 auto;
     border: thick solid #551;
+    height: 64px;
+    width: 64px;
 }
 
 #game-container {
