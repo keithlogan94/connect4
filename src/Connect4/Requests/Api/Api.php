@@ -6,6 +6,7 @@ namespace Connect4\Requests\Api;
 
 use Connect4\Requests\Api\Endpoints\CreateGameEndpoint;
 use Connect4\Requests\Api\Endpoints\Endpoint;
+use Connect4\Requests\Api\Endpoints\GameEndpoint;
 use Connect4\Requests\Api\Endpoints\GetGameInfoEndpoint;
 use Connect4\Requests\Api\Endpoints\GetGamePositionsEndPoint;
 use Connect4\Requests\Api\Endpoints\GetGameScreenEndpoint;
@@ -61,6 +62,7 @@ class Api
             PlaceGamePieceEndpoint::class,
             GetNearestToBottomPositionCode::class,
             GetGameInfoEndpoint::class,
+            GameEndpoint    ::class,
         ];
     }
 

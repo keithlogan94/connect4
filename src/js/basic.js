@@ -1,15 +1,21 @@
 
 $(document).on('click', 'button.place-checker', async function () {
     $column = $("#column");
-    await placeGamePiece(1, getCookie('turn_color'), $column.val());
+
+    let playerTurn = await getGameInfo(gameId,'turn_color');
+    console.log(playerTurn);
+
+    await placeGamePiece(gameId, playerTurn, $column.val());
     $column.val("");
 
-    const playerTurn = await getGameInfo(1,'turn_color');
+    playerTurn = await getGameInfo(gameId,'turn_color');
     console.log(playerTurn);
+
+
 
     $("#color-player").text(capitalizeFirstLetter(playerTurn));
 
-    await loadGame(1, document.getElementById('game-container'));
+    await loadGame(gameId, document.getElementById('game-container'));
 });
 
 
@@ -18,9 +24,10 @@ $(async function () {
 
 
 
-    // const currentGameId = getCookie('current_game_id');
+    const currentGameId = gameId;
 
     if (currentGameId == null) {
+        throw "test";
         let newGameId = await createGame();
         newGameId = Number.parseInt(newGameId.game_id);
         if (isNaN(Number.parseInt(newGameId))) throw "newGameId is not a number";
@@ -33,7 +40,9 @@ $(async function () {
     }
 
     // const playerTurn = getCookie('turn_color');
-    const playerTurn = await getGameInfo(1,'turn_color');
+    const playerTurn = await getGameInfo(currentGameId,'turn_color');
+
+    if (playerTurn == null) window.location = "http://localhost:8378";
     console.log(playerTurn);
 
     // if (playerTurn == null) {
@@ -72,7 +81,7 @@ function getColorForTurn()
 async function startGame()
 {
     await createGame();
-    await loadGame(1, document.getElementById('game-container'));
+    await loadGame(gameId, document.getElementById('game-container'));
     $(".popup").show();
 
 }
@@ -89,48 +98,16 @@ async function loadGame(gameId, containerElem) {
 
         const boardPositions = await getGamePositions(gameId);
 
-
-        var positionsObj = {};
-
-        $.each(boardPositions, function (index, elem) {
-            positionsObj[elem.position_code] = elem;
-        });
-
-        var boardPositionKeys = Object.keys(positionsObj);
-
-
-        var html = '<div id="board">';
-
-
-
-
-
-        for (var i = 0; i < boardPositionKeys.length; i++)
-        {
-            const elem = positionsObj[boardPositionKeys[i]];
-
-            var token = ``;
-            if (elem.is_filled)
-                token = `<div class="${elem.filled_color}"></div>`;
-
-            html += `<div class="board-position" id="${elem.position_code}">
-                    ${token}
-                </div>`;
-
+        for (var i = 0; i < boardPositions.length; i++) {
+            if (boardPositions[i].is_filled)
+            {
+                $("#" + boardPositions[i].position_code).html(
+                `<div class="board-position ${boardPositions[i].position_code[0]}" id="${boardPositions[i].position_code}">
+                    <div class="${boardPositions[i].filled_color}"></div>
+                 </div>`
+                )
+            }
         }
-
-        html += '</div>';
-
-
-
-
-        // $.each(boardPositions, function (index, elem) {
-        //
-        //
-        // });
-
-
-        $(containerElem).html(html);
 
         resolve(true);
 

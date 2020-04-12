@@ -14,7 +14,9 @@ class GetGameScreenEndpoint extends Endpoint
     {
 
         $game = new Game();
-        $game->echoGameScreen();
+        $row = $game->createNewGame();
+
+        header("Location: http://localhost:8378/" . $row['game_id']);
 
 
     }

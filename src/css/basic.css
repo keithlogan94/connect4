@@ -3,12 +3,12 @@
 
 div#board {
     width: 80vw;
-    display: grid;
+    display: flex;
     text-align: center;
     max-width: 600px;
     height: 80vh;
     margin: 0 auto;
-    grid-template-columns: auto auto auto auto auto auto auto;
+    /* grid-template-columns: auto auto auto auto auto auto auto; */
     transform: rotate(90deg) rotateX(180deg);
 }
 
@@ -16,6 +16,10 @@ div#board {
     width: 100%;
     border: thin solid lightgray;
     position: relative;
+    width: 80px;
+    height: 80px;
+    margin: 0;
+    padding: 0;
 }
 
 
