@@ -8,13 +8,10 @@ use Connect4\BoardPosition\BoardPosition;
 use Connect4\Database\Database;
 use Connect4\Exceptions\BoardPositionEmptyException;
 use function Connect4\functions\logic\board_position_code;
-use function Connect4\functions\logic\board_position_color;
 use function Connect4\functions\logic\do_game_pieces_match_color;
 use function Connect4\functions\logic\get_beginning_position_code_of_direction;
 use function Connect4\functions\logic\get_board_position_by_position_code;
 use function Connect4\functions\logic\is_empty;
-use function Connect4\functions\logic\print_not_empty_positions;
-use Exception;
 
 class Board
 {

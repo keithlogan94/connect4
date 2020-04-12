@@ -1,4 +1,4 @@
-<?php
+<?php /** @noinspection PhpUnusedLocalVariableInspection */
 
 
 namespace Connect4\Requests\Api\Endpoints;

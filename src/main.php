@@ -13,7 +13,6 @@ define("APPLICATION_PORT", get_setting('port'));
 //c++ style main function where the code begins
 function main() {
 
-    $requestCode = false;
 
     if (isset($_GET['request_code'])) {
         $requestCode = $_GET['request_code'];

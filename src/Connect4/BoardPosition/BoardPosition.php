@@ -4,10 +4,7 @@
 namespace Connect4\BoardPosition;
 
 
-use function Connect4\functions\logic\board_position_code;
-use function Connect4\functions\logic\board_position_color;
 use function Connect4\functions\logic\is_empty;
-use Connect4\Game;
 use Connect4\GamePiece;
 use Exception;
 use Connect4\Board;

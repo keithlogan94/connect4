@@ -3,7 +3,6 @@
 namespace Connect4\Requests;
 
 
-use Exception;
 
 class Request
 {

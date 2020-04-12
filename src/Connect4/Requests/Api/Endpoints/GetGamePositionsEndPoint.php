@@ -4,7 +4,6 @@
 namespace Connect4\Requests\Api\Endpoints;
 
 
-use Connect4\Database\Database;
 use Connect4\Game;
 use Connect4\Requests\Request;
 use Exception;
