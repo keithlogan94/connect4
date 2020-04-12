@@ -34,20 +34,30 @@ $(async function () {
 
     const currentGameId = gameId;
 
-    if (currentGameId == null) {
-        if (playerTurn == null) window.location = "http://localhost:8378";
-    } else {
-        if (isNaN(Number.parseInt(currentGameId))) throw "currentGameId is not a number";
-        loadGame(currentGameId, document.getElementById('game-container'));
+    const winningColor = await getGameInfo(gameId,'winning_color');
 
+    if (winningColor) {
+        $(".popup").html("<h1>"+winningColor + " won!"+"</h1>");
+
+        await loadGame(gameId, document.getElementById('game-container'));
+    } else {
+        if (currentGameId == null) {
+            if (playerTurn == null) window.location = "http://localhost:8378";
+        } else {
+            if (isNaN(Number.parseInt(currentGameId))) throw "currentGameId is not a number";
+            loadGame(currentGameId, document.getElementById('game-container'));
+
+        }
+
+        const playerTurn = await getGameInfo(currentGameId,'turn_color');
+
+        if (playerTurn == null) window.location = "http://localhost:8378";
+
+
+        $("#color-player").text(capitalizeFirstLetter(playerTurn));
     }
 
-    const playerTurn = await getGameInfo(currentGameId,'turn_color');
 
-    if (playerTurn == null) window.location = "http://localhost:8378";
-
-
-    $("#color-player").text(capitalizeFirstLetter(playerTurn));
 
 
 });
