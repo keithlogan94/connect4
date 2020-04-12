@@ -15,10 +15,11 @@ class Database
     public function __construct()
     {
 
-        $connection = mysqli_connect('db','root','83Qn9]=32r.]X<Gt', 'connect4');
+        $connection = @mysqli_connect('db','root','83Qn9]=32r.]X<Gt', 'connect4');
 
-        if (!$connection) throw new Exception('Failed to connect to database: ' .
-            mysqli_connect_error());
+        if (!$connection) exit('<p style="color: green;">(Not an Error) The mysql server (micro service) with docker is starting up. ' .
+            'Please wait for the service to be started. ' .
+            'You can keep refreshing this page until it works ' . mysqli_connect_error() . "</p>");
 
 
         $this->connection = $connection;
