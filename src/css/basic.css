@@ -3,7 +3,6 @@ div#board {
     display: flex;
     text-align: center;
     max-width: 600px;
-    margin: 0 auto;
     transform: rotate(90deg) rotateX(180deg);
     background-image: url(https://i.stack.imgur.com/vNpylm.png);
     background-repeat: no-repeat;
@@ -11,7 +10,7 @@ div#board {
     overflow: hidden;
     width: 574px;
     height: 490px;
-    margin-top: 55px;
+    margin: 55px auto 0;
 }
 
 .board-position {
@@ -27,16 +26,14 @@ div#board {
     display: block;
     position: static;
     width: 80vw;
-    margin: 0 auto;
     left: 0;
     right: 0;
-    padding: 2%;
     top: 0;
     background: white;
     max-width: 600px;
     height: 10vh;
-    padding-bottom: 0;
-    margin-bottom: 12px;
+    padding: 2% 2% 0;
+    margin: 0 auto 12px;
 }
 
 .popup-div {

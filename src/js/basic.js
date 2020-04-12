@@ -139,7 +139,7 @@ function loadGame(gameId, containerElem) {
 
         const boardPositions = await getGamePositions(gameId);
 
-        for (var i = 0; i < boardPositions.length; i++) {
+        for (let i = 0; i < boardPositions.length; i++) {
             if (boardPositions[i].is_filled)
             {
                 $("#" + boardPositions[i].position_code).html(
