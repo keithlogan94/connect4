@@ -22,74 +22,31 @@ $(document).on('click', 'button.place-checker', async function () {
 $(async function () {
 
 
-
-
     const currentGameId = gameId;
 
     if (currentGameId == null) {
-        throw "test";
-        let newGameId = await createGame();
-        newGameId = Number.parseInt(newGameId.game_id);
-        if (isNaN(Number.parseInt(newGameId))) throw "newGameId is not a number";
-        // setCookie('current_game_id', newGameId, '1');
-        loadGame(newGameId, document.getElementById('game-container'));
+        if (playerTurn == null) window.location = "http://localhost:8378";
     } else {
         if (isNaN(Number.parseInt(currentGameId))) throw "currentGameId is not a number";
         loadGame(currentGameId, document.getElementById('game-container'));
 
     }
 
-    // const playerTurn = getCookie('turn_color');
     const playerTurn = await getGameInfo(currentGameId,'turn_color');
 
     if (playerTurn == null) window.location = "http://localhost:8378";
-    console.log(playerTurn);
 
-    // if (playerTurn == null) {
-    //     setCookie('turn_color', 'yellow', '1');
-    // }
 
     $("#color-player").text(capitalizeFirstLetter(playerTurn));
 
 
 });
 
-/*function changeTurn()
-{
-    if (getCookie('turn_color') === 'yellow')
-    {
-        setCookie('turn_color', 'red', '1');
-    } else {
-        setCookie('turn_color', 'yellow', '1');
-    }
-
-    $("#color-player").text(getColorForTurn());
-}*/
-
 function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
-function getColorForTurn()
-{
-
-
-    return capitalizeFirstLetter(getCookie('turn_color'));
-}
-
-
-async function startGame()
-{
-    await createGame();
-    await loadGame(gameId, document.getElementById('game-container'));
-    $(".popup").show();
-
-}
-
-
-
-
-async function loadGame(gameId, containerElem) {
+function loadGame(gameId, containerElem) {
 
     if (isNaN(Number.parseInt(gameId))) throw "gameId is not an int";
 
