@@ -1,14 +1,9 @@
 
-
-
 div#board {
-    width: 80vw;
     display: flex;
     text-align: center;
     max-width: 600px;
-    height: 80vh;
     margin: 0 auto;
-    /* grid-template-columns: auto auto auto auto auto auto auto; */
     transform: rotate(90deg) rotateX(180deg);
     background-image: url(https://i.stack.imgur.com/vNpylm.png);
     background-repeat: no-repeat;
@@ -16,10 +11,10 @@ div#board {
     overflow: hidden;
     width: 574px;
     height: 490px;
+    margin-top: 55px;
 }
 
 .board-position {
-    width: 100%;
     border: thin solid lightgray;
     position: relative;
     width: 80px;
@@ -28,8 +23,6 @@ div#board {
     padding: 0;
 }
 
-
-
 .popup {
     display: block;
     position: static;
@@ -37,79 +30,72 @@ div#board {
     margin: 0 auto;
     left: 0;
     right: 0;
-    /* box-shadow: 0px 2px 21px #ddd; */
     padding: 2%;
     top: 0;
-    height: auto;
     background: white;
     max-width: 600px;
-    height: 12vh;
+    height: 10vh;
     padding-bottom: 0;
-    margin-bottom: 85px;
-    /* grid-template-columns: 100%; */
+    margin-bottom: 12px;
+}
+
+.popup-div {
+    display: grid;
+    grid-template-columns: 40% 60%;
 }
 
 input#column {
-    width: 10vw;
-    height: 23px;
-    margin-top: 20px;
     font-size: 1em;
     text-align: center;
+    height: 31px;
+    width: 90%;
 }
 
 button {
     margin-left: 0;
     font-size: 14px;
-    padding: 10px;
     display: inline;
     margin-top: 0;
+    height: 35px;
+    padding: 0;
 }
 
 h1 {
     font-size: 1.5em;
 }
 
-.yellow {
+.yellow, .red {
     display: inline-block;
-    width: 10px;
-    height: 10px;
-    background: yellow;
-    position: absolute;
     position: absolute;
     left: 0;
     right: 0;
-    width: 60%;
-    height: 80%;
     border-radius: 95px;
     text-align: center;
     margin: 0 auto;
     border: thick solid #551;
     height: 64px;
     width: 64px;
+    background: yellow;
 }
-
 
 .red {
-    display: inline-block;
-    width: 10px;
-    height: 10px;
     background: red;
-    position: absolute;
-    position: absolute;
-    left: 0;
-    right: 0;
-    width: 60%;
-    height: 80%;
-    border-radius: 95px;
-    text-align: center;
-    margin: 0 auto;
-    border: thick solid #551;
-    height: 64px;
-    width: 64px;
 }
 
-#game-container {
+.mt-1 {
     margin-top: 10px;
+}
+
+.mb-1 {
+    margin-bottom: 10px;
+}
+
+.inline {
+    display: inline;
+}
+
+.sm-button {
+    width: 40px;
 }
 
 

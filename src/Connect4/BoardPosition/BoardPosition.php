@@ -6,6 +6,7 @@ namespace Connect4\BoardPosition;
 
 use function Connect4\functions\logic\board_position_code;
 use function Connect4\functions\logic\board_position_color;
+use function Connect4\functions\logic\is_empty;
 use Connect4\Game;
 use Connect4\GamePiece;
 use Exception;
@@ -29,32 +30,6 @@ class BoardPosition
         $this->board = $board;
     }
 
-    public function canPlace(): bool
-    {
-        return $this->isEmpty();
-    }
-
-    public function isPositionCodeEqualTo(string $positionCode)
-    {
-        return $this->getPositionCode() === $positionCode;
-    }
-
-    public function getPositionsAwayFromBoardPosition(BoardPosition $boardPosition)
-    {
-        if ($this->getPositionCode() === $boardPosition->getPositionCode())
-            return [
-                'X' => 0,
-                'Y' => 0,
-            ];
-
-        return [
-          'X' => (  ($boardPosition->getXPosition() - $this->getXPosition()) / Board::POSITION_INCREASE_BY ),
-          'Y' => (  ($boardPosition->getYPosition() - $this->getYPosition()) / Board::POSITION_INCREASE_BY ),
-        ];
-
-
-    }
-
     public function checkForWin(Board &$board)
     {
         /* @var Board */
@@ -65,16 +40,6 @@ class BoardPosition
     {
         if ($this->isEmpty()) throw new Exception('Game Position is empty');
         return $this->getFilledGamePiece();
-    }
-
-    public function doesBoardPositionGamePieceMatchBoardPositionGamePiece(BoardPosition $boardPosition): bool
-    {
-        if ($this->isEmpty()) return false;
-        if ($boardPosition->getGamePiece()->getColorEnumeration() ===
-            $boardPosition->getGamePiece()->getColorEnumeration())
-            return true;
-
-        return false;
     }
 
     public function getTranslatedPositionsToCheck()
@@ -89,61 +54,6 @@ class BoardPosition
             'Connect4\functions\translate_position\move_down_left',
             'Connect4\functions\translate_position\move_right',
             'Connect4\functions\translate_position\move_left',
-        ];
-    }
-
-    public function getXYCoordsToCheck()
-    {
-        return [
-
-            //top right
-            [
-                'X' => $this->getXPosition() + (Board::POSITION_INCREASE_BY * 1),
-                'Y' => $this->getXPosition() + (Board::POSITION_INCREASE_BY * 1),
-            ],
-
-            //top
-            [
-                'X' => $this->getXPosition() + (Board::POSITION_INCREASE_BY * 0),
-                'Y' => $this->getXPosition() + (Board::POSITION_INCREASE_BY * 1),
-            ],
-
-            //right
-            [
-                'X' => $this->getXPosition() + (Board::POSITION_INCREASE_BY * 1),
-                'Y' => $this->getXPosition() + (Board::POSITION_INCREASE_BY * 0),
-            ],
-
-            //bottom right
-            [
-                'X' => $this->getXPosition() + (Board::POSITION_INCREASE_BY * 1),
-                'Y' => $this->getXPosition() + (Board::POSITION_INCREASE_BY * -1),
-            ],
-
-            //bottom
-            [
-                'X' => $this->getXPosition() + (Board::POSITION_INCREASE_BY * 0),
-                'Y' => $this->getXPosition() + (Board::POSITION_INCREASE_BY * -1),
-            ],
-
-            //bottom left
-            [
-                'X' => $this->getXPosition() + (Board::POSITION_INCREASE_BY * -1),
-                'Y' => $this->getXPosition() + (Board::POSITION_INCREASE_BY * -1),
-            ],
-
-            //left
-            [
-                'X' => $this->getXPosition() + (Board::POSITION_INCREASE_BY * -1),
-                'Y' => $this->getXPosition() + (Board::POSITION_INCREASE_BY * 0),
-            ],
-
-            //top left
-            [
-                'X' => $this->getXPosition() + (Board::POSITION_INCREASE_BY * -1),
-                'Y' => $this->getXPosition() + (Board::POSITION_INCREASE_BY * 1),
-            ],
-
         ];
     }
 
@@ -177,6 +87,22 @@ class BoardPosition
         if ($isWin) {
             $returnArray['winning_color'] = $gamePiece->getColorString();
             $this->board->setGameData('winning_color', $gamePiece->getColorString());
+        } else {
+            //check if tie
+            $isTie = true;
+            $allBoardPositions = $this->board->getBoardPositions();
+            foreach ($allBoardPositions as $boardPosition) {
+                /* @var BoardPosition $boardPosition */
+                if (is_empty($boardPosition)) {
+                    $isTie = false;
+                    break;
+                }
+            }
+
+            if ($isTie) {
+                $this->board->setGameData('is_tie', 'yes');
+            }
+
         }
 
         switch ($gamePiece->getColorString())

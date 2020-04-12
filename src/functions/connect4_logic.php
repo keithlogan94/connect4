@@ -6,6 +6,7 @@ namespace Connect4\functions\logic;
 
 use Connect4\Board;
 use Connect4\BoardPosition\BoardPosition;
+use Connect4\Database\Database;
 use Connect4\Exceptions\BoardPositionEmptyException;
 use Connect4\GamePiece;
 use Exception;
@@ -130,6 +131,35 @@ function print_not_empty_positions(Board &$board)
     }
 
 }
+
+function get_last_game_played_id()
+{
+    $database = new Database();
+    $result = $database->query('CALL get_last_game_played()');
+
+    $gameId = mysqli_fetch_assoc($result)['last_game_played_id'];
+    if (is_numeric($gameId)) $gameId = intval($gameId);
+    return $gameId;
+}
+
+function is_last_game_played_won()
+{
+    $id = get_last_game_played_id();
+
+    if (is_int($id) && $id > 0) {
+        $board = new Board($id);
+        $winningColor = $board->getGameData('winning_color');
+        if ($winningColor === 'yellow' || $winningColor === 'red') {
+            return true;
+        } else {
+            return false;
+        }
+    } else {
+        return false;
+    }
+
+}
+
 
 
 

@@ -37,11 +37,32 @@ class Game
 
         $gameId = $row['game_id'];
 
+        $newGameColor = 'yellow';
+
+        $previousGameId = intval($gameId) - 1;
+        if ($previousGameId > 0) {
+            $previousGame = new Board($previousGameId);
+            $winningColor = $previousGame->getGameData('winning_color');
+
+            if ($winningColor) {
+                switch ($winningColor) {
+                    case "yellow":
+                            $newGameColor = 'red';
+                        break;
+                        case "red";
+                            $newGameColor = 'yellow';
+                        break;
+                    default:
+                }
+            }
+        }
+
+
         $board = new Board($gameId);
         $board->saveGamePositionsToDatabase();
 
         //yellow starts the game
-        $board->setGameData('turn_color', 'yellow');
+        $board->setGameData('turn_color', $newGameColor);
 
 
         return $row;

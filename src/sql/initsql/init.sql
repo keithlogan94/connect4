@@ -21,6 +21,8 @@ CREATE TABLE games
     add_time DATETIME NOT NULL
 );
 
+CREATE INDEX game_index ON games (`game_id`);
+
 
 DROP PROCEDURE IF EXISTS create_game;
 
@@ -160,7 +162,8 @@ CREATE TABLE board_positions
     add_time DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
-
+CREATE INDEX filled_color_index ON board_positions (`filled_color`);
+CREATE INDEX is_filled_index ON board_positions (`is_filled`);
 CREATE UNIQUE INDEX board_positions_key_index ON board_positions (`game_id`, `position_code`);
 
 
@@ -188,8 +191,6 @@ BEGIN
         y_position = VALUES(y_position),
         is_filled = VALUES(is_filled),
         filled_color = VALUES(filled_color)
-#,
-#         p_turn_number = VALUES(p_turn_number)
        ;
 
     SELECT LAST_INSERT_ID() AS 'game_id';
@@ -233,6 +234,35 @@ BEGIN
 
     SELECT * FROM board_positions WHERE game_id = p_game_id AND turn_number = turnNumber;
 
+
+
+END
+
+
+
+$$
+
+
+DELIMITER ;
+
+
+
+
+
+
+
+
+
+DROP PROCEDURE IF EXISTS get_last_game_played;
+
+DELIMITER $$
+
+
+CREATE PROCEDURE get_last_game_played()
+BEGIN
+
+
+    SELECT game_id AS 'last_game_played_id' FROM games ORDER BY game_id DESC LIMIT 1;
 
 
 END

@@ -12,12 +12,21 @@ function main() {
 
     $requestCode = false;
 
-    if (isset($_GET['request_code'])) $requestCode = $_GET['request_code'];
-    else $requestCode = 'init_screen';
+    if (isset($_GET['request_code'])) {
+        $requestCode = $_GET['request_code'];
+        $request = new Request($requestCode);
+        $api = new Api();
+        $api->handleRequest($request);
+    } else {
+        if ($_SERVER['REQUEST_URI'] === '/') {
+            $requestCode = 'init_screen';
+            $request = new Request($requestCode);
+            $api = new Api();
+            $api->handleRequest($request);
+        }
+    }
 
-    $request = new Request($requestCode);
-    $api = new Api();
-    $api->handleRequest($request);
+
 
 
 
