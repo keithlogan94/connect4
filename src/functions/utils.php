@@ -47,3 +47,19 @@ function echo_error_page(Exception $e) : void
 }
 
 
+
+function get_setting($name)
+{
+    $fileName = dirname(__FILE__) . '/../settings.ini';
+    if (!file_exists($fileName)) throw new Exception('ini file not found');
+    $iniFile = parse_ini_file($fileName);
+
+    return $iniFile[$name];
+
+}
+
+
+
+
+
+
