@@ -8,14 +8,24 @@ $(document).on('click', 'button.place-checker', async function () {
     await placeGamePiece(gameId, playerTurn, $column.val());
     $column.val("");
 
-    playerTurn = await getGameInfo(gameId,'turn_color');
-    console.log(playerTurn);
+    const winningColor = await getGameInfo(gameId,'winning_color');
+
+    if (winningColor) {
+        $(".popup").html("<h1>"+winningColor + " won!"+"</h1>");
+
+        await loadGame(gameId, document.getElementById('game-container'));
+    } else {
+
+        playerTurn = await getGameInfo(gameId,'turn_color');
+        console.log(playerTurn);
 
 
 
-    $("#color-player").text(capitalizeFirstLetter(playerTurn));
+        $("#color-player").text(capitalizeFirstLetter(playerTurn));
 
-    await loadGame(gameId, document.getElementById('game-container'));
+        await loadGame(gameId, document.getElementById('game-container'));
+    }
+
 });
 
 
