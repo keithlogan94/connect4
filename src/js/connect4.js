@@ -6,7 +6,7 @@ function createGame() {
     return new Promise(function (resolve, reject) {
 
         $.ajax({
-            url: 'http://localhost:8378/create-game',
+            url: 'http://localhost:'+applicationPort+'/create-game',
             type: 'POST',
             success: function (response) {
                 resolve(JSON.parse(response));
@@ -22,7 +22,7 @@ function placeGamePiece(gameId, color, column) {
     return new Promise(function (resolve, reject) {
 
         $.ajax({
-            url: 'http://localhost:8378/'+gameId+'/place_game_piece/'+color+'/' + column,
+            url: 'http://localhost:'+applicationPort+'/'+gameId+'/place_game_piece/'+color+'/' + column,
             type: 'POST',
             success: function (response) {
                 resolve(JSON.parse(response));
@@ -41,7 +41,7 @@ function getNearestPositionToBottom(gameId, column) {
     return new Promise(function (resolve, reject) {
 
         $.ajax({
-            url: 'http://localhost:8378/'+gameId+'/nearest_to_bottom_game_position/'+ column,
+            url: 'http://localhost:' + applicationPort + '/'+gameId+'/nearest_to_bottom_game_position/'+ column,
             type: 'GET',
             success: function (response) {
                 resolve(JSON.parse(response));
@@ -54,13 +54,12 @@ function getNearestPositionToBottom(gameId, column) {
 
 
 function getGamePositions(gameId) {
-    //http://localhost:8378/1/game_positions
 
 
     return new Promise(function (resolve, reject) {
 
         $.ajax({
-            url: 'http://localhost:8378/'+gameId+'/game_positions',
+            url: 'http://localhost:' + applicationPort + '/'+gameId+'/game_positions',
             type: 'GET',
             success: function (response) {
                 resolve(JSON.parse(response));
@@ -78,7 +77,7 @@ function getGameInfo(gameId, gameInfo) {
     return new Promise(function (resolve, reject) {
 
         $.ajax({
-            url: 'http://localhost:8378/'+gameId+'/game_info/' + gameInfo,
+            url: 'http://localhost:'+applicationPort+'/'+gameId+'/game_info/' + gameInfo,
             type: 'GET',
             success: function (response) {
                 resolve(JSON.parse(response)[gameInfo]);

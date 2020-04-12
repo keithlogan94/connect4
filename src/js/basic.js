@@ -1,6 +1,6 @@
 
 $(document).on('click', 'button.play-again', function () {
-    window.location = "http://localhost:8378";
+    window.location = "http://localhost:" + applicationPort;
 });
 
 $(document).on('click', 'button.no-play-again', function () {
@@ -106,7 +106,7 @@ $(async function () {
         await loadGame(gameId, document.getElementById('game-container'));
     } else {
         if (currentGameId == null) {
-            if (playerTurn == null) window.location = "http://localhost:8378";
+            if (playerTurn == null) window.location = "http://localhost:" + applicationPort;
         } else {
             if (isNaN(Number.parseInt(currentGameId))) throw "currentGameId is not a number";
             loadGame(currentGameId, document.getElementById('game-container'));
@@ -115,7 +115,7 @@ $(async function () {
 
         const playerTurn = await getGameInfo(currentGameId,'turn_color');
 
-        if (playerTurn == null) window.location = "http://localhost:8378";
+        if (playerTurn == null) window.location = "http://localhost:" + applicationPort;
 
 
         $("#color-player").text(capitalizeFirstLetter(playerTurn));

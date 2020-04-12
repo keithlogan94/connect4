@@ -18,8 +18,9 @@ class GameEndpoint extends Endpoint
 
         $gameId = intval($_GET['game_id']);
 
+        $port = APPLICATION_PORT;
 
-        $customJavascript = "const gameId = $gameId;";
+        $customJavascript = "const gameId = $gameId; const applicationPort = '$port';";
         include dirname(__FILE__) . '/../../../../html/basic-game-screen.php';
 
     }
