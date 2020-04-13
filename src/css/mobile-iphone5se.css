@@ -1,0 +1,12 @@
+
+
+
+
+div#board {
+    transform: rotate(90deg) rotateX(180deg) scale(.5);
+    margin-left: -128px;
+}
+
+
+
+

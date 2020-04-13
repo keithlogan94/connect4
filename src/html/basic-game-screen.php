@@ -6,6 +6,12 @@
     <title>FOTF Connect4</title>
     <link type="text/css" rel="stylesheet" href="/css/main.css" media="all">
     <link type="text/css" rel="stylesheet" href="/css/basic.css" media="all">
+    <link type="text/css" rel="stylesheet" href="/css/small-desktop.css" media="screen and (max-device-width: 772px)">
+    <link type="text/css" rel="stylesheet" href="/css/mobile-ipad.css" media="screen and (max-device-width: 772px) and (min-device-width: 415px)">
+    <link type="text/css" rel="stylesheet" href="/css/mobile-pixel2.css" media="screen and (max-device-width: 415px)">
+    <link type="text/css" rel="stylesheet" href="/css/mobile-iphone678.css" media="screen and (max-device-width: 379px)">
+    <link type="text/css" rel="stylesheet" href="/css/mobile-galaxys5.css" media="screen and (max-device-width: 364px)">
+    <link type="text/css" rel="stylesheet" href="/css/mobile-iphone5se.css" media="screen and (max-device-width: 324px)">
     <script>
         <?php
         if (!isset($customJavascript)) throw new Exception('$customJavascript was not set and must be set when returning error html');
