@@ -126,12 +126,15 @@ function test_valid_move_up()
     if (move_up('E1') !== 'D1') throw new Exception('move up failed to return right column');
     if (move_up('F1') !== 'E1') throw new Exception('move up failed to return right column');
     if (move_up('G1') !== 'F1') throw new Exception('move up before failed to return right column');
+    $throw = true;
     try {
         if (move_up('H1') !== false) throw new Exception('move up before failed to return right column');
-        throw new Exception('should have thrown an exception');
     } catch (Exception $e) {
         //expected
+        $throw = false;
     }
+    if ($throw)
+        throw new Exception('should have thrown an exception');
 
 }
 
@@ -148,12 +151,16 @@ function test_valid_move_down()
     if (move_down('E1') !== 'F1') throw new Exception('move down failed to return right column');
     if (move_down('F1') !== 'G1') throw new Exception('move down failed to return right column');
     if (move_down('G1') !== false) throw new Exception('move down before failed to return right column');
+    $throw = true;
     try {
         if (move_down('H1') !== false) throw new Exception('move down before failed to return right column');
-        throw new Exception('should have thrown an exception');
     } catch (Exception $e) {
         //expected
+        $throw = false;
     }
+
+    if ($throw)
+        throw new Exception('should have thrown an exception');
 
 
 
@@ -172,19 +179,26 @@ function test_valid_move_right()
     if (move_right('E1') !== 'E2') throw new Exception('move right failed to return right column');
     if (move_right('F1') !== 'F2') throw new Exception('move right failed to return right column');
     if (move_right('G1') !== 'G2') throw new Exception('move right before failed to return right column');
+    $throw = true;
     try {
         if (move_right('G0') !== false) throw new Exception('move right before failed to return right column');
-        throw new Exception('should have thrown an exception');
+
     } catch (Exception $e) {
         //expected
+        $throw = false;
     }
+    if ($throw) throw new Exception('should have thrown an exception');
     if (move_right('G6') !== false) throw new Exception('move right before failed to return right column');
+    $throw = true;
     try {
         if (move_right('H1') !== false) throw new Exception('move right before failed to return right column');
-        throw new Exception('should have thrown an exception');
     } catch (Exception $e) {
         //expected
+        $throw = false;
     }
+
+    if ($throw)
+        throw new Exception('should have thrown an exception');
 
 
 }
@@ -202,12 +216,16 @@ function test_valid_move_left()
     if (move_left('F2') !== 'F1') throw new Exception('move left failed to return right column');
     if (move_left('G2') !== 'G1') throw new Exception('move left before failed to return right column');
     if (move_left('G1') !== false) throw new Exception('move left before failed to return right column');
+    $throw = true;
     try {
         if (move_left('H1') !== false) throw new Exception('move left before failed to return right column');
-        throw new Exception('should have thrown an exception');
     } catch (Exception $e) {
         //expected
+        $throw = false;
     }
+
+    if ($throw)
+        throw new Exception('should have thrown an exception');
 
 }
 
@@ -224,12 +242,16 @@ function test_valid_move_up_right()
     if (move_up_right('F2') !== 'E3') throw new Exception('move up right failed to return right column');
     if (move_up_right('G2') !== 'F3') throw new Exception('move up right before failed to return right column');
     if (move_up_right('G1') !== 'F2') throw new Exception('move up right before failed to return right column');
+    $throw = true;
     try {
         if (move_up_right('H1') !== false) throw new Exception('move up right before failed to return right column');
-        throw new Exception('should have thrown an exception');
     } catch (Exception $e) {
         //expected
+        $throw = false;
     }
+
+    if ($throw)
+        throw new Exception('should have thrown an exception');
 
 }
 
@@ -246,12 +268,16 @@ function test_valid_move_down_right()
     if (move_down_right('F2') !== 'G3') throw new Exception('move_down_right right failed to return right column');
     if (move_down_right('G2') !== false) throw new Exception('move_down_right right before failed to return right column');
     if (move_down_right('G1') !== false) throw new Exception('move_down_right right before failed to return right column');
+    $throw = true;
     try {
         if (move_down_right('H1') !== false) throw new Exception('move_down_right right before failed to return right column');
-        throw new Exception('should have thrown an exception');
     } catch (Exception $e) {
         //expected
+        $throw = false;
     }
+
+    if ($throw)
+        throw new Exception('should have thrown an exception');
 
 }
 
@@ -268,12 +294,16 @@ function test_valid_move_down_left()
     if (move_down_left('F2') !== 'G1') throw new Exception('move_down_left right failed to return right column');
     if (move_down_left('G2') !== false) throw new Exception('move_down_left right before failed to return right column');
     if (move_down_left('G1') !== false) throw new Exception('move_down_left right before failed to return right column');
+    $throw = true;
     try {
         if (move_down_left('H1') !== false) throw new Exception('move_down_right right before failed to return right column');
-        throw new Exception('should have thrown an exception');
     } catch (Exception $e) {
         //expected
+        $throw = false;
     }
+
+    if ($throw)
+        throw new Exception('should have thrown an exception');
 }
 
 
@@ -290,12 +320,16 @@ function test_valid_move_up_left()
     if (move_up_left('F2') !== 'E1') throw new Exception('move_up_left failed to return right column');
     if (move_up_left('G2') !== 'F1') throw new Exception('move_up_left before failed to return right column');
     if (move_up_left('G1') !== false) throw new Exception('move_up_left before failed to return right column');
+    $throw = true;
     try {
         if (move_up_left('H1') !== false) throw new Exception('move_up_left before failed to return right column');
-        throw new Exception('should have thrown an exception');
     } catch (Exception $e) {
         //expected
+        $throw = false;
     }
+
+    if ($throw)
+        throw new Exception('should have thrown an exception');
 
 }
 
