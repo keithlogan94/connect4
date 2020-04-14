@@ -92,8 +92,7 @@ $(document).on('click', 'button.place-checker', async function () {
 
 });
 
-
-$(async function () {
+async function load() {
 
 
     const currentGameId = gameId;
@@ -124,7 +123,9 @@ $(async function () {
 
 
 
-});
+}
+setInterval(load, 2000);
+$(load);
 
 function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);

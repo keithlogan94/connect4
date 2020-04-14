@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8c4964a0-1e2a-426e-ac48-ef71e34a8b5d" name="Default Changelist" comment="updated hostname to connect4friends.com">
+    <list default="true" id="8c4964a0-1e2a-426e-ac48-ef71e34a8b5d" name="Default Changelist" comment="changed port to 80">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/settings.ini" beforeDir="false" afterPath="$PROJECT_DIR$/src/settings.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/js/basic.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/basic.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -101,13 +100,6 @@
       <workItem from="1586487849081" duration="82585000" />
       <workItem from="1586703495566" duration="17034000" />
       <workItem from="1586785446603" duration="3187000" />
-    </task>
-    <task id="LOCAL-00026" summary="working on unit tests">
-      <created>1586613020742</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1586613020742</updated>
     </task>
     <task id="LOCAL-00027" summary="working on unit tests">
       <created>1586613079025</created>
@@ -445,7 +437,14 @@
       <option name="project" value="LOCAL" />
       <updated>1586900604119</updated>
     </task>
-    <option name="localTasksCounter" value="75" />
+    <task id="LOCAL-00075" summary="changed port to 80">
+      <created>1586900667477</created>
+      <option name="number" value="00075" />
+      <option name="presentableId" value="LOCAL-00075" />
+      <option name="project" value="LOCAL" />
+      <updated>1586900667477</updated>
+    </task>
+    <option name="localTasksCounter" value="76" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -497,21 +496,22 @@
     <MESSAGE value="working on js" />
     <MESSAGE value="almost done" />
     <MESSAGE value="updated hostname to connect4friends.com" />
-    <option name="LAST_COMMIT_MESSAGE" value="updated hostname to connect4friends.com" />
+    <MESSAGE value="changed port to 80" />
+    <option name="LAST_COMMIT_MESSAGE" value="changed port to 80" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="775" y="262" key="CommitChangelistDialog2" timestamp="1586900634577">
+    <state x="775" y="262" key="CommitChangelistDialog2" timestamp="1586904508037">
       <screen x="0" y="0" width="2048" height="1152" />
     </state>
-    <state x="775" y="262" key="CommitChangelistDialog2/0.0.2048.1152@0.0.2048.1152" timestamp="1586900634577" />
+    <state x="775" y="262" key="CommitChangelistDialog2/0.0.2048.1152@0.0.2048.1152" timestamp="1586904508037" />
     <state x="282" y="163" key="DiffContextDialog" timestamp="1586900601433">
       <screen x="0" y="0" width="2048" height="1152" />
     </state>
     <state x="282" y="163" key="DiffContextDialog/0.0.2048.1152@0.0.2048.1152" timestamp="1586900601433" />
-    <state x="624" y="317" key="Vcs.Push.Dialog.v2" timestamp="1586900628573">
+    <state x="624" y="317" key="Vcs.Push.Dialog.v2" timestamp="1586900671482">
       <screen x="0" y="0" width="2048" height="1152" />
     </state>
-    <state x="624" y="317" key="Vcs.Push.Dialog.v2/0.0.2048.1152@0.0.2048.1152" timestamp="1586900628573" />
+    <state x="624" y="317" key="Vcs.Push.Dialog.v2/0.0.2048.1152@0.0.2048.1152" timestamp="1586900671482" />
     <state x="786" y="411" key="com.intellij.ide.util.TipDialog" timestamp="1586899740110">
       <screen x="0" y="23" width="2048" height="1054" />
     </state>
@@ -524,9 +524,9 @@
       <screen x="0" y="0" width="2048" height="1152" />
     </state>
     <state x="713" y="376" key="git4idea.merge.GitPullDialog/0.0.2048.1152@0.0.2048.1152" timestamp="1586899932339" />
-    <state x="689" y="259" width="670" height="676" key="search.everywhere.popup" timestamp="1586900656885">
+    <state x="689" y="259" width="670" height="676" key="search.everywhere.popup" timestamp="1586904515415">
       <screen x="0" y="0" width="2048" height="1152" />
     </state>
-    <state x="689" y="259" width="670" height="676" key="search.everywhere.popup/0.0.2048.1152@0.0.2048.1152" timestamp="1586900656885" />
+    <state x="689" y="259" width="670" height="676" key="search.everywhere.popup/0.0.2048.1152@0.0.2048.1152" timestamp="1586904515415" />
   </component>
 </project>
