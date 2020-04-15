@@ -49,6 +49,7 @@ $(document).on('click', 'button.place-checker', async function () {
     const winningColor = await getGameInfo(gameId,'winning_color');
 
     if (winningColor) {
+        clearInterval(window.loadInterval);
         $(".popup").html(`
             <h1>${capitalizeFirstLetter(winningColor) + " wins!"}</h1>
             <div>
@@ -66,6 +67,7 @@ $(document).on('click', 'button.place-checker', async function () {
         const isTie = await getGameInfo(gameId, 'is_tie');
 
         if (isTie === 'yes') {
+            clearInterval(window.loadInterval);
             $(".popup").html(`
             <h1>It's a tie!</h1>
             <div>
@@ -157,7 +159,7 @@ async function load() {
 
 
 }
-setInterval(load, 2000);
+window.loadInterval = setInterval(load, 2000);
 $(load);
 
 function capitalizeFirstLetter(string) {
