@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="8c4964a0-1e2a-426e-ac48-ef71e34a8b5d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/settings.ini" beforeDir="false" afterPath="$PROJECT_DIR$/src/settings.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/js/basic.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/basic.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,13 +100,6 @@
       <workItem from="1586487849081" duration="82585000" />
       <workItem from="1586703495566" duration="17034000" />
       <workItem from="1586785446603" duration="3187000" />
-    </task>
-    <task id="LOCAL-00035" summary="unit tests running successfully for connect4 translate functions">
-      <created>1586617543242</created>
-      <option name="number" value="00035" />
-      <option name="presentableId" value="LOCAL-00035" />
-      <option name="project" value="LOCAL" />
-      <updated>1586617543242</updated>
     </task>
     <task id="LOCAL-00036" summary="unit tests running successfully for connect4 translate functions">
       <created>1586618741596</created>
@@ -444,7 +437,14 @@
       <option name="project" value="LOCAL" />
       <updated>1586912267093</updated>
     </task>
-    <option name="localTasksCounter" value="84" />
+    <task id="LOCAL-00084" summary="play">
+      <created>1586912293213</created>
+      <option name="number" value="00084" />
+      <option name="presentableId" value="LOCAL-00084" />
+      <option name="project" value="LOCAL" />
+      <updated>1586912293213</updated>
+    </task>
+    <option name="localTasksCounter" value="85" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -503,10 +503,10 @@
     <option name="LAST_COMMIT_MESSAGE" value="play" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="775" y="262" key="CommitChangelistDialog2" timestamp="1586912266999">
+    <state x="775" y="262" key="CommitChangelistDialog2" timestamp="1586912293130">
       <screen x="0" y="0" width="2048" height="1152" />
     </state>
-    <state x="775" y="262" key="CommitChangelistDialog2/0.0.2048.1152@0.0.2048.1152" timestamp="1586912266999" />
+    <state x="775" y="262" key="CommitChangelistDialog2/0.0.2048.1152@0.0.2048.1152" timestamp="1586912293130" />
     <state x="282" y="163" key="DiffContextDialog" timestamp="1586900601433">
       <screen x="0" y="0" width="2048" height="1152" />
     </state>
@@ -515,10 +515,10 @@
       <screen x="0" y="0" width="2048" height="1152" />
     </state>
     <state x="845" y="510" key="NewPhpFileDialog/0.0.2048.1152@0.0.2048.1152" timestamp="1586909825609" />
-    <state x="624" y="317" key="Vcs.Push.Dialog.v2" timestamp="1586912269779">
+    <state x="624" y="317" key="Vcs.Push.Dialog.v2" timestamp="1586912296079">
       <screen x="0" y="0" width="2048" height="1152" />
     </state>
-    <state x="624" y="317" key="Vcs.Push.Dialog.v2/0.0.2048.1152@0.0.2048.1152" timestamp="1586912269779" />
+    <state x="624" y="317" key="Vcs.Push.Dialog.v2/0.0.2048.1152@0.0.2048.1152" timestamp="1586912296079" />
     <state x="786" y="411" key="com.intellij.ide.util.TipDialog" timestamp="1586899740110">
       <screen x="0" y="23" width="2048" height="1054" />
     </state>

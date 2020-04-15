@@ -120,6 +120,7 @@ async function load() {
 
         if (!ipAssignedYellow || !ipAssignedRed) {
             $("#popup-message").text(`Please wait for the other player to join.`);
+            $(".popup-div").hide();
         } else {
             switch (playerTurn) {
                 case "yellow":
