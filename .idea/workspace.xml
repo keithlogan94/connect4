@@ -1,17 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8c4964a0-1e2a-426e-ac48-ef71e34a8b5d" name="Default Changelist" comment="version">
-      <change afterPath="$PROJECT_DIR$/TODO.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/constants.php" afterDir="false" />
+    <list default="true" id="8c4964a0-1e2a-426e-ac48-ef71e34a8b5d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Connect4/Requests/Api/Endpoints/GameEndpoint.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Connect4/Requests/Api/Endpoints/GameEndpoint.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Connect4/Requests/Api/Endpoints/PlaceGamePieceEndpoint.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Connect4/Requests/Api/Endpoints/PlaceGamePieceEndpoint.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/functions/utils.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/functions/utils.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/js/basic.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/basic.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/js/connect4.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/connect4.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/settings.ini" beforeDir="false" afterPath="$PROJECT_DIR$/src/settings.ini" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -108,13 +99,6 @@
       <workItem from="1586487849081" duration="82585000" />
       <workItem from="1586703495566" duration="17034000" />
       <workItem from="1586785446603" duration="3187000" />
-    </task>
-    <task id="LOCAL-00030" summary="working on unit tests">
-      <created>1586614095176</created>
-      <option name="number" value="00030" />
-      <option name="presentableId" value="LOCAL-00030" />
-      <option name="project" value="LOCAL" />
-      <updated>1586614095176</updated>
     </task>
     <task id="LOCAL-00031" summary="working on unit tests">
       <created>1586614210867</created>
@@ -452,7 +436,14 @@
       <option name="project" value="LOCAL" />
       <updated>1586909292150</updated>
     </task>
-    <option name="localTasksCounter" value="79" />
+    <task id="LOCAL-00079" summary="play">
+      <created>1586911391108</created>
+      <option name="number" value="00079" />
+      <option name="presentableId" value="LOCAL-00079" />
+      <option name="project" value="LOCAL" />
+      <updated>1586911391108</updated>
+    </task>
+    <option name="localTasksCounter" value="80" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -507,13 +498,14 @@
     <MESSAGE value="changed port to 80" />
     <MESSAGE value="auto load" />
     <MESSAGE value="version" />
-    <option name="LAST_COMMIT_MESSAGE" value="version" />
+    <MESSAGE value="play" />
+    <option name="LAST_COMMIT_MESSAGE" value="play" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="775" y="262" key="CommitChangelistDialog2" timestamp="1586909313205">
+    <state x="775" y="262" key="CommitChangelistDialog2" timestamp="1586911391009">
       <screen x="0" y="0" width="2048" height="1152" />
     </state>
-    <state x="775" y="262" key="CommitChangelistDialog2/0.0.2048.1152@0.0.2048.1152" timestamp="1586909313205" />
+    <state x="775" y="262" key="CommitChangelistDialog2/0.0.2048.1152@0.0.2048.1152" timestamp="1586911391009" />
     <state x="282" y="163" key="DiffContextDialog" timestamp="1586900601433">
       <screen x="0" y="0" width="2048" height="1152" />
     </state>
@@ -522,10 +514,10 @@
       <screen x="0" y="0" width="2048" height="1152" />
     </state>
     <state x="845" y="510" key="NewPhpFileDialog/0.0.2048.1152@0.0.2048.1152" timestamp="1586909825609" />
-    <state x="624" y="317" key="Vcs.Push.Dialog.v2" timestamp="1586909311974">
+    <state x="624" y="317" key="Vcs.Push.Dialog.v2" timestamp="1586911395877">
       <screen x="0" y="0" width="2048" height="1152" />
     </state>
-    <state x="624" y="317" key="Vcs.Push.Dialog.v2/0.0.2048.1152@0.0.2048.1152" timestamp="1586909311974" />
+    <state x="624" y="317" key="Vcs.Push.Dialog.v2/0.0.2048.1152@0.0.2048.1152" timestamp="1586911395877" />
     <state x="786" y="411" key="com.intellij.ide.util.TipDialog" timestamp="1586899740110">
       <screen x="0" y="23" width="2048" height="1054" />
     </state>
