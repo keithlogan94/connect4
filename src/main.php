@@ -10,6 +10,7 @@ use Connect4\Requests\Request;
 //port setting can be updated in ini file
 define("APPLICATION_PORT", get_setting('port'));
 define("APPLICATION_HOSTNAME", get_setting('hostname'));
+define("APPLICATION_VERSION", get_setting('version'));
 
 //c++ style main function where the code begins
 function main() {

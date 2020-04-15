@@ -1,17 +1,19 @@
+<?php if (!isset($version)) throw new Exception('version should be set but wasn\'t'); ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FOTF Connect4</title>
-    <link type="text/css" rel="stylesheet" href="/css/main.css" media="all">
-    <link type="text/css" rel="stylesheet" href="/css/basic.css" media="all">
-    <link type="text/css" rel="stylesheet" href="/css/small-desktop.css" media="screen and (max-device-width: 772px)">
-    <link type="text/css" rel="stylesheet" href="/css/mobile-ipad.css" media="screen and (max-device-width: 772px) and (min-device-width: 415px)">
-    <link type="text/css" rel="stylesheet" href="/css/mobile-pixel2.css" media="screen and (max-device-width: 415px)">
-    <link type="text/css" rel="stylesheet" href="/css/mobile-iphone678.css" media="screen and (max-device-width: 379px)">
-    <link type="text/css" rel="stylesheet" href="/css/mobile-galaxys5.css" media="screen and (max-device-width: 364px)">
-    <link type="text/css" rel="stylesheet" href="/css/mobile-iphone5se.css" media="screen and (max-device-width: 324px)">
+    <link type="text/css" rel="stylesheet" href="/css/main.css?version=<?= $version ?>" media="all">
+    <link type="text/css" rel="stylesheet" href="/css/basic.css?version=<?= $version ?>" media="all">
+    <link type="text/css" rel="stylesheet" href="/css/small-desktop.css?version=<?= $version ?>" media="screen and (max-device-width: 772px)">
+    <link type="text/css" rel="stylesheet" href="/css/mobile-ipad.css?version=<?= $version ?>" media="screen and (max-device-width: 772px) and (min-device-width: 415px)">
+    <link type="text/css" rel="stylesheet" href="/css/mobile-pixel2.css?version=<?= $version ?>" media="screen and (max-device-width: 415px)">
+    <link type="text/css" rel="stylesheet" href="/css/mobile-iphone678.css?version=<?= $version ?>" media="screen and (max-device-width: 379px)">
+    <link type="text/css" rel="stylesheet" href="/css/mobile-galaxys5.css?version=<?= $version ?>" media="screen and (max-device-width: 364px)">
+    <link type="text/css" rel="stylesheet" href="/css/mobile-iphone5se.css?version=<?= $version ?>" media="screen and (max-device-width: 324px)">
     <script>
         <?php
         if (!isset($customJavascript)) throw new Exception('$customJavascript was not set and must be set when returning error html');
@@ -134,8 +136,8 @@
         src="https://code.jquery.com/jquery-3.4.1.min.js"
         integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
         crossorigin="anonymous"></script>
-<script src="/js/connect4.js?ver=1.01"></script>
-<script src="/js/basic.js?ver=1.01"></script>
+<script src="/js/connect4.js?version=<?= $version ?>"></script>
+<script src="/js/basic.js?version=<?= $version ?>"></script>
 </body>
 </html>
 

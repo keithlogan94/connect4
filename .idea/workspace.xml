@@ -3,7 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="8c4964a0-1e2a-426e-ac48-ef71e34a8b5d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Connect4/Requests/Api/Endpoints/GameEndpoint.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Connect4/Requests/Api/Endpoints/GameEndpoint.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/html/basic-game-screen.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/html/basic-game-screen.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/settings.ini" beforeDir="false" afterPath="$PROJECT_DIR$/src/settings.ini" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,13 +103,6 @@
       <workItem from="1586487849081" duration="82585000" />
       <workItem from="1586703495566" duration="17034000" />
       <workItem from="1586785446603" duration="3187000" />
-    </task>
-    <task id="LOCAL-00028" summary="working on unit tests">
-      <created>1586613729036</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1586613729036</updated>
     </task>
     <task id="LOCAL-00029" summary="working on unit tests">
       <created>1586613757587</created>
@@ -444,7 +440,14 @@
       <option name="project" value="LOCAL" />
       <updated>1586904616683</updated>
     </task>
-    <option name="localTasksCounter" value="77" />
+    <task id="LOCAL-00077" summary="auto load">
+      <created>1586905089478</created>
+      <option name="number" value="00077" />
+      <option name="presentableId" value="LOCAL-00077" />
+      <option name="project" value="LOCAL" />
+      <updated>1586905089478</updated>
+    </task>
+    <option name="localTasksCounter" value="78" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -501,18 +504,18 @@
     <option name="LAST_COMMIT_MESSAGE" value="auto load" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="775" y="262" key="CommitChangelistDialog2" timestamp="1586904616594">
+    <state x="775" y="262" key="CommitChangelistDialog2" timestamp="1586905089392">
       <screen x="0" y="0" width="2048" height="1152" />
     </state>
-    <state x="775" y="262" key="CommitChangelistDialog2/0.0.2048.1152@0.0.2048.1152" timestamp="1586904616594" />
+    <state x="775" y="262" key="CommitChangelistDialog2/0.0.2048.1152@0.0.2048.1152" timestamp="1586905089392" />
     <state x="282" y="163" key="DiffContextDialog" timestamp="1586900601433">
       <screen x="0" y="0" width="2048" height="1152" />
     </state>
     <state x="282" y="163" key="DiffContextDialog/0.0.2048.1152@0.0.2048.1152" timestamp="1586900601433" />
-    <state x="624" y="317" key="Vcs.Push.Dialog.v2" timestamp="1586904623314">
+    <state x="624" y="317" key="Vcs.Push.Dialog.v2" timestamp="1586905092502">
       <screen x="0" y="0" width="2048" height="1152" />
     </state>
-    <state x="624" y="317" key="Vcs.Push.Dialog.v2/0.0.2048.1152@0.0.2048.1152" timestamp="1586904623314" />
+    <state x="624" y="317" key="Vcs.Push.Dialog.v2/0.0.2048.1152@0.0.2048.1152" timestamp="1586905092502" />
     <state x="786" y="411" key="com.intellij.ide.util.TipDialog" timestamp="1586899740110">
       <screen x="0" y="23" width="2048" height="1054" />
     </state>
