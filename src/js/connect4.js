@@ -89,6 +89,18 @@ function getGameInfo(gameId, gameInfo) {
 }
 
 
+function getIp() {
+    return new Promise(function (resolve, reject) {
+        $.get('https://www.cloudflare.com/cdn-cgi/trace', function(data) {
+            const ip = data.split('\n')[2].replace('ip=','');
+            resolve(ip);
+        })
+    });
+}
+
+
+
+
 
 
 

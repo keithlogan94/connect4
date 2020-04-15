@@ -113,6 +113,50 @@ async function load() {
         }
 
         const playerTurn = await getGameInfo(currentGameId,'turn_color');
+        const ip = await getIp();
+
+        const ipAssignedYellow = await getGameInfo(currentGameId, 'ip_assigned_yellow');
+        const ipAssignedRed = await getGameInfo(currentGameId, 'ip_assigned_red');
+
+        if (!ipAssignedYellow || !ipAssignedRed) {
+            $(".popup").html(`
+                        <h1 id="popup-message" class="mb-1">Please wait for the other player to join.</h1>
+                    `);
+        } else {
+            switch (playerTurn) {
+                case "yellow":
+                    if (ip !== ipAssignedYellow) {
+                        window.oldHtml = $(".popup").html();
+                        $(".popup").html("<h1>Please wait for the other player to play.</h1>");
+                    } else {
+                        $(".popup").html(`
+                        <h1 id="popup-message" class="mb-1"><span id="color-player">Yellow</span>, please enter the column to drop your checker:</h1>
+                        <div class="popup-div">
+                            <input type="text" id="column" placeholder="Column: 1-6">
+                            <button class="place-checker">Place Checker</button>
+                        </div>
+                    `);
+                    }
+                    break;
+                case "red":
+
+                    if (ip !== ipAssignedRed) {
+                        window.oldHtml = $(".popup").html();
+                        $(".popup").html("<p>Please wait for the other player to play.");
+                    } else {
+                        $(".popup").html(`
+                        <h1 id="popup-message" class="mb-1"><span id="color-player">Red</span>, please enter the column to drop your checker:</h1>
+                        <div class="popup-div">
+                            <input type="text" id="column" placeholder="Column: 1-6">
+                            <button class="place-checker">Place Checker</button>
+                        </div>
+                    `);
+                    }
+                    break;
+            }
+        }
+
+
 
         if (playerTurn == null) window.location = "http://"+applicationHostname+":" + applicationPort;
 

@@ -8,6 +8,7 @@ use Connect4\Board;
 use Connect4\GamePiece;
 use Connect4\Requests\Request;
 use Exception;
+use function Connect4\functions\utils\get_ip;
 
 class PlaceGamePieceEndpoint extends Endpoint
 {
@@ -28,9 +29,30 @@ class PlaceGamePieceEndpoint extends Endpoint
         $column = intval($_GET['column']);
 
 
+
+
         $gamePiece = new GamePiece($color === 'yellow' ? GamePiece::YELLOW_COLOR : GamePiece::RED_COLOR);
 
         $board = new Board($gameId);
+
+
+        $ip = get_ip();
+        switch ($color) {
+            case "yellow":
+                if ($board->getGameData(IP_ASSIGNED_YELLOW) !== $ip) {
+                    throw new Exception('this ip can\'t play for yellow');
+                }
+                break;
+            case "red":
+                if ($board->getGameData(IP_ASSIGNED_RED) !== $ip) {
+                    throw new Exception('this ip can\'t play for red');
+                }
+                break;
+            default:
+                throw new Exception('unhandled color');
+        }
+
+
         $returnArray = $board->placeGamePieceInColumn($gamePiece, $column);
 
 

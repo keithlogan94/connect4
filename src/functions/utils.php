@@ -59,6 +59,11 @@ function get_setting($name)
 }
 
 
+function get_ip()
+{
+    return $_SERVER['REMOTE_ADDR'];
+}
+
 
 
 

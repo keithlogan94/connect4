@@ -1,6 +1,7 @@
 <?php
 
 require_once dirname(__FILE__) . '/autoload.php';
+require_once dirname(__FILE__) . '/constants.php';
 
 use function Connect4\functions\utils\echo_error_page;
 use function Connect4\functions\utils\get_setting;
