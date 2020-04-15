@@ -119,9 +119,7 @@ async function load() {
         const ipAssignedRed = await getGameInfo(currentGameId, 'ip_assigned_red');
 
         if (!ipAssignedYellow || !ipAssignedRed) {
-            $(".popup").html(`
-                        <h1 id="popup-message" class="mb-1">Please wait for the other player to join.</h1>
-                    `);
+            $("#popup-message").text(`Please wait for the other player to join.`);
         } else {
             switch (playerTurn) {
                 case "yellow":
@@ -129,17 +127,17 @@ async function load() {
                         $("#popup-message").text("Please wait for the other player to play.");
                         $(".popup-div").hide();
                     } else {
-                        $("#popup-message").text("<span id=\"color-player\">Yellow</span>, please enter the column to drop your checker:");
+                        $("#popup-message").text("Yellow, please enter the column to drop your checker:");
                         $(".popup-div").show();
                     }
                     break;
                 case "red":
 
                     if (ip !== ipAssignedRed) {
-                        $("#popup-message").html("Please wait for the other player to play.");
+                        $("#popup-message").text("Please wait for the other player to play.");
                         $(".popup-div").hide();
                     } else {
-                        $("#popup-message").text("<span id=\"color-player\">Red</span>, please enter the column to drop your checker:");
+                        $("#popup-message").text("Red, please enter the column to drop your checker:");
                         $(".popup-div").show();
                     }
                     break;
