@@ -126,31 +126,21 @@ async function load() {
             switch (playerTurn) {
                 case "yellow":
                     if (ip !== ipAssignedYellow) {
-                        window.oldHtml = $(".popup").html();
-                        $(".popup").html("<h1>Please wait for the other player to play.</h1>");
+                        $("#popup-message").text("Please wait for the other player to play.");
+                        $(".popup-div").hide();
                     } else {
-                        $(".popup").html(`
-                        <h1 id="popup-message" class="mb-1"><span id="color-player">Yellow</span>, please enter the column to drop your checker:</h1>
-                        <div class="popup-div">
-                            <input type="text" id="column" placeholder="Column: 1-6">
-                            <button class="place-checker">Place Checker</button>
-                        </div>
-                    `);
+                        $("#popup-message").text("<span id=\"color-player\">Yellow</span>, please enter the column to drop your checker:");
+                        $(".popup-div").show();
                     }
                     break;
                 case "red":
 
                     if (ip !== ipAssignedRed) {
-                        window.oldHtml = $(".popup").html();
-                        $(".popup").html("<p>Please wait for the other player to play.");
+                        $("#popup-message").html("Please wait for the other player to play.");
+                        $(".popup-div").hide();
                     } else {
-                        $(".popup").html(`
-                        <h1 id="popup-message" class="mb-1"><span id="color-player">Red</span>, please enter the column to drop your checker:</h1>
-                        <div class="popup-div">
-                            <input type="text" id="column" placeholder="Column: 1-6">
-                            <button class="place-checker">Place Checker</button>
-                        </div>
-                    `);
+                        $("#popup-message").text("<span id=\"color-player\">Red</span>, please enter the column to drop your checker:");
+                        $(".popup-div").show();
                     }
                     break;
             }
