@@ -6,7 +6,9 @@ services:
   server:
     build: .
     ports:
-      - "80:80"
+      - "8085:80"
+    volumes:
+    - "./src:/var/www/html/"
 
   db:
     image: mysql
@@ -23,4 +25,4 @@ services:
     image: adminer
     restart: always
     ports:
-      - 8081:8080
+      - 8084:8080
