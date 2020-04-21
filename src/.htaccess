@@ -9,6 +9,9 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-l
 
 
+RewriteRule ^membership/?$ /index.php?request_code=membership [QSA,L]
+RewriteRule ^how-to-play/?$ /index.php?request_code=how_to_play [QSA,L]
+RewriteRule ^setup/?$ /index.php?request_code=game_setup [QSA,L]
 RewriteRule ^([0-9]+)/?$ /index.php?request_code=game&game_id=$1 [QSA,L]
 RewriteRule ^create-game/?$ /index.php?request_code=create_game [QSA,L]
 RewriteRule ^([0-9]+)/game_positions/?$ /index.php?request_code=get_game_positions&game_id=$1 [QSA,L]

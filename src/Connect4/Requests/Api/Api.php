@@ -7,10 +7,13 @@ namespace Connect4\Requests\Api;
 use Connect4\Requests\Api\Endpoints\CreateGameEndpoint;
 use Connect4\Requests\Api\Endpoints\Endpoint;
 use Connect4\Requests\Api\Endpoints\GameEndpoint;
+use Connect4\Requests\Api\Endpoints\GameSetupEndpoint;
 use Connect4\Requests\Api\Endpoints\GetGameInfoEndpoint;
 use Connect4\Requests\Api\Endpoints\GetGamePositionsEndPoint;
 use Connect4\Requests\Api\Endpoints\GetGameScreenEndpoint;
 use Connect4\Requests\Api\Endpoints\GetNearestToBottomPositionCode;
+use Connect4\Requests\Api\Endpoints\HowToPlayEndpoint;
+use Connect4\Requests\Api\Endpoints\MembershipEndpoint;
 use Connect4\Requests\Api\Endpoints\PlaceGamePieceEndpoint;
 use Connect4\Requests\Request;
 use Exception;
@@ -56,6 +59,9 @@ class Api
     public static function getAllEndpoints()
     {
         return [
+            MembershipEndpoint::class,
+            HowToPlayEndpoint::class,
+            GameSetupEndpoint::class,
             CreateGameEndpoint::class,
             GetGameScreenEndpoint::class,
             GetGamePositionsEndPoint::class,

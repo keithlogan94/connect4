@@ -18,6 +18,7 @@ USE connect4;
 CREATE TABLE games
 (
     game_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    privacy ENUM ('public','private') DEFAULT 'private',
     add_time DATETIME NOT NULL
 );
 
