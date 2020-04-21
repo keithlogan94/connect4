@@ -99,7 +99,6 @@
                               <li>Play 2 Games per day</li>
                               <li>Play with Any Online Visitor or Player</li>
                               <li class="na">Play Unlimited Games per day</li>
-                              <li class="na">Play with Any Online Visitor or Player</li>
                               <li class="na">Anyone You Invite Plays for Free!</li>
                               <li class="na">Be Featured on the Global Scoreboard</li>
                           </ul>
@@ -110,7 +109,7 @@
                   </div>
 
                   <div class="col-lg-4 col-md-6 mt-4 mt-md-0">
-                      <div class="box featured">
+                      <div class="box featured blue">
                           <h3>Player</h3>
                           <h4><sup>$</sup>2<span> / month</span></h4>
                           <ul>
@@ -126,7 +125,7 @@
                   </div>
 
                   <div class="col-lg-4 col-md-6 mt-4 mt-lg-0">
-                      <div class="box">
+                      <div class="box gold">
                           <h3>Player Pro</h3>
                           <h4><sup>$</sup>10<span> / month</span></h4>
                           <ul>
