@@ -55,6 +55,142 @@ DELIMITER ;
 
 
 
+CREATE TABLE IF NOT EXISTS game_users
+(
+  game_user_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  user_id INT NOT NULL,
+  color ENUM('red','yellow'),
+  game_id INT NOT NULL,
+  add_time DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+
+CREATE UNIQUE INDEX game_user_index ON game_users (`user_id`, `color`, `game_id`);
+
+
+
+
+DELIMITER $$
+
+CREATE PROCEDURE add_game_user (p_user_id INT, p_color ENUM('red','yellow'), p_game_id INT)
+BEGIN
+
+    INSERT INTO game_users (user_id, color, game_id) VALUES (p_user_id, p_color, p_game_id)
+    ON DUPLICATE KEY UPDATE
+        user_id = VALUES(user_id),
+        color = VALUES(color),
+        game_id = VALUES(game_id)
+    ;
+
+
+
+END
+
+$$
+
+
+DELIMITER ;
+
+
+
+DELIMITER $$
+
+
+CREATE PROCEDURE get_game_user (p_color ENUM('red','yellow'), p_game_id INT)
+BEGIN
+
+
+    SELECT * FROM game_users WHERE game_id = p_game_id AND color = p_color LIMIT 1;
+
+
+
+END
+
+
+
+$$
+
+
+DELIMITER ;
+
+
+
+
+
+
+
+CREATE TABLE users
+(
+    user_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    first_name VARCHAR(100) NOT NULL,
+    last_name VARCHAR(100) NOT NULL,
+    email_address VARCHAR(250) NOT NULL,
+    favorite_color ENUM ('yellow','red'),
+    add_time DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+
+CREATE TABLE user_wins
+(
+  user_win_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  user_id INT NOT NULL,
+  game_id INT NOT NULL,
+  add_time DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE UNIQUE INDEX user_win_index ON user_wins (`user_id`,`game_id`);
+
+
+
+DELIMITER $$
+
+CREATE PROCEDURE add_win(p_user_id INT, p_game_id INT)
+BEGIN
+
+    INSERT INTO user_wins (user_id, game_id) VALUES (p_user_id, p_game_id)
+    ON DUPLICATE KEY UPDATE
+                            user_id = VALUES(user_id),
+                            game_id = VALUES(game_id);
+
+
+END
+
+
+$$
+
+DELIMITER ;
+
+CREATE TABLE user_losses
+(
+    user_loss_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    user_id INT NOT NULL,
+    game_id INT NOT NULL,
+    add_time DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE UNIQUE INDEX user_loss_index ON user_losses (`user_id`, `game_id`);
+
+
+DELIMITER $$
+
+CREATE PROCEDURE add_loss(p_user_id INT, p_game_id INT)
+BEGIN
+
+    INSERT INTO user_losses (user_id, game_id) VALUES (p_user_id, p_game_id)
+    ON DUPLICATE KEY UPDATE
+                            user_id = VALUES(user_id),
+                            game_id = VALUES(game_id);
+
+
+
+END
+
+$$
+
+DELIMITER ;
+
+
+
 
 
 
