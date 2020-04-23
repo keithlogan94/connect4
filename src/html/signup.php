@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -30,7 +31,7 @@
     <style>
         #hero {
             width: 100%;
-            /*height: 34vh;*/
+            height: 17vh;
             background-size: cover;
             position: relative;
             margin-bottom: 5em;
@@ -67,9 +68,7 @@
   <!-- ======= Hero Section ======= -->
   <section id="hero">
     <div class="hero-container">
-      <h1>Membership</h1>
-        <h2>Play with Exclusives</h2>
-        <a href="#pricing" class="btn-get-started scrollto">Get Membership</a>
+      <h1>Signup</h1>
     </div>
   </section><!-- End Hero -->
 
@@ -80,62 +79,83 @@
           <div class="container">
 
               <div class="section-title">
-                  <h2>Membership</h2>
-                  <p>Exclusives for members</p>
+                  <h2>Signup</h2>
+                  <?php if (isset($_SESSION['invited'])): ?>
+                      <div class="alert alert-success">
+                          <p><strong><?= \Connect4\functions\utils\get_name_from_user_id(intval($_SESSION['invited']['setup_user_id']))  . '</strong> has invited you, and <strong>is currently waiting</strong> to play a game of Connect4 with you, <strong>after you signup you will automatically join</strong> their game of Connect4. If you already have an account, please <a href=\'/login\'>login</a>.'?></p>
+                      </div>
+                  <?php endif; ?>
+                  <?php if (isset($_GET['error'])): ?>
+                    <div class="alert alert-danger">
+                        <p><?= base64_decode($_GET['error']) ?></p>
+                    </div>
+                  <?php else: ?>
+                      <p>Connect4 Awaits</p>
+                  <?php endif; ?>
               </div>
 
-              <div class="row">
 
-                  <div class="col-lg-4 col-md-6">
-                      <div class="box">
-                          <h3>Visitor</h3>
-                          <h4><sup>$</sup>0<span> / month</span></h4>
-                          <ul>
-                              <li>Play 2 Games per day</li>
-                              <li>Play with Any Online Visitor or Player</li>
-                              <li class="na">Play Unlimited Games per day</li>
-                              <li class="na">Anyone You Invite Plays for Free!</li>
-                              <li class="na">Be Featured on the Global Scoreboard</li>
-                          </ul>
-                          <div class="btn-wrap">
-                              <a href="#" class="btn-buy disabled">ACTIVE</a>
+              <form action="/register_user" method="post">
+                  <div class="row">
+
+                      <div class="col-lg-4 col-md-6">
+                          <div class="box form">
+                              <h3>Contact Info</h3>
+
+
+                              <div class="form-group">
+                                  <label for="email_input" class="text-left">Email:</label>
+                                  <input id="email_input" name="email_input" class="form-control" type="email" placeholder="Email:" value="<?= $_SESSION['email_input'] ?>">
+                              </div>
+
+                              <div class="form-group">
+                                  <label for="first_name">First Name:</label>
+                                  <input id="first_name" name="first_name" class="form-control" type="text" placeholder="First Name:" value="<?= $_SESSION['first_name_input'] ?>">
+                              </div>
+
+                              <div class="form-group">
+                                  <label for="last_name">Last Name:</label>
+                                  <input id="last_name" name="last_name" class="form-control" type="text" placeholder="Last Name:" value="<?= $_SESSION['last_name_input'] ?>">
+                              </div>
+
+                              <div class="form-group">
+                                  <label for="favorite_color">Favorite Color:</label>
+                                  <select id="favorite_color" name="favorite_color" class="form-control">
+                                      <option value="">Select Favorite Color</option>
+                                      <option value="red"<?php if ($_SESSION['favorite_color_input'] === 'red') echo "selected='selected'"; ?>>Red</option>
+                                      <option value="yellow" <?php if ($_SESSION['favorite_color_input'] === 'yellow') echo "selected='selected'"; ?>>Yellow</option>
+                                  </select>
+                              </div>
                           </div>
                       </div>
-                  </div>
 
-                  <div class="col-lg-4 col-md-6 mt-4 mt-md-0">
-                      <div class="box featured blue">
-                          <h3>Player</h3>
-                          <h4><sup>$</sup>2<span> / month</span></h4>
-                          <ul>
-                              <li>Play Unlimited Games per day</li>
-                              <li>Play with Any Online Visitor or Player</li>
-                              <li>Anyone You Invite Plays for Free!</li>
-                              <li class="na">Be Featured on the Global Scoreboard</li>
-                          </ul>
-                          <div class="btn-wrap">
-                              <a href="#" class="btn-buy">Buy Now</a>
+                      <div class="col-lg-4 col-md-6 mt-4 mt-md-0">
+                          <div class="box featured blue form">
+                              <h3>Password</h3>
+                              <div class="form-group">
+                                  <label for="password_input" class="text-left">Password:</label>
+                                  <input id="password_input" name="password_input" class="form-control" type="password" placeholder="Password:">
+                              </div>
+
+                              <div class="form-group">
+                                  <label for="confirm_password">Confirm Password:</label>
+                                  <input id="confirm_password" name="confirm_password" class="form-control" type="password" placeholder="Confirm Password:">
+                              </div>
+
+                          </div>
+                          <div class="box gold mt-4">
+
+                              <div class="btn-wrap">
+                                  <button class="btn-buy">Signup</button>
+                              </div>
                           </div>
                       </div>
-                  </div>
 
-                  <div class="col-lg-4 col-md-6 mt-4 mt-lg-0">
-                      <div class="box gold">
-                          <h3>Player Pro</h3>
-                          <h4><sup>$</sup>10<span> / month</span></h4>
-                          <ul>
-                              <li>Play Unlimited Games per day</li>
-                              <li>Play with Any Online Visitor or Player</li>
-                              <li>Anyone You Invite Plays for Free!</li>
-                              <li>Be Featured on the Global Scoreboard</li>
-                          </ul>
-                          <div class="btn-wrap">
-                              <a href="#" class="btn-buy">Buy Now</a>
-                          </div>
+                      <div class="col-lg-4 col-md-6 mt-4 mt-lg-0">
                       </div>
-                  </div>
 
-              </div>
+                  </div>
+              </form>
 
           </div>
       </section><!-- End Pricing Section -->

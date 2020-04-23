@@ -4,6 +4,7 @@
 namespace Connect4\functions\utils;
 
 
+use Connect4\Database\Database;
 use Exception;
 
 function array_wrap_each(array $strItems, $before = '', $after = '') : array {
@@ -64,6 +65,23 @@ function get_ip()
     return $_SERVER['REMOTE_ADDR'];
 }
 
+function get_user_from_user_id(int $userId) : array
+{
+
+
+    $database = new Database();
+    $result = $database->queryPrepared('CALL find_user_by_user_id(?)', 'i', $userId);
+    $user = mysqli_fetch_assoc($result);
+
+    return $user;
+}
+
+function get_name_from_user_id(int $userId)
+{
+    $user = get_user_from_user_id($userId);
+
+    return $user['first_name'] . ' ' . $user['last_name'];
+}
 
 
 

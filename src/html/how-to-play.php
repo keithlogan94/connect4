@@ -57,14 +57,9 @@
         <!-- <a href="index.html"><img src="/images/logo.png" alt="" class="img-fluid"></a>-->
       </div>
 
-      <nav class="nav-menu d-none d-lg-block">
-          <ul>
-              <li><a href="/setup">Connect4Friends</a></li>
-              <li><a href="/setup">Setup A Game</a></li>
-              <li><a href="/membership">Membership</a></li>
-              <li class="active"><a href="#faq">How To Play</a></li>
-          </ul>
-      </nav><!-- .nav-menu -->
+        <?php
+        include dirname(__FILE__) . '/links.php';
+        ?>
 
     </div>
   </header><!-- End Header -->

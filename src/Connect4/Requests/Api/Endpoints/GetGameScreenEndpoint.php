@@ -5,6 +5,7 @@ namespace Connect4\Requests\Api\Endpoints;
 
 
 use Connect4\Board;
+use Exception;
 use function Connect4\functions\logic\get_last_game_played_id;
 use function Connect4\functions\logic\is_last_game_played_won;
 use Connect4\Game;
@@ -15,6 +16,9 @@ class GetGameScreenEndpoint extends Endpoint
 
     public function handleRequest(Request $request)
     {
+
+        if (!isset($_SESSION['user_id'])) throw new Exception('must be logged in');
+
         $port = APPLICATION_PORT;
         $hostname = APPLICATION_HOSTNAME;
 

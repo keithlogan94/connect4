@@ -19,6 +19,7 @@ CREATE TABLE games
 (
     game_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     privacy ENUM ('public','private') DEFAULT 'private',
+    game_setup_id INT NOT NULL,
     add_time DATETIME NOT NULL
 );
 
@@ -30,11 +31,11 @@ DROP PROCEDURE IF EXISTS create_game;
 DELIMITER $$
 
 
-CREATE PROCEDURE create_game()
+CREATE PROCEDURE create_game(p_game_setup_id INT)
 BEGIN
 
 
-    INSERT INTO games (add_time) VALUES (NOW());
+    INSERT INTO games (game_setup_id, add_time) VALUES (p_game_setup_id, NOW());
 
     SELECT LAST_INSERT_ID() AS 'game_id';
 
@@ -126,9 +127,78 @@ CREATE TABLE users
     first_name VARCHAR(100) NOT NULL,
     last_name VARCHAR(100) NOT NULL,
     email_address VARCHAR(250) NOT NULL,
+    password VARCHAR(250) NOT NULL,
     favorite_color ENUM ('yellow','red'),
     add_time DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
+
+CREATE UNIQUE INDEX unique_email_index ON users (`email_address`);
+
+
+
+DELIMITER $$
+
+
+CREATE PROCEDURE find_user_by_user_id(p_user_id INT)
+BEGIN
+
+    SELECT * FROM users WHERE user_id = p_user_id LIMIT 1;
+
+
+END
+
+$$
+
+DELIMITER ;
+
+
+
+
+DELIMITER $$
+
+
+
+CREATE PROCEDURE find_user_by_email_password(p_email VARCHAR(250), p_password VARCHAR(250))
+BEGIN
+
+
+    SELECT * FROM users WHERE email_address = p_email AND password = p_password LIMIT 1;
+
+
+END
+
+$$
+
+DELIMITER ;
+
+
+
+DELIMITER $$
+
+
+CREATE PROCEDURE add_user(p_first_name VARCHAR(100), p_last_name VARCHAR(100), p_email_address VARCHAR(250), p_password VARCHAR(250), p_favorite_color ENUM('yellow','red'))
+BEGIN
+
+
+    INSERT INTO users (first_name, last_name, email_address, password, favorite_color) VALUES
+    (p_first_name, p_last_name, p_email_address, p_password, p_favorite_color);
+
+
+    SELECT LAST_INSERT_ID() AS 'user_id';
+
+
+
+END
+
+
+$$
+
+
+
+
+DELIMITER ;
+
+
 
 
 CREATE TABLE user_wins
@@ -412,6 +482,99 @@ $$
 DELIMITER ;
 
 
+
+
+
+
+
+
+CREATE TABLE game_setup
+(
+    game_setup_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    game_mode ENUM('classic_connect4') NOT NULL,
+    game_title VARCHAR(250),
+    setup_user_id INT NOT NULL,
+    invited_user_id INT NOT NULL,
+    invite_code VARCHAR(250),
+    game_active BOOLEAN DEFAULT FALSE,
+    add_time DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE UNIQUE INDEX unique_game_setup ON game_setup (`setup_user_id`, `invited_user_id`);
+CREATE INDEX game_setup_mode_index ON game_setup (`game_mode`);
+CREATE INDEX game_setup_invite_link_index ON game_setup (`invite_code`);
+
+
+DELIMITER $$
+
+
+CREATE PROCEDURE add_game_setup(p_game_mode ENUM('classic_connect4'), p_game_title VARCHAR(250), p_setup_user_id INT, p_invited_user_id INT, p_invite_code VARCHAR(250))
+BEGIN
+
+
+    INSERT INTO game_setup (game_mode, game_title, setup_user_id, invited_user_id, invite_code) VALUES
+    (p_game_mode, p_game_title, p_setup_user_id, p_invited_user_id, p_invite_code)
+    ON DUPLICATE KEY UPDATE
+                            game_mode = VALUES(game_mode),
+                            game_title = VALUES(game_title),
+                            setup_user_id = VALUES(setup_user_id),
+                            invited_user_id = VALUES(invited_user_id),
+                            invite_code = VALUES(invite_code);
+
+
+
+
+END
+
+
+$$
+
+
+DELIMITER ;
+
+
+
+
+DELIMITER $$
+
+
+CREATE PROCEDURE update_setup_game_invite_user_id(p_user_id INT, p_game_setup_id INT)
+BEGIN
+
+    UPDATE game_setup SET invited_user_id = p_user_id, game_active = TRUE WHERE game_setup_id = p_game_setup_id;
+
+
+END
+
+
+$$
+
+
+DELIMITER ;
+
+
+
+DELIMITER $$
+
+
+CREATE PROCEDURE find_game_setup_by_invite_code(p_invite_code VARCHAR(250))
+BEGIN
+
+
+
+    SELECT * FROM game_setup WHERE invite_code = p_invite_code ORDER BY add_time DESC LIMIT 1;
+
+
+
+
+END
+
+
+$$
+
+
+
+DELIMITER ;
 
 
 

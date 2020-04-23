@@ -30,10 +30,14 @@
     <style>
         #hero {
             width: 100%;
-            /*height: 34vh;*/
+            height: 17vh;
             background-size: cover;
             position: relative;
             margin-bottom: 5em;
+        }
+
+        .center {
+            margin: 0 auto;
         }
     </style>
 
@@ -61,15 +65,15 @@
         include dirname(__FILE__) . '/links.php';
         ?>
 
+
+
     </div>
   </header><!-- End Header -->
 
   <!-- ======= Hero Section ======= -->
   <section id="hero">
     <div class="hero-container">
-      <h1>Membership</h1>
-        <h2>Play with Exclusives</h2>
-        <a href="#pricing" class="btn-get-started scrollto">Get Membership</a>
+      <h1>Login</h1>
     </div>
   </section><!-- End Hero -->
 
@@ -80,64 +84,72 @@
           <div class="container">
 
               <div class="section-title">
-                  <h2>Membership</h2>
-                  <p>Exclusives for members</p>
-              </div>
+                  <h2>Login</h2>
 
-              <div class="row">
+                  <?php if (isset($_GET['m'])): ?>
+                    <div class="alert alert-success">
+                        <p><?= urldecode(base64_decode($_GET['m'])) ?></p>
+                    </div>
+                  <?php else: ?>
+                  <?php if (isset($_SESSION['invited'])): ?>
+                    <div class="alert alert-success">
+                        <p><?= '<strong>'.\Connect4\functions\utils\get_name_from_user_id(intval($_SESSION['invited']['setup_user_id']))  . '</strong> has invited you to play a game of Connect4, after you login you will automatically join their game of Connect4. Please <a href=\'/signup\'>signup</a> if you don\'t have an account.'?></p>
+                    </div>
+                    <?php endif; ?>
+                  <?php endif; ?>
 
-                  <div class="col-lg-4 col-md-6">
-                      <div class="box">
-                          <h3>Visitor</h3>
-                          <h4><sup>$</sup>0<span> / month</span></h4>
-                          <ul>
-                              <li>Play 2 Games per day</li>
-                              <li>Play with Any Online Visitor or Player</li>
-                              <li class="na">Play Unlimited Games per day</li>
-                              <li class="na">Anyone You Invite Plays for Free!</li>
-                              <li class="na">Be Featured on the Global Scoreboard</li>
-                          </ul>
-                          <div class="btn-wrap">
-                              <a href="#" class="btn-buy disabled">ACTIVE</a>
-                          </div>
-                      </div>
-                  </div>
-
-                  <div class="col-lg-4 col-md-6 mt-4 mt-md-0">
-                      <div class="box featured blue">
-                          <h3>Player</h3>
-                          <h4><sup>$</sup>2<span> / month</span></h4>
-                          <ul>
-                              <li>Play Unlimited Games per day</li>
-                              <li>Play with Any Online Visitor or Player</li>
-                              <li>Anyone You Invite Plays for Free!</li>
-                              <li class="na">Be Featured on the Global Scoreboard</li>
-                          </ul>
-                          <div class="btn-wrap">
-                              <a href="#" class="btn-buy">Buy Now</a>
-                          </div>
-                      </div>
-                  </div>
-
-                  <div class="col-lg-4 col-md-6 mt-4 mt-lg-0">
-                      <div class="box gold">
-                          <h3>Player Pro</h3>
-                          <h4><sup>$</sup>10<span> / month</span></h4>
-                          <ul>
-                              <li>Play Unlimited Games per day</li>
-                              <li>Play with Any Online Visitor or Player</li>
-                              <li>Anyone You Invite Plays for Free!</li>
-                              <li>Be Featured on the Global Scoreboard</li>
-                          </ul>
-                          <div class="btn-wrap">
-                              <a href="#" class="btn-buy">Buy Now</a>
-                          </div>
-                      </div>
-                  </div>
+                  <?php if (isset($_GET['error'])): ?>
+                    <div class="alert alert-danger">
+                        <p><?= base64_decode($_GET['error']) ?></p>
+                    </div>
+                  <?php endif; ?>
 
               </div>
 
-          </div>
+
+                 <form action="/login_request" method="POST">
+
+                     <div class="row">
+                         <div class="col-lg-4 col-md-6 center">
+                             <div class="box">
+                                 <h3>Email</h3>
+                                 <div class="form-group">
+                                     <input id="email_input" type="email" name="email" placeholder="Email:" class="form-control">
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+
+
+                     <div class="row">
+                         <div class="col-lg-4 col-md-6 mt-4 mt-md-0 center">
+                             <div class="box featured blue">
+                                 <h3>Password</h3>
+                                 <div class="form-group">
+                                     <input id="password_input" type="password" name="password" placeholder="Password:" class="form-control">
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+
+
+                     <div class="row">
+                         <div class="col-lg-4 col-md-6 mt-4 mt-lg-0 center">
+                             <div class="box gold">
+
+                                 <div class="btn-wrap">
+                                     <button class="btn-buy">Login</button>
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+
+
+                 </form>
+
+
+              </div>
+
       </section><!-- End Pricing Section -->
 
 

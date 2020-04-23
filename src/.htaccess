@@ -9,6 +9,12 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-l
 
 
+RewriteRule ^logout/?$ /index.php?request_code=logout [QSA,L]
+RewriteRule ^login_request/?$ /index.php?request_code=login_request [QSA,L]
+RewriteRule ^invite/([0-9a-z]+)/?$ /index.php?request_code=invite_link&invite_code=$1 [QSA,L]
+RewriteRule ^register_user/?$ /index.php?request_code=register_user [QSA,L]
+RewriteRule ^signup/?$ /index.php?request_code=signup [QSA,L]
+RewriteRule ^login/?$ /index.php?request_code=login [QSA,L]
 RewriteRule ^membership/?$ /index.php?request_code=membership [QSA,L]
 RewriteRule ^how-to-play/?$ /index.php?request_code=how_to_play [QSA,L]
 RewriteRule ^setup/?$ /index.php?request_code=game_setup [QSA,L]

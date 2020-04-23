@@ -16,6 +16,8 @@ class PlaceGamePieceEndpoint extends Endpoint
     public function handleRequest(Request $request)
     {
 
+        if (!isset($_SESSION['user_id'])) throw new Exception('must be logged in');
+
         if (!isset($_GET['game_id'])) throw new Exception('game_id must be set');
         if (!isset($_GET['color'])) throw new Exception('color must be set');
         if (!isset($_GET['column'])) throw new Exception('column must be set');

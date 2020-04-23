@@ -14,6 +14,8 @@ class GetGamePositionsEndPoint extends Endpoint
     public function handleRequest(Request $request)
     {
 
+        if (!isset($_SESSION['user_id'])) throw new Exception('must be logged in');
+
         if (!isset($_GET['game_id'])) throw new Exception('game_id must be set but was not');
         if (!is_numeric($_GET['game_id'])) throw new Exception('game_id must be numeric');
 

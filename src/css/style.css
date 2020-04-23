@@ -870,6 +870,10 @@ section {
   overflow: hidden;
 }
 
+.pricing .box.form {
+  text-align: left;
+}
+
 .pricing .box h3 {
   font-weight: 400;
   padding: 15px;

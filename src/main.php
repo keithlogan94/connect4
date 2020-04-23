@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 require_once dirname(__FILE__) . '/autoload.php';
 require_once dirname(__FILE__) . '/constants.php';
 
@@ -45,7 +47,11 @@ function main() {
 try {
     main();
 } catch (Exception $e) {
-    echo_error_page($e);
+    if ($e->getMessage() === 'must be logged in') {
+        header("Location: /login");
+    } else {
+        echo_error_page($e);
+    }
 }
 
 

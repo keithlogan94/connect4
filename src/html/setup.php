@@ -68,14 +68,9 @@
         <!-- <a href="index.html"><img src="/images/logo.png" alt="" class="img-fluid"></a>-->
       </div>
 
-      <nav class="nav-menu d-none d-lg-block">
-        <ul>
-          <li><a href="/setup">Connect4Friends</a></li>
-          <li class="active"><a href="#about">Setup A Game</a></li>
-          <li><a href="/membership">Membership</a></li>
-          <li><a href="/how-to-play">How To Play</a></li>
-        </ul>
-      </nav><!-- .nav-menu -->
+        <?php
+        include dirname(__FILE__) . '/links.php';
+        ?>
 
     </div>
   </header><!-- End Header -->
@@ -93,66 +88,106 @@
     <section id="about" class="about">
       <div class="container">
 
-          <form action="/newgame" method="post">
 
-            <div class="row content">
-              <div class="col-lg-6">
-                  <div class="form-group">
-                      <label for="game_name">Game Name:</label>
-                      <input type="text" name="game_name" id="game_name" placeholder="What title do you want to give this game? e.g. 'Friends Competitive 1'" class="form-control">
-                  </div>
-                  <div class="form-group">
-                      <label for="game_mode">Game Mode:</label>
-                      <select id="game_mode" class="form-control" name="game_mode">
-                          <option>Select Game Mode</option>
-                          <option value="1" selected="selected">Classic Connect4</option>
-                          <option value="2">Connect5 (Coming Soon)</option>
-                          <option value="3">Connect6 (Coming Soon)</option>
-                          <option value="4">Connect4 3D (Coming Soon)</option>
-                      </select>
-                  </div>
-                  <div class="form-group">
-                      <label>Invite Other Player:</label><br>
-                      <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#invitePlayerModal">Invite Other Player</button>
-                  </div>
+          <?php
 
-              </div>
-              <div class="col-lg-6 pt-4 pt-lg-0">
 
-                  <div class="form-group">
-                      <label for="players">Players Ready:</label>
-                      <select multiple="multiple" name="players" id="players" class="form-control no-pointer-events">
-                          <option value="0">You</option>
-                      </select>
-                      <p value="1"><em id="other_player_status">(Waiting on other Player)...</em></p>
-                  </div>
 
-              </div>
-            </div>
 
-              <button class="btn btn-primary btn-lg float-lg-right">Play</button>
+          $didCreateConnect4SetupRecord = false;
 
-          </form>
 
-          <div id="invitePlayerModal" class="modal" tabindex="-1" role="dialog">
-              <div class="modal-dialog" role="document">
-                  <div class="modal-content">
-                      <div class="modal-header">
-                          <h5 class="modal-title">Invite Other Player</h5>
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                              <span aria-hidden="true">&times;</span>
-                          </button>
+          if (isset($_GET['game_mode'], $_GET['game_name'])) {
+              $inviteCode = md5(time());
+
+              $inviteLink = 'http://' . APPLICATION_HOSTNAME . '/invite/' . $inviteCode;
+
+
+              $database = new \Connect4\Database\Database();
+              $database->queryPrepared('CALL add_game_setup(?, ?, ?, ?, ?)', 'ssiis', $_GET['game_mode'], $_GET['game_name'], $_SESSION['user_id'], -1, $inviteCode);
+
+              $didCreateConnect4SetupRecord = true;
+          }
+
+
+
+          ?>
+
+
+
+          <?php if ($didCreateConnect4SetupRecord): ?>
+
+          <p>Waiting for other player.</p>
+          <p>Please invite the other player by having them go to this link in their browser <?= $inviteLink ?></p>
+          <p>After they go to that link then the game will start.</p>
+
+
+
+          <?php else: ?>
+
+
+              <form action="<?= $_SERVER['REQUEST_URI'] ?>" method="get">
+
+                  <div class="row content">
+                      <div class="col-lg-12">
+                          <div class="form-group">
+                              <label for="game_mode">Game Mode:</label>
+                              <select id="game_mode" class="form-control" name="game_mode">
+                                  <option>Select Game Mode</option>
+                                  <option value="1" selected="selected">Classic Connect4</option>
+                                  <option value="2">Connect5 (Coming Soon)</option>
+                                  <option value="3">Connect6 (Coming Soon)</option>
+                                  <option value="4">Connect4 3D (Coming Soon)</option>
+                              </select>
+                          </div>
+                          <div class="form-group">
+                              <label for="game_name">Game Name:</label>
+                              <input type="text" name="game_name" id="game_name" placeholder="What title do you want to give this game? e.g. 'Friends Competitive 1'" class="form-control">
+                          </div>
+                          <!--                  <div class="form-group">-->
+                          <!--                      <label>Invite Other Player:</label><br>-->
+                          <!--                      <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#invitePlayerModal">Invite Other Player</button>-->
+                          <!--                  </div>-->
+
                       </div>
-                      <div class="modal-body">
-                          <p>Invite another player</p>
-                      </div>
-                      <div class="modal-footer">
-                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                          <button type="button" class="btn btn-primary">Save changes</button>
+                      <!--              <div class="col-lg-6 pt-4 pt-lg-0">-->
+
+                      <!--                  <div class="form-group">-->
+                      <!--                      <label for="players">Players Ready:</label>-->
+                      <!--                      <select multiple="multiple" name="players" id="players" class="form-control no-pointer-events">-->
+                      <!--                          <option value="0">You</option>-->
+                      <!--                      </select>-->
+                      <!--                      <p value="1"><em id="other_player_status">(Waiting on other Player)...</em></p>-->
+                      <!--                  </div>-->
+
+                      <!--              </div>-->
+                  </div>
+
+                  <button class="btn btn-primary btn-lg">Play</button>
+
+              </form>
+
+              <div id="invitePlayerModal" class="modal" tabindex="-1" role="dialog">
+                  <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                          <div class="modal-header">
+                              <h5 class="modal-title">Invite Other Player</h5>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                              </button>
+                          </div>
+                          <div class="modal-body">
+                              <p>Invite another player</p>
+                          </div>
+                          <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                              <button type="button" class="btn btn-primary">Save changes</button>
+                          </div>
                       </div>
                   </div>
               </div>
-          </div>
+
+          <?php endif; ?>
 
 
       </div>
