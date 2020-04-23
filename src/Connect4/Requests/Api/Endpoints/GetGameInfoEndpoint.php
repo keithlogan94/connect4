@@ -5,6 +5,7 @@ namespace Connect4\Requests\Api\Endpoints;
 
 
 use Connect4\Board;
+use Connect4\Database\Database;
 use Connect4\Requests\Request;
 use Exception;
 
@@ -24,6 +25,12 @@ class GetGameInfoEndpoint extends Endpoint
 
         $gameId = intval($_GET['game_id']);
         $gameInfo = $_GET['game_info'];
+
+
+        $database = new Database();
+        $result = $database->queryPrepared('CALL find_game_by_game_id(?)', 'i', $gameId);
+        $game = mysqli_fetch_assoc($result);
+        if (is_numeric($game['winner_user_id'])) unset($_SESSION['active_game_id']);
 
         $board = new Board($gameId);
         $info = $board->getGameData($gameInfo);

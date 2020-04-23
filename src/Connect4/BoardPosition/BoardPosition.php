@@ -4,6 +4,7 @@
 namespace Connect4\BoardPosition;
 
 
+use Connect4\Database\Database;
 use function Connect4\functions\logic\is_empty;
 use Connect4\GamePiece;
 use Exception;
@@ -82,6 +83,25 @@ class BoardPosition
         ];
 
         if ($isWin) {
+            unset($_SESSION['active_game_id']);
+
+            $gameId = $this->board->getGameId();
+
+            $database = new Database();
+
+            $result = $database->queryPrepared('CALL find_game_setup_by_game_id(?)', 'i', $gameId);
+            $gameSetup = mysqli_fetch_assoc($result);
+
+            $userSetupUserId = intval($gameSetup['setup_user_id']);
+            $userInvitedUserId = intval($gameSetup['invited_user_id']);
+
+            if ($_SESSION['user_id'] == $userSetupUserId) {
+                $database->queryPrepared('CALL update_game_win_loss(?, ?, ?)', 'iii', $gameId, $userSetupUserId, $userInvitedUserId);
+            } else {
+                $database->queryPrepared('CALL update_game_win_loss(?, ?, ?)', 'iii', $gameId, $userInvitedUserId, $userSetupUserId);
+            }
+
+
             $returnArray['winning_color'] = $gamePiece->getColorString();
             $this->board->setGameData('winning_color', $gamePiece->getColorString());
         } else {

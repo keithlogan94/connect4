@@ -20,10 +20,51 @@ CREATE TABLE games
     game_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     privacy ENUM ('public','private') DEFAULT 'private',
     game_setup_id INT NOT NULL,
+    winner_user_id INT NULL,
+    loser_user_id INT NULL,
     add_time DATETIME NOT NULL
 );
 
 CREATE INDEX game_index ON games (`game_id`);
+
+
+
+DELIMITER $$
+
+CREATE PROCEDURE find_game_by_game_id(p_game_id INT)
+BEGIN
+
+    SELECT * FROM games WHERE game_id = p_game_id LIMIT 1;
+
+
+END
+
+$$
+
+
+DELIMITER ;
+
+
+
+DELIMITER $$
+
+
+CREATE PROCEDURE update_game_win_loss(p_game_id INT, p_winner_user_id INT, p_loser_user_id INT)
+BEGIN
+
+    UPDATE games SET winner_user_id = p_winner_user_id, loser_user_id = p_loser_user_id WHERE game_id = p_game_id
+    LIMIT 1;
+
+
+
+END
+
+$$
+
+DELIMITER ;
+
+
+
 
 
 DROP PROCEDURE IF EXISTS create_game;
@@ -595,6 +636,24 @@ $$
 DELIMITER ;
 
 
+
+DELIMITER $$
+
+
+CREATE PROCEDURE find_game_setup_by_game_id(p_game_id INT)
+BEGIN
+
+    SELECT * FROM game_setup WHERE game_id = p_game_id LIMIT 1;
+
+
+
+END
+
+
+$$
+
+
+DELIMITER ;
 
 
 

@@ -3,7 +3,7 @@
 <?php if (isset($_SESSION['user_id'])): ?>
 <nav class="nav-menu d-none d-lg-block">
     <ul>
-        <?php if (isset($_SESSION['invite_link'])): ?>
+        <?php if (isset($_SESSION['invite_link']) || isset($_SESSION['active_game_id'])): ?>
             <li><a href="/setup">Active Game</a></li>
         <?php else: ?>
             <li><a href="/setup">Setup A Game</a></li>

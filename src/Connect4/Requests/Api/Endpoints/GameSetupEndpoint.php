@@ -15,7 +15,14 @@ class GameSetupEndpoint extends Endpoint
 
         if (!isset($_SESSION['user_id'])) throw new Exception('must be logged in');
 
-        include dirname(__FILE__) . '/../../../../html/setup.php';
+        if (isset($_SESSION['active_game_id'])) {
+            header("Location: /" . $_SESSION['active_game_id']);
+        } else {
+            include dirname(__FILE__) . '/../../../../html/setup.php';
+        }
+
+
+
 
 
     }

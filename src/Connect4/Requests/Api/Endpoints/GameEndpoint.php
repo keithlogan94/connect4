@@ -25,6 +25,8 @@ class GameEndpoint extends Endpoint
         unset($_SESSION['invite_code']);
         unset($_SESSION['invite_link']);
 
+        $_SESSION['active_game_id'] = $gameId;
+
 
         $port = APPLICATION_PORT;
         $hostname = APPLICATION_HOSTNAME;
