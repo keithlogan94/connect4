@@ -61,6 +61,8 @@ $(document).on('click', 'button.place-checker', async function () {
             </div>
             `);
 
+        $("#header > div > nav > ul > li:nth-child(1) > a").text("Play Again?");
+
         await loadGame(gameId, document.getElementById('game-container'));
     } else {
 
@@ -103,6 +105,7 @@ async function load() {
 
     if (winningColor) {
         $(".popup").html("<h1>"+capitalizeFirstLetter(winningColor) + " won!"+"</h1>");
+        $("#header > div > nav > ul > li:nth-child(1) > a").text("Play Again?");
 
         await loadGame(gameId, document.getElementById('game-container'));
     } else {

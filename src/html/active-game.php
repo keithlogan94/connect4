@@ -147,7 +147,7 @@
 <!-- ======= Hero Section ======= -->
 <section id="hero">
     <div class="hero-container">
-        <h1>Setup A Game</h1>
+        <h1>Connect4</h1>
     </div>
 </section><!-- End Hero -->
 
