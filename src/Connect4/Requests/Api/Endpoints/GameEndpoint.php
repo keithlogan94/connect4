@@ -26,23 +26,6 @@ class GameEndpoint extends Endpoint
         unset($_SESSION['invite_link']);
 
 
-        //check if this ip address is assigned
-//        $board = new Board($gameId);
-//        $ipAssignedYellow = $board->getGameData(IP_ASSIGNED_YELLOW);
-//        $ipAssignedRed = $board->getGameData(IP_ASSIGNED_RED);
-//        $ip = get_ip();
-
-//        if ($ip !== $ipAssignedYellow && $ip !== $ipAssignedRed) {
-
-//            if (!$ipAssignedYellow) {
-//                $board->setGameData(IP_ASSIGNED_YELLOW, get_ip());
-//            } else if (!$ipAssignedRed) {
-//                $board->setGameData(IP_ASSIGNED_RED, get_ip());
-//            }
-
-
-//        }
-
         $port = APPLICATION_PORT;
         $hostname = APPLICATION_HOSTNAME;
         $version = APPLICATION_VERSION;
