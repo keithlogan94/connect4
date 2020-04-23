@@ -101,7 +101,7 @@
               if (isset($_GET['game_mode'], $_GET['game_name'])) {
                   $inviteCode = md5(time());
 
-                  $inviteLink = 'http://' . APPLICATION_HOSTNAME . ':' . APPLICATION_PORT . '/invite/' . $inviteCode;
+                  $inviteLink = 'http://' . APPLICATION_HOSTNAME . '/invite/' . $inviteCode;
 
                   $_SESSION['invite_code'] = $inviteCode;
                   $_SESSION['invite_link'] = $inviteLink;
