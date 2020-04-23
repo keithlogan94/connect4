@@ -22,6 +22,9 @@ class GameEndpoint extends Endpoint
 
         $gameId = intval($_GET['game_id']);
 
+        unset($_SESSION['invite_code']);
+        unset($_SESSION['invite_link']);
+
 
         //check if this ip address is assigned
 //        $board = new Board($gameId);

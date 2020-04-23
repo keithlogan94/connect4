@@ -3,7 +3,11 @@
 <?php if (isset($_SESSION['user_id'])): ?>
 <nav class="nav-menu d-none d-lg-block">
     <ul>
-        <li><a href="/setup">Setup A Game</a></li>
+        <?php if (isset($_SESSION['invite_link'])): ?>
+            <li><a href="/setup">Active Game</a></li>
+        <?php else: ?>
+            <li><a href="/setup">Setup A Game</a></li>
+        <?php endif; ?>
         <li><a href="/membership">Membership</a></li>
         <li><a href="/how-to-play">How To Play</a></li>
         <li><a href="/logout">Logout</a></li>

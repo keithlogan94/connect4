@@ -97,15 +97,24 @@
           $didCreateConnect4SetupRecord = false;
 
 
-          if (isset($_GET['game_mode'], $_GET['game_name'])) {
-              $inviteCode = md5(time());
+          if (!isset($_SESSION['invite_code'], $_SESSION['invite_link'])) {
+              if (isset($_GET['game_mode'], $_GET['game_name'])) {
+                  $inviteCode = md5(time());
 
-              $inviteLink = 'http://' . APPLICATION_HOSTNAME . ':' . APPLICATION_PORT . '/invite/' . $inviteCode;
+                  $inviteLink = 'http://' . APPLICATION_HOSTNAME . ':' . APPLICATION_PORT . '/invite/' . $inviteCode;
+
+                  $_SESSION['invite_code'] = $inviteCode;
+                  $_SESSION['invite_link'] = $inviteLink;
 
 
-              $database = new \Connect4\Database\Database();
-              $database->queryPrepared('CALL add_game_setup(?, ?, ?, ?, ?)', 'ssiis', $_GET['game_mode'], $_GET['game_name'], $_SESSION['user_id'], -1, $inviteCode);
+                  $database = new \Connect4\Database\Database();
+                  $database->queryPrepared('CALL add_game_setup(?, ?, ?, ?, ?)', 'ssiis', $_GET['game_mode'], $_GET['game_name'], $_SESSION['user_id'], -1, $inviteCode);
 
+                  $didCreateConnect4SetupRecord = true;
+              }
+          } else {
+              $inviteCode = $_SESSION['invite_code'];
+              $inviteLink = $_SESSION['invite_link'];
               $didCreateConnect4SetupRecord = true;
           }
 
