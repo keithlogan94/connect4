@@ -17,40 +17,8 @@ class GetGameScreenEndpoint extends Endpoint
     public function handleRequest(Request $request)
     {
 
-        if (!isset($_SESSION['user_id'])) throw new Exception('must be logged in');
-
-        $port = APPLICATION_PORT;
-        $hostname = APPLICATION_HOSTNAME;
-
-        $id = get_last_game_played_id();
-
-        if (is_int($id) && $id > 0) {
-            if (is_last_game_played_won()) {
-                $game = new Game();
-                $row = $game->createNewGame();
-                header("Location: http://$hostname:$port/" . $row['game_id']);
-            } else {
-                $board = new Board($id);
-                if ($board->getGameData('is_tie') === 'yes') {
-                    $game = new Game();
-                    $row = $game->createNewGame();
-                    header("Location: http://$hostname:$port/" . $row['game_id']);
-                } else {
-                    header("Location: http://$hostname:$port/" . $id);
-                }
-            }
-        } else {
-            $game = new Game();
-            $row = $game->createNewGame();
-            header("Location: http://$hostname:$port/" . $row['game_id']);
-        }
-
-
-
-
-
-
-
+        header("Location: /setup");
+        return;
 
     }
 

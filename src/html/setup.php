@@ -120,6 +120,29 @@
           <p>Waiting for other player.</p>
           <p>Please invite the other player by having them go to this link in their browser <?= $inviteLink ?></p>
           <p>After they go to that link then the game will start.</p>
+          <script>
+
+              window.onload = function () {
+                  setInterval(function () {
+
+                      $.ajax({
+                          url: "/is_game_ready/<?= $inviteCode ?>",
+                          type: 'GET',
+                          success: function (response) {
+                              const gameSetup = JSON.parse(response);
+                              if (gameSetup.game_id != null) {
+                                  window.location = '/' + gameSetup.game_id;
+                              }
+                          }
+                      });
+
+
+                  }, 1000);
+
+              };
+
+
+          </script>
 
 
 

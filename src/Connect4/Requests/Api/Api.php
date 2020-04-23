@@ -20,6 +20,7 @@ use Connect4\Requests\Api\Endpoints\LogoutEndpoint;
 use Connect4\Requests\Api\Endpoints\MembershipEndpoint;
 use Connect4\Requests\Api\Endpoints\PlaceGamePieceEndpoint;
 use Connect4\Requests\Api\Endpoints\RegisterUserEndpoint;
+use Connect4\Requests\Api\Endpoints\SetupGameIsReady;
 use Connect4\Requests\Api\Endpoints\SignupEndpoint;
 use Connect4\Requests\Request;
 use Exception;
@@ -65,6 +66,7 @@ class Api
     public static function getAllEndpoints()
     {
         return [
+            SetupGameIsReady::class,
             LogoutEndpoint::class,
             LoginRequest::class,
             InviteLinkEndpoint::class,
