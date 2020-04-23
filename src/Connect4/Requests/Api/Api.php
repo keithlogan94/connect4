@@ -6,6 +6,7 @@ namespace Connect4\Requests\Api;
 
 use Connect4\Requests\Api\Endpoints\CreateGameEndpoint;
 use Connect4\Requests\Api\Endpoints\Endpoint;
+use Connect4\Requests\Api\Endpoints\FriendsEndpoint;
 use Connect4\Requests\Api\Endpoints\GameEndpoint;
 use Connect4\Requests\Api\Endpoints\GameSetupEndpoint;
 use Connect4\Requests\Api\Endpoints\GetGameInfoEndpoint;
@@ -66,6 +67,7 @@ class Api
     public static function getAllEndpoints()
     {
         return [
+            FriendsEndpoint::class,
             SetupGameIsReady::class,
             LogoutEndpoint::class,
             LoginRequest::class,

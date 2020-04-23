@@ -32,7 +32,7 @@ class GameEndpoint extends Endpoint
         $userId = intval($_SESSION['user_id']);
 
         $customJavascript = "const gameId = $gameId; const applicationPort = '$port'; const applicationHostname = '$hostname'; const version = '$version'; const userId = $userId;";
-        include dirname(__FILE__) . '/../../../../html/basic-game-screen.php';
+        include dirname(__FILE__) . '/../../../../html/active-game.php';
 
     }
 
