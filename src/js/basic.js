@@ -102,7 +102,7 @@ async function load() {
     const winningColor = await getGameInfo(gameId,'winning_color');
 
     if (winningColor) {
-        $(".popup").html("<h1>In this previous game "+winningColor + " won!"+"</h1>");
+        $(".popup").html("<h1>"+capitalizeFirstLetter(winningColor) + " won!"+"</h1>");
 
         await loadGame(gameId, document.getElementById('game-container'));
     } else {
@@ -110,38 +110,42 @@ async function load() {
             if (playerTurn == null) window.location = "http://"+applicationHostname+":" + applicationPort;
         } else {
             if (isNaN(Number.parseInt(currentGameId))) throw "currentGameId is not a number";
-            loadGame(currentGameId, document.getElementById('game-container'));
+            await loadGame(currentGameId, document.getElementById('game-container'));
 
         }
 
         const playerTurn = await getGameInfo(currentGameId,'turn_color');
-        const ip = await getIp();
+        // const ip = await getIp();
 
-        const ipAssignedYellow = await getGameInfo(currentGameId, 'ip_assigned_yellow');
-        const ipAssignedRed = await getGameInfo(currentGameId, 'ip_assigned_red');
+        const userAssignedYellow = await getGameInfo(currentGameId, 'user_assigned_yellow');
+        const userAssignedRed = await getGameInfo(currentGameId, 'user_assigned_red');
 
-        if (!ipAssignedYellow || !ipAssignedRed) {
+        if (!userAssignedYellow || !userAssignedRed) {
             $("#popup-message").text(`Please wait for the other player to join.`);
             $(".popup-div").hide();
         } else {
             switch (playerTurn) {
                 case "yellow":
-                    if (ip !== ipAssignedYellow) {
+                    if (userId != userAssignedYellow) {
                         $("#popup-message").text("Please wait for the other player to play.");
                         $(".popup-div").hide();
+                        console.log('its NOT my turn');
                     } else {
+                        console.log('its my turn');
                         $("#popup-message").text("Yellow, please enter the column to drop your checker:");
                         $(".popup-div").show();
                     }
                     break;
                 case "red":
 
-                    if (ip !== ipAssignedRed) {
+                    if (userId != userAssignedRed) {
                         $("#popup-message").text("Please wait for the other player to play.");
                         $(".popup-div").hide();
+                        console.log('its NOT my turn');
                     } else {
                         $("#popup-message").text("Red, please enter the column to drop your checker:");
                         $(".popup-div").show();
+                        console.log('its my turn');
                     }
                     break;
             }
@@ -149,7 +153,9 @@ async function load() {
 
 
 
-        if (playerTurn == null) window.location = "http://"+applicationHostname+":" + applicationPort;
+        if (playerTurn == null) {
+            window.location = "http://"+applicationHostname+":" + applicationPort;
+        }
 
 
         $("#color-player").text(capitalizeFirstLetter(playerTurn));

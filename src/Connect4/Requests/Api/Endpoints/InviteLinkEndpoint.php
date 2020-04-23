@@ -5,8 +5,10 @@ namespace Connect4\Requests\Api\Endpoints;
 
 
 use Connect4\Database\Database;
+use Connect4\Game;
 use Connect4\Requests\Request;
 use Exception;
+use function Connect4\functions\utils\get_favorite_color_by_user_id;
 
 class InviteLinkEndpoint extends Endpoint
 {
@@ -33,10 +35,11 @@ class InviteLinkEndpoint extends Endpoint
             if ($gameSetup['setup_user_id'] == $_SESSION['user_id']) {
                 throw new Exception('You can\'t go to your own invite link');
             } else {
-                echo "the user is logged in<BR>";
-                print_r($gameSetup);
+//                echo "the user is logged in<BR>";
+//                print_r($gameSetup);
 
-                $database->queryPrepared('CALL update_setup_game_invite_user_id(?, ?)', 'ii', $_SESSION['user_id'], intval($gameSetup['game_setup_id']));
+                Game::confirmInviteCreateGame($gameSetup);
+
 
             }
         } else {

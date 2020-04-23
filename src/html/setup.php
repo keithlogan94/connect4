@@ -100,7 +100,7 @@
           if (isset($_GET['game_mode'], $_GET['game_name'])) {
               $inviteCode = md5(time());
 
-              $inviteLink = 'http://' . APPLICATION_HOSTNAME . '/invite/' . $inviteCode;
+              $inviteLink = 'http://' . APPLICATION_HOSTNAME . ':' . APPLICATION_PORT . '/invite/' . $inviteCode;
 
 
               $database = new \Connect4\Database\Database();

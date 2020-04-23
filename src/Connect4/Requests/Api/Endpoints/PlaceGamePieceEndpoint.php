@@ -38,16 +38,15 @@ class PlaceGamePieceEndpoint extends Endpoint
         $board = new Board($gameId);
 
 
-        $ip = get_ip();
         switch ($color) {
             case "yellow":
-                if ($board->getGameData(IP_ASSIGNED_YELLOW) !== $ip) {
-                    throw new Exception('this ip can\'t play for yellow');
+                if ($board->getGameData(USER_ASSIGNED_YELLOW) != $_SESSION['user_id']) {
+                    throw new Exception('this user can\'t play for yellow');
                 }
                 break;
             case "red":
-                if ($board->getGameData(IP_ASSIGNED_RED) !== $ip) {
-                    throw new Exception('this ip can\'t play for red');
+                if ($board->getGameData(USER_ASSIGNED_RED) != $_SESSION['user_id']) {
+                    throw new Exception('this user can\'t play for red');
                 }
                 break;
             default:

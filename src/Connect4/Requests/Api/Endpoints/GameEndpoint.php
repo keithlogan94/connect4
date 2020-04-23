@@ -24,27 +24,28 @@ class GameEndpoint extends Endpoint
 
 
         //check if this ip address is assigned
-        $board = new Board($gameId);
-        $ipAssignedYellow = $board->getGameData(IP_ASSIGNED_YELLOW);
-        $ipAssignedRed = $board->getGameData(IP_ASSIGNED_RED);
-        $ip = get_ip();
+//        $board = new Board($gameId);
+//        $ipAssignedYellow = $board->getGameData(IP_ASSIGNED_YELLOW);
+//        $ipAssignedRed = $board->getGameData(IP_ASSIGNED_RED);
+//        $ip = get_ip();
 
-        if ($ip !== $ipAssignedYellow && $ip !== $ipAssignedRed) {
+//        if ($ip !== $ipAssignedYellow && $ip !== $ipAssignedRed) {
 
-            if (!$ipAssignedYellow) {
-                $board->setGameData(IP_ASSIGNED_YELLOW, get_ip());
-            } else if (!$ipAssignedRed) {
-                $board->setGameData(IP_ASSIGNED_RED, get_ip());
-            }
+//            if (!$ipAssignedYellow) {
+//                $board->setGameData(IP_ASSIGNED_YELLOW, get_ip());
+//            } else if (!$ipAssignedRed) {
+//                $board->setGameData(IP_ASSIGNED_RED, get_ip());
+//            }
 
 
-        }
+//        }
 
         $port = APPLICATION_PORT;
         $hostname = APPLICATION_HOSTNAME;
         $version = APPLICATION_VERSION;
+        $userId = intval($_SESSION['user_id']);
 
-        $customJavascript = "const gameId = $gameId; const applicationPort = '$port'; const applicationHostname = '$hostname'; const version = '$version';";
+        $customJavascript = "const gameId = $gameId; const applicationPort = '$port'; const applicationHostname = '$hostname'; const version = '$version'; const userId = $userId;";
         include dirname(__FILE__) . '/../../../../html/basic-game-screen.php';
 
     }

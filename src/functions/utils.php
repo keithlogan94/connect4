@@ -83,6 +83,11 @@ function get_name_from_user_id(int $userId)
     return $user['first_name'] . ' ' . $user['last_name'];
 }
 
+function get_favorite_color_by_user_id(int $userId)
+{
+    $user = get_user_from_user_id($userId);
+    return $user['favorite_color'];
+}
 
 
 

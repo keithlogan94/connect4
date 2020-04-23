@@ -497,12 +497,28 @@ CREATE TABLE game_setup
     invited_user_id INT NOT NULL,
     invite_code VARCHAR(250),
     game_active BOOLEAN DEFAULT FALSE,
+    game_id INT NULL,
     add_time DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE UNIQUE INDEX unique_game_setup ON game_setup (`setup_user_id`, `invited_user_id`);
+# CREATE UNIQUE INDEX unique_game_setup ON game_setup (`setup_user_id`, `invited_user_id`);
 CREATE INDEX game_setup_mode_index ON game_setup (`game_mode`);
 CREATE INDEX game_setup_invite_link_index ON game_setup (`invite_code`);
+CREATE INDEX game_id_index ON game_setup (`game_id`);
+
+DELIMITER $$
+
+CREATE PROCEDURE update_game_setup_game_id(p_game_id INT, p_game_setup_id INT)
+BEGIN
+
+    UPDATE game_setup SET game_id = p_game_id WHERE game_setup_id = p_game_setup_id LIMIT 1;
+
+
+END
+
+$$
+
+DELIMITER ;
 
 
 DELIMITER $$
@@ -510,6 +526,8 @@ DELIMITER $$
 
 CREATE PROCEDURE add_game_setup(p_game_mode ENUM('classic_connect4'), p_game_title VARCHAR(250), p_setup_user_id INT, p_invited_user_id INT, p_invite_code VARCHAR(250))
 BEGIN
+
+    DELETE FROM game_setup WHERE setup_user_id = p_setup_user_id AND invited_user_id = p_invited_user_id AND game_active = FALSE AND game_id IS NULL;
 
 
     INSERT INTO game_setup (game_mode, game_title, setup_user_id, invited_user_id, invite_code) VALUES

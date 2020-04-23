@@ -5,6 +5,7 @@ namespace Connect4\Requests\Api\Endpoints;
 
 
 use Connect4\Database\Database;
+use Connect4\Game;
 use Connect4\Requests\Request;
 use Exception;
 
@@ -89,10 +90,24 @@ class RegisterUserEndpoint extends Endpoint
             $result = @$database->queryPrepared('CALL add_user(?, ?, ?, ?, ?)', 'sssss', $firstName, $lastName, $email, $password, $favoriteColor);
 
             $_SESSION['user_id'] = mysqli_fetch_assoc($result)['user_id'];
+            $userId = mysqli_fetch_assoc($result)['user_id'];
 
 
-            header("Location: /setup");
 
+            if (isset($_SESSION['invited'])) {
+                $invited = $_SESSION['invited'];
+                if ($invited['setup_user_id'] != $userId) {
+                    if (intval($invited['invited_user_id']) < 0) {
+
+//                        $database->queryPrepared('CALL update_setup_game_invite_user_id(?, ?)', 'ii', $_SESSION['user_id'], intval($invited['game_setup_id']));
+                        Game::confirmInviteCreateGame($invited);
+
+
+                    }
+                }
+            } else {
+                header("Location: /setup");
+            }
 
         } catch (Exception $exception) {
 
