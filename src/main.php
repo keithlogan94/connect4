@@ -18,11 +18,10 @@ define("APPLICATION_VERSION", get_setting('version'));
 
 $showDonatePages = ['friends','logout','invite_link','signup','login','membership','how_to_play'];
 $showDonate = in_array($_GET['request_code'], $showDonatePages) ? true : false;
-
+$title = strtoupper($_GET['request_code']);
 
 //c++ style main function where the code begins
 function main() {
-
 
 
 
