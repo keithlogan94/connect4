@@ -11,6 +11,17 @@
         ?>
         <?= $customJavascript ?>
     </script>
+
+    <style>
+        button {
+            width: 40%;
+            height: 35px;
+        }
+
+        h1 {
+            font-size: 20px;
+        }
+    </style>
 </head>
 
 <body>
