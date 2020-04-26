@@ -66,54 +66,5 @@
     }
 
 
-    section {
-        padding: 200px 0;
-        padding-top: 0;
-    }
 
-    .popup {
-        display: block;
-        position: static;
-        width: 80vw;
-        left: 0;
-        right: 0;
-        top: 0;
-        background: white;
-        max-width: 600px;
-        height: 16vh;
-        padding: 2% 2% 0;
-        margin: 0 auto 12px;
-    }
-
-    div#board {
-        display: flex;
-        text-align: center;
-        max-width: 600px;
-        transform: rotate(90deg) rotateX(180deg);
-        background-image: url(https://i.stack.imgur.com/vNpylm.png);
-        background-repeat: no-repeat;
-        background-size: 639px 641px;
-        overflow: hidden;
-        width: 560px;
-        height: 480px;
-        margin: 55px auto 0;
-    }
-
-    .yellow, .red {
-        display: inline-block;
-        position: absolute;
-        left: 0;
-        right: 0;
-        border-radius: 95px;
-        text-align: center;
-        margin: 0 auto;
-        border: thick solid #551;
-        height: 72px;
-        width: 72px;
-        background: yellow;
-    }
-
-    .red {
-        background: red;
-    }
 </style>
