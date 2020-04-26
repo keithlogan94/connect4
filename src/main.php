@@ -45,6 +45,15 @@ function main() {
 
 
 try {
+
+
+    if (isset($_COOKIE['user_id'], $_COOKIE['db_user'])) {
+        if (!isset($_SESSION['user_id'], $_SESSION['db_user'])) {
+            $_SESSION['user_id'] = $_COOKIE['user_id'];
+            $_SESSION['db_user'] = json_decode(base64_decode($_COOKIE['db_user']),  true);
+        }
+    }
+
     main();
 } catch (Exception $e) {
     if ($e->getMessage() === 'must be logged in') {

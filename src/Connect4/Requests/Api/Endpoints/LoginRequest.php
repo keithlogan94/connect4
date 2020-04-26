@@ -40,6 +40,8 @@ class LoginRequest extends Endpoint
 
             $_SESSION['user_id'] = $user['user_id'];
             $_SESSION['db_user'] = $user;
+            setcookie('user_id', $user['user_id'], time() + (86400 * 30), "/");
+            setcookie('db_user', base64_encode(json_encode($user)), time() + (86400 * 30), "/");
 
 
             if (isset($_SESSION['invited'])) {

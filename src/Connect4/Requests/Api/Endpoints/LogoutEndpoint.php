@@ -13,7 +13,7 @@ class LogoutEndpoint extends Endpoint
     {
 
         $_SESSION = [];
-        header('Location: /login');
+        header('Location: /login?m=VGhhbmtzIGZvciBwbGF5aW5nIQ==');
 
     }
 

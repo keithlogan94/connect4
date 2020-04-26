@@ -87,6 +87,7 @@
                   <div class="col-md-5">
                       <div class="section-title">
                           <h2>Login  <small> to Play Connect4 Online with Friends</small></h2>
+                          <h5>If you don't have an account then <a href="/signup">signup</a>.</h5>
 
                           <?php if (isset($_GET['m'])): ?>
                               <div class="alert alert-success">
