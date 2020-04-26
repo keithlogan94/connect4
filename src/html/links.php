@@ -8,7 +8,7 @@
         <?php else: ?>
             <li><a href="/setup">Setup A Game</a></li>
         <?php endif; ?>
-        <li><a href="/membership">Membership</a></li>
+<!--        <li><a href="/membership">Membership</a></li>-->
         <li><a href="/friends">Friends List</a></li>
         <li><a href="/how-to-play">How To Play</a></li>
         <li><a href="/logout">Logout</a></li>

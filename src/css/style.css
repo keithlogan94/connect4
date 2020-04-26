@@ -1354,7 +1354,62 @@ section {
   background: #4796b140!important;
 }
 
+ul {
+  list-style: none;
+}
 
+.money {
+  margin: 0;
+  font-size: 21px;
+  color: coral;
+  background: white;
+  margin-right: 1em;
+  float: left;
+  height: 2em;
+  padding: 6px 14px;
+  transform: translateY(6%);
+}
+
+.message-right {
+  position: absolute;
+  right: 0;
+  top: 771px;
+  background: white;
+  z-index: 100;
+  background: #003087;
+  color: white;
+  padding: 2em;
+}
+
+.message-right p {
+  z-index: 10000;
+  color: black;
+  color: white;
+  font-size: 17px;
+}
+
+
+@media all and (max-width: 1520px) {
+    .message-right {
+      display: none;
+    }
+}
+
+
+.money-input {
+  text-align: center;
+  font-size: 4em;
+  color: coral;
+}
+
+button {
+  width: 100%;
+  height: 4em;
+}
+
+button:active, button:focus {
+  outline: 5px solid lightblue!important;
+}
 
 
 
