@@ -12,8 +12,8 @@ class SignupEndpoint extends Endpoint
     public function handleRequest(Request $request)
     {
 
-
-        $_COOKIE['should_login'] = true;
+        setcookie('should_login', true, time() + (86400 * 30), "/");
+//        $_COOKIE['should_login'] = true;
         $_SESSION['should_login'] = true;
 
         include dirname(__FILE__) . '/../../../../html/signup.php';
