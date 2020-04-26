@@ -1,7 +1,12 @@
 <!-- ======= Footer ======= -->
 <footer id="footer">
 
+    <?php
+    global $showDonate;
 
+    ?>
+
+    <?php if ($showDonate): ?>
 
     <div class="footer-top">
 
@@ -88,6 +93,8 @@
             </div>
         </div>
     </div>
+
+    <?php endif; ?>
 
     <div class="container footer-bottom clearfix">
         <div class="copyright">

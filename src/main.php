@@ -15,8 +15,15 @@ define("APPLICATION_PORT", get_setting('port'));
 define("APPLICATION_HOSTNAME", get_setting('hostname'));
 define("APPLICATION_VERSION", get_setting('version'));
 
+
+$showDonatePages = ['friends','logout','invite_link','signup','login','membership','how_to_play'];
+$showDonate = in_array($_GET['request_code'], $showDonatePages) ? true : false;
+
+
 //c++ style main function where the code begins
 function main() {
+
+
 
 
     if (isset($_GET['request_code'])) {
@@ -43,8 +50,8 @@ function main() {
 
 
 
-
 try {
+
 
 
     if (isset($_COOKIE['user_id'], $_COOKIE['db_user'])) {

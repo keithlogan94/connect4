@@ -169,7 +169,10 @@
 
   </main><!-- End #main -->
 
-  <?php include dirname(__FILE__) . '/footer.php' ?>
+  <?php
+
+
+  include dirname(__FILE__) . '/footer.php' ?>
 
   <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
 
