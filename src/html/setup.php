@@ -27,7 +27,7 @@
   <!-- ======= Hero Section ======= -->
   <section id="hero">
     <div class="hero-container">
-      <h1>Setup A Game</h1>
+<!--      <h1>Setup A Game</h1>-->
     </div>
   </section><!-- End Hero -->
 
@@ -36,6 +36,10 @@
     <!-- ======= About Section ======= -->
     <section id="about" class="about">
       <div class="container">
+
+          <div class="section-title">
+              <h2>Setup a Game of Connect4</h2>
+          </div>
 
 
           <?php

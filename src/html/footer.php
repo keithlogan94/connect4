@@ -14,7 +14,7 @@
 
             <div class="row  justify-content-center">
                 <div class="message-right">
-                    <p>I never recomend using PayPal Credit!</p>
+                    <p>Thank you for your support!</p>
                 </div>
                 <div class="col-lg-6">
                     <h3>Thanks for stopping by this website! You're awesome!</h3>
