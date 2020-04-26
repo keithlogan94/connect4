@@ -84,7 +84,7 @@
 
 
                       <div class="section-title">
-                          <h2>Signup</h2>
+                          <h2>Signup <small> to Play Connect4 Online with Friends</small></h2>
                           <?php if (isset($_SESSION['invited'])): ?>
                               <div class="alert alert-success">
                                   <p><strong><?= \Connect4\functions\utils\get_name_from_user_id(intval($_SESSION['invited']['setup_user_id']))  . '</strong> has invited you, and <strong>is currently waiting</strong> to play a game of Connect4 with you, <strong>after you signup you will automatically join</strong> their game of Connect4. If you already have an account, please <a href=\'/login\'>login</a>.'?></p>
@@ -165,19 +165,7 @@
 
                   </div>
                   <div class="col-md-7">
-                      <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
-                          <div class="carousel-inner">
-                              <div class="carousel-item active">
-                                  <img src="/images/game-picture.png" class="d-block w-100" alt="...">
-                              </div>
-                              <div class="carousel-item">
-                                  <img src="/images/game-picture.png" class="d-block w-100" alt="...">
-                              </div>
-                              <div class="carousel-item">
-                                  <img src="/images/game-picture.png" class="d-block w-100" alt="...">
-                              </div>
-                          </div>
-                      </div>
+                      <?php include dirname(__FILE__) . '/connect4-carousel.php'; ?>
                   </div>
 
               </div>

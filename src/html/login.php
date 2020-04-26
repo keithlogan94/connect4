@@ -86,7 +86,7 @@
               <div class="row">
                   <div class="col-md-5">
                       <div class="section-title">
-                          <h2>Login</h2>
+                          <h2>Login  <small> to Play Connect4 Online with Friends</small></h2>
 
                           <?php if (isset($_GET['m'])): ?>
                               <div class="alert alert-success">
@@ -149,19 +149,7 @@
                       </form>
                   </div>
                   <div class="col-md-7">
-                      <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
-                          <div class="carousel-inner">
-                              <div class="carousel-item active">
-                                  <img src="/images/game-picture.png" class="d-block w-100" alt="...">
-                              </div>
-                              <div class="carousel-item">
-                                  <img src="/images/game-picture.png" class="d-block w-100" alt="...">
-                              </div>
-                              <div class="carousel-item">
-                                  <img src="/images/game-picture.png" class="d-block w-100" alt="...">
-                              </div>
-                          </div>
-                      </div>
+                      <?php include dirname(__FILE__) . '/connect4-carousel.php'; ?>
                   </div>
 
               </div>
