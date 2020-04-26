@@ -13,6 +13,8 @@ class SignupEndpoint extends Endpoint
     {
 
 
+        $_COOKIE['should_login'] = true;
+        $_SESSION['should_login'] = true;
 
         include dirname(__FILE__) . '/../../../../html/signup.php';
 

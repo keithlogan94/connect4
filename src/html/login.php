@@ -83,69 +83,94 @@
       <section id="pricing" class="pricing">
           <div class="container">
 
-              <div class="section-title">
-                  <h2>Login</h2>
+              <div class="row">
+                  <div class="col-md-5">
+                      <div class="section-title">
+                          <h2>Login</h2>
 
-                  <?php if (isset($_GET['m'])): ?>
-                    <div class="alert alert-success">
-                        <p><?= urldecode(base64_decode($_GET['m'])) ?></p>
-                    </div>
-                  <?php else: ?>
-                  <?php if (isset($_SESSION['invited'])): ?>
-                    <div class="alert alert-success">
-                        <p><?= '<strong>'.\Connect4\functions\utils\get_name_from_user_id(intval($_SESSION['invited']['setup_user_id']))  . '</strong> has invited you to play a game of Connect4, after you login you will automatically join their game of Connect4. Please <a href=\'/signup\'>signup</a> if you don\'t have an account.'?></p>
-                    </div>
-                    <?php endif; ?>
-                  <?php endif; ?>
+                          <?php if (isset($_GET['m'])): ?>
+                              <div class="alert alert-success">
+                                  <p><?= urldecode(base64_decode($_GET['m'])) ?></p>
+                              </div>
+                          <?php else: ?>
+                              <?php if (isset($_SESSION['invited'])): ?>
+                                  <div class="alert alert-success">
+                                      <p><?= '<strong>'.\Connect4\functions\utils\get_name_from_user_id(intval($_SESSION['invited']['setup_user_id']))  . '</strong> has invited you to play a game of Connect4, after you login you will automatically join their game of Connect4. Please <a href=\'/signup\'>signup</a> if you don\'t have an account.'?></p>
+                                  </div>
+                              <?php endif; ?>
+                          <?php endif; ?>
 
-                  <?php if (isset($_GET['error'])): ?>
-                    <div class="alert alert-danger">
-                        <p><?= base64_decode($_GET['error']) ?></p>
-                    </div>
-                  <?php endif; ?>
+                          <?php if (isset($_GET['error'])): ?>
+                              <div class="alert alert-danger">
+                                  <p><?= base64_decode($_GET['error']) ?></p>
+                                  <p>If you do not have an account please <a href="/signup">signup</a>.</p>
+                              </div>
+                          <?php endif; ?>
+
+                      </div>
+                      <form action="/login_request" method="POST">
+
+                          <div class="row mb-4">
+                              <div class="col-lg-12 col-md-6 center">
+                                  <div class="box">
+                                      <h3>Email</h3>
+                                      <div class="form-group">
+                                          <input id="email_input" type="email" name="email" placeholder="Email:" class="form-control">
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+
+
+                          <div class="row mb-4">
+                              <div class="col-lg-12 col-md-6 mt-4 mt-md-0 center">
+                                  <div class="box featured blue">
+                                      <h3>Password</h3>
+                                      <div class="form-group">
+                                          <input id="password_input" type="password" name="password" placeholder="Password:" class="form-control">
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+
+
+                          <div class="row">
+                              <div class="col-lg-12 col-md-6 mt-4 mt-lg-0 center">
+                                  <div class="box gold">
+
+                                      <div class="btn-wrap">
+                                          <button class="btn-buy">Login</button>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+
+
+                      </form>
+                  </div>
+                  <div class="col-md-7">
+                      <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+                          <div class="carousel-inner">
+                              <div class="carousel-item active">
+                                  <img src="/images/game-picture.png" class="d-block w-100" alt="...">
+                              </div>
+                              <div class="carousel-item">
+                                  <img src="/images/game-picture.png" class="d-block w-100" alt="...">
+                              </div>
+                              <div class="carousel-item">
+                                  <img src="/images/game-picture.png" class="d-block w-100" alt="...">
+                              </div>
+                          </div>
+                      </div>
+                  </div>
 
               </div>
 
 
-                 <form action="/login_request" method="POST">
-
-                     <div class="row mb-4">
-                         <div class="col-lg-4 col-md-6 center">
-                             <div class="box">
-                                 <h3>Email</h3>
-                                 <div class="form-group">
-                                     <input id="email_input" type="email" name="email" placeholder="Email:" class="form-control">
-                                 </div>
-                             </div>
-                         </div>
-                     </div>
 
 
-                     <div class="row mb-4">
-                         <div class="col-lg-4 col-md-6 mt-4 mt-md-0 center">
-                             <div class="box featured blue">
-                                 <h3>Password</h3>
-                                 <div class="form-group">
-                                     <input id="password_input" type="password" name="password" placeholder="Password:" class="form-control">
-                                 </div>
-                             </div>
-                         </div>
-                     </div>
 
 
-                     <div class="row">
-                         <div class="col-lg-4 col-md-6 mt-4 mt-lg-0 center">
-                             <div class="box gold">
-
-                                 <div class="btn-wrap">
-                                     <button class="btn-buy">Login</button>
-                                 </div>
-                             </div>
-                         </div>
-                     </div>
-
-
-                 </form>
 
 
               </div>

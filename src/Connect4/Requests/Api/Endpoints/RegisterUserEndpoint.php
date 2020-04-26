@@ -56,7 +56,7 @@ class RegisterUserEndpoint extends Endpoint
                 throw new Exception('Your password length must be atleast 5 characters');
             }
 
-            if (
+            /*if (
                 strpos($password, '!') === FALSE &&
                 strpos($password, '#') === FALSE &&
                 strpos($password, '@') === FALSE &&
@@ -69,7 +69,7 @@ class RegisterUserEndpoint extends Endpoint
                 strpos($password, ')') === FALSE
             ) {
                 throw new Exception('In your password you must have atleast 1 special character ! @ # $ % ^ & * ( ) ');
-            }
+            }*/
 
 
             $confirmPassword = filter_input(INPUT_POST, 'confirm_password', FILTER_SANITIZE_STRING);

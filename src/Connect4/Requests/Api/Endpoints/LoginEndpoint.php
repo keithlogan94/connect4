@@ -13,6 +13,11 @@ class LoginEndpoint extends Endpoint
     {
 
 
+        if (!isset($_COOKIE['should_login']) && !isset($_SESSION['should_login'])) {
+            header("Location: /signup");
+        }
+
+
         include dirname(__FILE__) . '/../../../../html/login.php';
 
     }
