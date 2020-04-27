@@ -40,7 +40,7 @@
           <div class="container">
 
               <div class="row">
-                  <div class="col-md-5">
+                  <div class="col-lg-5">
                       <div class="section-title">
                           <h2>Login  <small> to Play Connect4 Online with Friends</small></h2>
                           <h5>If you don't have an account then <a href="/signup">signup</a>.</h5>
@@ -105,7 +105,7 @@
 
                       </form>
                   </div>
-                  <div class="col-md-7">
+                  <div class="col-lg-7">
                       <?php include dirname(__FILE__) . '/connect4-carousel.php'; ?>
                   </div>
 

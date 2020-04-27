@@ -70,7 +70,7 @@ $(document).on('click', 'button.place-checker', async function () {
 
         if (isTie === 'yes') {
             clearInterval(window.loadInterval);
-            $(".popup").html(`
+            $("#user-input-section").html(`
             <h1>It's a tie!</h1>
             <div>
                 <p class="inline">Do you want to play again?</p>
