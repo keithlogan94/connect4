@@ -50,7 +50,7 @@ $(document).on('click', 'button.place-checker', async function () {
 
     if (winningColor) {
         clearInterval(window.loadInterval);
-        $(".popup").html(`
+        $("#user-input-section").html(`
             <h1>${capitalizeFirstLetter(winningColor) + " wins!"}</h1>
             <div>
                 <p class="inline">Do you want to play again?</p>
