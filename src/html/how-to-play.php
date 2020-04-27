@@ -44,35 +44,19 @@
               <div class="row  d-flex align-items-stretch">
 
                   <div class="col-lg-6 faq-item">
-                      <i class="bx bx-help-circle"></i>
-                      <h4>Yellow or Red player goes first.</h4>
-<!--                      <p>-->
-<!--                          Feugiat pretium nibh ipsum consequat. Tempus iaculis urna id volutpat lacus laoreet non curabitur gravida. Venenatis lectus magna fringilla urna porttitor rhoncus dolor purus non.-->
-<!--                      </p>-->
+                      <h4 class="section-title">Yellow or Red player goes first.</h4>
                   </div>
 
                   <div class="col-lg-6 faq-item">
-                      <i class="bx bx-help-circle"></i>
-                      <h4>Players switch turns after placing a token.</h4>
-<!--                      <p>-->
-<!--                          Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi. Id interdum velit laoreet id donec ultrices. Fringilla phasellus faucibus scelerisque eleifend donec pretium. Est pellentesque elit ullamcorper dignissim.-->
-<!--                      </p>-->
+                      <h4 class="section-title">Players switch turns after placing a token.</h4>
                   </div>
 
                   <div class="col-lg-6 faq-item">
-                      <i class="bx bx-help-circle"></i>
-                      <h4>Be the first player player to connect 4 of your color horizontally, vertically, or diagonally.</h4>
-<!--                      <p>-->
-<!--                          Eleifend mi in nulla posuere sollicitudin aliquam ultrices sagittis orci. Faucibus pulvinar elementum integer enim. Sem nulla pharetra diam sit amet nisl suscipit. Rutrum tellus pellentesque eu tincidunt. Lectus urna duis convallis convallis tellus.-->
-<!--                      </p>-->
+                      <h4 class="section-title">Be the first player player to connect 4 of your color horizontally, vertically, or diagonally.</h4>
                   </div>
 
                   <div class="col-lg-6 faq-item">
-                      <i class="bx bx-help-circle"></i>
-                      <h4>That's it. Your wins, and losses are tracked in your profile!</h4>
-<!--                      <p>-->
-<!--                          Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi. Id interdum velit laoreet id donec ultrices. Fringilla phasellus faucibus scelerisque eleifend donec pretium. Est pellentesque elit ullamcorper dignissim.-->
-<!--                      </p>-->
+                      <h4 class="section-title">That's it. Your wins, and losses are tracked in your profile!</h4>
                   </div>
 
 

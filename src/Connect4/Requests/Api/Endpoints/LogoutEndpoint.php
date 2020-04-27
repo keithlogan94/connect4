@@ -13,6 +13,8 @@ class LogoutEndpoint extends Endpoint
     {
 
         $_SESSION = [];
+        setcookie('user_id', NULL, time());
+        setcookie('db_user', NULL, time());
         header('Location: /login?m=VGhhbmtzIGZvciBwbGF5aW5nIQ==');
 
     }

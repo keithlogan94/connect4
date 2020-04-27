@@ -1427,3 +1427,52 @@ body {
 
 
 
+
+/* Pixel 2 */
+@media all and (max-width: 421px) {
+  #board {
+    transform: rotate(90deg) rotateX(180deg) scale(.7)!important;
+    margin-left: -70px!important;
+  }
+}
+
+
+
+/* Pixel 2 */
+@media all and (max-width: 411px) {
+  #board {
+    transform: rotate(90deg) rotateX(180deg) scale(.7)!important;
+    margin-left: -72px!important;
+  }
+}
+
+
+
+@media all and (max-width: 375px) {
+  #board {
+    transform: rotate(90deg) rotateX(180deg) scale(.5)!important;
+    margin-left: -89px!important;
+  }
+}
+
+/* Galaxy S5 */
+@media all and (max-width: 360px) {
+  #board {
+    transform: rotate(90deg) rotateX(180deg) scale(.5)!important;
+    margin-left: -97px!important;
+  }
+}
+
+
+
+/* Iphone 5 SE */
+@media all and (max-width: 320px) {
+  #board {
+    transform: rotate(90deg) rotateX(180deg) scale(.5)!important;
+    margin-left: -125px!important;
+  }
+}
+
+
+
+

@@ -180,8 +180,8 @@
     <section id="about" class="about">
 
 
-        <div class="popup">
-            <h1 id="popup-message" class="mb-1"><span id="color-player">Yellow</span>, please enter the column to drop your checker:</h1>
+        <div class="section-title" style="max-width:500px;margin: 0 auto;">
+            <h1 id="popup-message" class="mb-1">Yellow, please enter the column to drop your checker:</h1>
             <div class="popup-div">
                 <input type="text" id="column" placeholder="Column: 1-6">
                 <button class="place-checker">Place Checker</button>

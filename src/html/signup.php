@@ -63,7 +63,7 @@
                       <form action="/register_user" method="post">
                           <div class="row">
 
-                              <div class="col-lg-12 col-md-12">
+                              <div class="col-lg-12 col-md-12 section-title">
                                   <div class="box form">
                                       <h3>Contact Info</h3>
 
@@ -94,7 +94,7 @@
                                   </div>
                               </div>
 
-                              <div class="col-lg-12 col-md-12 mt-4 mt-md-0">
+                              <div class="col-lg-12 col-md-12 mt-4 mt-md-0 section-title">
                                   <div class="box featured blue form">
                                       <h3>Password</h3>
                                       <div class="form-group">

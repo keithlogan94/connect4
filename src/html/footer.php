@@ -99,7 +99,6 @@
     <div class="container footer-bottom clearfix">
         <div class="copyright">
             &copy; Copyright <strong><span>Connect4Friends.com</span></strong>. All Rights Reserved
-            <BR>This website was written by <a target="_blank" href="https://www.linkedin.com/in/keith-becker-224ab287/">Keith Becker</a> with a number of technologies.
         </div>
     </div>
 </footer><!-- End Footer -->
