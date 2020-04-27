@@ -1,10 +1,10 @@
 
 $(document).on('click', 'button.play-again', function () {
-    window.location = "http://"+applicationHostname+":" + applicationPort;
+    window.location = "http://"+applicationHostname + '/setup';
 });
 
 $(document).on('click', 'button.no-play-again', function () {
-    $(".popup").html(`<h1>Thank you for playing!</h1>`);
+    $("#user-input-section").html(`<h1>Thank you for playing!</h1>`);
 });
 
 
@@ -104,7 +104,7 @@ async function load() {
     const winningColor = await getGameInfo(gameId,'winning_color');
 
     if (winningColor) {
-        $(".popup").html("<h1>"+capitalizeFirstLetter(winningColor) + " won!"+"</h1>");
+        $("#user-input-section").html("<h1>"+capitalizeFirstLetter(winningColor) + " won!"+"</h1>");
         $("#header > div > nav > ul > li:nth-child(1) > a").text("Play Again?");
 
         await loadGame(gameId, document.getElementById('game-container'));

@@ -180,7 +180,7 @@
     <section id="about" class="about">
 
 
-        <div class="section-title" style="max-width:500px;margin: 0 auto;">
+        <div id="user-input-section" class="section-title" style="max-width:500px;margin: 0 auto;">
             <h1 id="popup-message" class="mb-1">Yellow, please enter the column to drop your checker:</h1>
             <div class="popup-div">
                 <input type="text" id="column" placeholder="Column: 1-6">
