@@ -68,7 +68,7 @@
                       <form action="/login_request" method="POST">
 
                           <div class="row mb-4">
-                              <div class="col-lg-12 col-md-6 center">
+                              <div class="col-lg-12 col-md-6 center section-title">
                                   <div class="box">
                                       <h3>Email</h3>
                                       <div class="form-group">
@@ -80,7 +80,7 @@
 
 
                           <div class="row mb-4">
-                              <div class="col-lg-12 col-md-6 mt-4 mt-md-0 center">
+                              <div class="col-lg-12 col-md-6 mt-4 mt-md-0 center section-title">
                                   <div class="box featured blue">
                                       <h3>Password</h3>
                                       <div class="form-group">
@@ -92,7 +92,7 @@
 
 
                           <div class="row">
-                              <div class="col-lg-12 col-md-6 mt-4 mt-lg-0 center">
+                              <div class="col-lg-12 col-md-6 mt-4 mt-lg-0 center section-title">
                                   <div class="box gold">
 
                                       <div class="btn-wrap">

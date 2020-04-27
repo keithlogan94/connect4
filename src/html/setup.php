@@ -35,9 +35,9 @@
 
     <!-- ======= About Section ======= -->
     <section id="about" class="about">
-      <div class="container">
+      <div class="container section-title">
 
-          <div class="section-title">
+          <div>
               <h2>Setup a Game of Connect4</h2>
           </div>
 
